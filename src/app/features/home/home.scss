@@ -1,0 +1,18 @@
+@use 'styles/breakpoints' as *;
+.home {
+  display: block;
+}
+
+.home > section {
+  padding: 2rem 1.5rem;
+  margin-top: 1rem;
+}
+
+@include da-editoriale {
+  .home > section {
+    max-width: 60ch;
+    margin-inline: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

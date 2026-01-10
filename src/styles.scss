@@ -1,0 +1,175 @@
+/* ============================
+   GLOBAL RESET
+   ============================ */
+
+/* Box sizing*/
+@use 'styles/breakpoints' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Reset margini e padding */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/*rendering del testo */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-size: 100%;
+}
+
+/* Body baseline */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+
+  background: transparent;
+  color: inherit;
+}
+
+/* Rimuove stili predefiniti su liste */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Rimuove decorazioni link */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Media elements responsive by default */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Form elements: font coerente */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+/* Bottoni: comportamento coerente */
+button {
+  cursor: pointer;
+  background: none;
+}
+
+/* Rimuove focus outline brutti */
+:focus {
+  outline: none;
+}
+
+/* Migliora scroll */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Evita overflow orizzontale */
+body {
+  overflow-x: hidden;
+}
+
+/* Testo più prevedibile */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+}
+
+:root {
+  /* Sfondo */
+  --sfondo-principale: #0e0e0e;
+
+  /* Testo */
+  --testo-principale: #ffffff; /* titoli principali */
+  --testo-secondario: #b0b6ba; /* h3 / sottotitoli */
+  --testo-discreto: #8b8a78; /* testo piccolo */
+
+  /* Accento / denuncia */
+  --rosso-denuncia: #bc1a17; /* evidenze, parole chiave */
+  --rosso-azione: #ff3333; /* bottoni / CTA */
+}
+
+body {
+  background-color: var(--sfondo-principale);
+}
+
+/* ============================
+   GERARCHIA TIPOGRAFICA GLOBALE
+   ============================ */
+
+/* Titoli principali */
+h1,
+h2 {
+  color: var(--testo-principale);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+/* Titoli secondari */
+h3,
+h4,
+h5,
+h6 {
+  color: var(--testo-secondario);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+/* Testo normale */
+p,
+span,
+li {
+  color: var(--testo-discreto);
+  line-height: 1.6;
+}
+
+/* CTA / bottoni */
+button {
+  background-color: var(--rosso-azione);
+  color: var(--testo-principale);
+  font-weight: 700;
+}
+
+/* Evidenze / parole chiave */
+strong,
+em {
+  color: var(--rosso-denuncia);
+}

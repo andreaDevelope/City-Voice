@@ -1,0 +1,11 @@
+/* ============================
+   BREAKPOINT — CAMBIO LINGUAGGIO VISIVO
+   ============================ */
+
+$da-editoriale: 500px;
+
+@mixin da-editoriale {
+  @media (min-width: $da-editoriale) {
+    @content;
+  }
+}

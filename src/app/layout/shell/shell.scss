@@ -1,0 +1,21 @@
+@use 'styles/breakpoints' as *;
+
+.shell {
+  display: flex;
+  flex-direction: column;
+}
+
+.shell-header {
+  /* slot header */
+}
+
+.shell-main {
+  flex: 1;
+}
+
+@include da-editoriale {
+  .shell-main {
+    max-width: 1200px;
+    margin-inline: auto;
+  }
+}
