@@ -2,12 +2,12 @@
 import { Component } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
-import { HeaderManifestoMobile } from '../header-manifesto-mobile/header.manifesto.mobile';
+import { HeaderAppMobile } from '../header-app-mobile/header.app.mobile';
 
 @Component({
   standalone: true,
   selector: 'app-shell',
-  imports: [RouterOutlet, HeaderManifestoMobile],
+  imports: [RouterOutlet, HeaderAppMobile],
   templateUrl: './shell.html',
   styleUrl: './shell.scss',
 })

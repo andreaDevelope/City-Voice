@@ -1,0 +1,14 @@
+<header class="header-app-mobile">
+  <!-- indicatori -->
+  <div class="header-indicators">
+    @for (_ of slogans; track $index; let i = $index) {
+      <span [class.active]="i === currentIndex()"></span>
+    }
+  </div>
+
+  <!-- contenuto -->
+  <div class="header-inner">
+    <h1>{{ slogans[currentIndex()].title }}</h1>
+    <p>{{ slogans[currentIndex()].subtitle }}</p>
+  </div>
+</header>
