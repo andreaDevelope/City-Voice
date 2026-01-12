@@ -7,8 +7,17 @@
   </div>
 
   <!-- contenuto -->
-  <div class="header-inner">
-    <h1>{{ slogans[currentIndex()].title }}</h1>
-    <p>{{ slogans[currentIndex()].subtitle }}</p>
+  <div class="header-inner-container is-animating">
+    @for (s of slogans; track $index; let i = $index) {
+      @if (i === currentIndex()) {
+        <div class="header-slide">
+          <img [src]="s.image" alt="" />
+          <div class="header-inner">
+            <h1>{{ s.title }}</h1>
+            <p>{{ s.subtitle }}</p>
+          </div>
+        </div>
+      }
+    }
   </div>
 </header>

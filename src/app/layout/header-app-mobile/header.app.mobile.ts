@@ -11,9 +11,21 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class HeaderAppMobile implements OnDestroy {
   slogans = [
-    { title: 'Roma non è in vendita', subtitle: 'Una città abbandonata non è una fatalità.' },
-    { title: 'Siamo stanchi', subtitle: 'Ma non invisibili.' },
-    { title: 'Qui nessuno è solo', subtitle: 'Le storie contano.' },
+    {
+      title: 'Roma non è in vendita',
+      subtitle: 'Una città abbandonata non è una fatalità.',
+      image: '/assets/images/header/header-rome-collapse-01.jpg',
+    },
+    {
+      title: 'Siamo stanchi',
+      subtitle: 'Ma non invisibili.',
+      image: '/assets/images/header/header-rome-solidarity-01.jpg',
+    },
+    {
+      title: 'Qui nessuno è solo',
+      subtitle: 'Le storie contano.',
+      image: '/assets/images/header/header-rome-fire-01.jpeg',
+    },
   ];
 
   currentIndex = signal(0);
