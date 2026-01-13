@@ -3,9 +3,106 @@
   display: block;
 }
 
+.home {
+  display: flex;
+  flex-direction: column;
+}
+
 .home > section {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
   padding: 2rem 1.5rem;
   margin-top: 1rem;
+}
+.home-step--intro {
+  background: linear-gradient(180deg, rgba(14, 14, 14, 0.95), rgba(14, 14, 14, 1));
+}
+
+.header-main-mobile {
+  display: flex;
+  flex-direction: column;
+  // gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+
+  h2,
+  p {
+    text-align: center;
+  }
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 8.5rem;
+    margin-top: 3.5rem;
+  }
+}
+
+.first-action {
+  .lead {
+    text-align: center;
+    min-height: 10vh;
+  }
+  .numbers-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .numbers {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--sfondo-secondario);
+      min-height: 15vh;
+      width: 45%;
+      border-radius: 0.8rem;
+      border: 1px solid var(--border-subtle);
+      background: linear-gradient(to bottom, var(--panel-highlight-top), rgba(255, 255, 255, 0));
+      p,
+      span {
+        margin-block: 0.3rem;
+      }
+      .emoji {
+        color: var(--rosso-denuncia);
+      }
+      p {
+        font-size: 1.6rem;
+        color: var(--testo-principale);
+        font-weight: 900;
+      }
+
+      span {
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+    }
+  }
+  .cta-first-action-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    .button-secondary {
+      background-color: var(--sfondo-principale);
+      border: 1px solid var(--testo-discreto);
+    }
+  }
+}
+
+.home-step--break {
+  background-color: #111;
+}
+
+.home-step--impact {
+  background-color: #0b0b0b;
+}
+
+.home-step--stories {
+  background-color: #090909;
+}
+
+.home-step--cta {
+  background-color: #000;
 }
 
 @include da-editoriale {

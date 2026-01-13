@@ -25,10 +25,13 @@
 /* Contenitore hero (immagine + testo sovrapposto) */
 .header-inner-container {
   position: relative;
-  min-height: 50vh;
+  min-height: 70vh;
   overflow: hidden;
 
   img {
+    // border: 2px solid var(--testo-discreto);
+    border-top-left-radius: 3rem;
+    border-bottom-right-radius: 3rem;
     position: absolute;
     inset: 0;
     width: 100%;
