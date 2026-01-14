@@ -2,6 +2,7 @@
 import { Component, Inject, OnDestroy, signal } from '@angular/core';
 import { PLATFORM_ID, afterNextRender } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { HeaderSlogan } from '../models/header-slogan.model';
 
 @Component({
   standalone: true,
@@ -10,7 +11,7 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrls: ['./header.app.mobile.scss'],
 })
 export class HeaderAppMobile implements OnDestroy {
-  slogans = [
+  slogans: HeaderSlogan[] = [
     {
       title: 'Roma non è in vendita',
       subtitle: 'Una città abbandonata non è una fatalità.',
