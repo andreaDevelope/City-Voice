@@ -81,10 +81,49 @@ select {
   outline: none;
 }
 
-/* Bottoni: comportamento coerente */
+/* CTA / bottoni */
 button {
   cursor: pointer;
   background: none;
+  isolation: isolate;
+  position: relative;
+  background-color: var(--rosso-azione);
+  color: var(--testo-principale);
+  font-weight: 700;
+  width: 100%;
+  border-radius: 0.8rem;
+  text-align: center;
+  min-height: 4rem;
+  line-height: 4rem;
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
+  box-shadow:
+  /* contatto */
+    0 4px 8px rgba(100, 100, 100, 0.22),
+    /* profondità */ 0 14px 28px rgba(40, 40, 40, 0.35),
+    /* dispersione lontana */ 0 28px 56px rgba(20, 20, 20, 0.25);
+  &:active {
+    scale: 0.9;
+  }
+}
+
+.button-primary {
+  background-color: var(--rosso-azione);
+  color: var(--testo-principale);
+}
+
+.button-primary::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+
+  background: radial-gradient(circle, var(--cta-glow-color), transparent 70%);
+
+  filter: blur(12px);
+  opacity: 0.8;
+  z-index: -1;
 }
 
 /* Rimuove focus outline brutti */
@@ -164,46 +203,6 @@ span,
 li {
   color: var(--testo-discreto);
   line-height: 1.6;
-}
-
-/* CTA / bottoni */
-button {
-  isolation: isolate;
-  position: relative;
-  background-color: var(--rosso-azione);
-  color: var(--testo-principale);
-  font-weight: 700;
-  width: 100%;
-  border-radius: 0.8rem;
-  text-align: center;
-  min-height: 4rem;
-  line-height: 4rem;
-  transition:
-    box-shadow 0.3s ease,
-    transform 0.2s ease;
-  box-shadow:
-  /* contatto */
-    0 4px 8px rgba(100, 100, 100, 0.22),
-    /* profondità */ 0 14px 28px rgba(40, 40, 40, 0.35),
-    /* dispersione lontana */ 0 28px 56px rgba(20, 20, 20, 0.25);
-}
-
-.button-primary {
-  background-color: var(--rosso-azione);
-  color: var(--testo-principale);
-}
-
-.button-primary::after {
-  content: '';
-  position: absolute;
-  inset: -6px;
-  border-radius: inherit;
-
-  background: radial-gradient(circle, var(--cta-glow-color), transparent 70%);
-
-  filter: blur(12px);
-  opacity: 0.8;
-  z-index: -1;
 }
 
 /* Evidenze / parole chiave */
