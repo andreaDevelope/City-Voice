@@ -17,11 +17,11 @@
   padding: 2rem 1.5rem;
   margin-top: 1rem;
 }
-.home-step--intro {
+.home-top {
   background: linear-gradient(180deg, rgba(14, 14, 14, 0.95), rgba(14, 14, 14, 1));
 }
 
-.header-main-mobile {
+.home-intro {
   display: flex;
   flex-direction: column;
   // gap: 1.5rem;
@@ -39,17 +39,17 @@
   }
 }
 
-.first-action {
-  .lead {
+.home-action {
+  .home-lead {
     text-align: center;
     min-height: 10vh;
   }
-  .numbers-container {
+  .home-metrics {
     margin-block: 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    .numbers {
+    .metric-card {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -79,7 +79,7 @@
       }
     }
   }
-  .cta-first-action-section {
+  .home-cta {
     display: flex;
     flex-direction: column;
     gap: 1.3rem;
@@ -90,21 +90,21 @@
   }
 }
 
-.home > .section-divider {
+.home > .section-separator {
   min-height: 5vh;
   display: flex;
   align-items: center;
-  .section-divider-content {
+  .separator-line {
     width: 80%;
     border-bottom: 2px solid var(--testo-principale);
     margin-inline: auto;
     opacity: 0.6;
   }
 }
-.home > .home-last-story {
+.home > .home-latest {
   min-height: 40vh;
   background-color: #111;
-  .last-story-lead {
+  .latest-intro {
     h2 {
       text-align: center;
       color: var(--testo-discreto);
@@ -116,7 +116,7 @@
       margin-block: 1rem;
     }
   }
-  .app-signature {
+  .content-meta {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -130,19 +130,19 @@
       border-radius: 50%;
     }
   }
-  .last-stories-container {
+  .latest-list {
     h2 {
       font-size: 0.8rem;
       margin-bottom: 0.5rem;
     }
 
-    .last-story {
+    .latest-item {
       border-radius: 0.8rem;
       padding: 1rem;
       border: 1px solid var(--border-subtle);
       background-color: var(--sfondo-secondario);
       background: linear-gradient(to bottom, var(--panel-highlight-top), rgba(255, 255, 255, 0));
-      .header-story {
+      .item-header {
         h3 {
           font-size: 1rem;
           color: var(--rosso-denuncia);
