@@ -45,6 +45,7 @@
     min-height: 10vh;
   }
   .numbers-container {
+    margin-block: 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -89,20 +90,74 @@
   }
 }
 
-.home-step--break {
+.home > .section-divider {
+  min-height: 5vh;
+  display: flex;
+  align-items: center;
+  .section-divider-content {
+    width: 80%;
+    border-bottom: 2px solid var(--testo-principale);
+    margin-inline: auto;
+    opacity: 0.6;
+  }
+}
+.home > .home-last-story {
+  min-height: 40vh;
   background-color: #111;
-}
+  .last-story-lead {
+    h2 {
+      text-align: center;
+      color: var(--testo-discreto);
+      font-size: 1.3rem;
+    }
+    p {
+      text-align: center;
+      color: var(--testo-discreto);
+      margin-block: 1rem;
+    }
+  }
+  .app-signature {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    gap: 0.5rem;
+    margin-block: 1rem;
+    .dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: var(--rosso-azione);
+      border-radius: 50%;
+    }
+  }
+  .last-stories-container {
+    h2 {
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
 
-.home-step--impact {
-  background-color: #0b0b0b;
-}
-
-.home-step--stories {
-  background-color: #090909;
-}
-
-.home-step--cta {
-  background-color: #000;
+    .last-story {
+      border-radius: 0.8rem;
+      padding: 1rem;
+      border: 1px solid var(--border-subtle);
+      background-color: var(--sfondo-secondario);
+      background: linear-gradient(to bottom, var(--panel-highlight-top), rgba(255, 255, 255, 0));
+      .header-story {
+        h3 {
+          font-size: 1rem;
+          color: var(--rosso-denuncia);
+        }
+        span {
+          font-size: 0.8rem;
+          color: var(--testo-discreto);
+        }
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+      }
+    }
+  }
 }
 
 @include da-editoriale {
