@@ -1,18 +1,18 @@
-<header class="header-app-mobile">
+<header class="app-header">
   <!-- indicatori -->
-  <div class="header-indicators">
+  <div class="header-pagination">
     @for (_ of slogans; track $index; let i = $index) {
       <span [class.active]="i === currentIndex()"></span>
     }
   </div>
 
   <!-- contenuto -->
-  <div class="header-inner-container is-animating">
+  <div class="header-carousel is-animating">
     @for (s of slogans; track $index; let i = $index) {
       @if (i === currentIndex()) {
-        <div class="header-slide">
+        <div class="header-item">
           <img [src]="s.image" alt="" />
-          <div class="header-inner">
+          <div class="header-content">
             <h1>{{ s.title }}</h1>
             <p>{{ s.subtitle }}</p>
           </div>

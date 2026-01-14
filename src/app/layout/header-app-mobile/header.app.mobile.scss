@@ -1,11 +1,11 @@
 @use 'styles/breakpoints' as *;
 
 //  HEADER MOBILE (APP-LIKE)
-.header-app-mobile {
+.app-header {
   padding: 2rem 1.5rem;
 }
 
-.header-indicators {
+.header-pagination {
   display: flex;
   gap: 0.4rem;
   margin-bottom: 1.25rem;
@@ -23,7 +23,7 @@
 }
 
 /* Contenitore hero (immagine + testo sovrapposto) */
-.header-inner-container {
+.header-carousel {
   position: relative;
   min-height: 70vh;
   overflow: hidden;
@@ -44,7 +44,7 @@
 }
 
 /* Testo sovrapposto all'immagine */
-.header-inner {
+.header-content {
   min-height: 8.5rem;
   padding: 0 1rem;
   text-align: center;
@@ -80,15 +80,15 @@
 
 //  ANIMAZIONI HERO
 
-.header-inner-container.is-animating img {
+.header-carousel.is-animating img {
   animation: img-enter 1200ms ease-out forwards;
 }
 
-.header-inner-container.is-animating h1 {
+.header-carousel.is-animating h1 {
   animation: h1-enter 900ms ease-out forwards;
 }
 
-.header-inner-container.is-animating p {
+.header-carousel.is-animating p {
   animation: p-enter 900ms ease-out forwards;
   animation-delay: 520ms;
 }
