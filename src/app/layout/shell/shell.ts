@@ -2,12 +2,12 @@
 import { Component } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
-import { HeaderAppMobile } from '../header-app-mobile/header.app.mobile';
+import { HeaderApp } from '../header-app/header.app';
 
 @Component({
   standalone: true,
   selector: 'app-shell',
-  imports: [RouterOutlet, HeaderAppMobile],
+  imports: [RouterOutlet, HeaderApp],
   templateUrl: './shell.html',
   styleUrl: './shell.scss',
 })

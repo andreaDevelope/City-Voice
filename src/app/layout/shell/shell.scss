@@ -7,17 +7,6 @@
   background-color: var(--sfondo-principale);
 }
 
-.shell-header {
-  /* slot header */
-}
-
 .shell-main {
   flex: 1;
-}
-
-@include da-editoriale {
-  .shell-main {
-    max-width: 1200px;
-    margin-inline: auto;
-  }
 }

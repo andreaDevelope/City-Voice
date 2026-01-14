@@ -69,12 +69,18 @@
     opacity: 0;
     transform: translateX(28px);
   }
-
-  @include da-editoriale {
-    p {
-      max-width: 32ch;
-    }
+}
+@include da-wide {
+  .app-header {
+    max-width: 720px;
+    margin-inline: auto;
   }
+  p {
+    max-width: 32ch;
+  }
+}
+
+@include da-desktop {
 }
 
 //  ANIMAZIONI HERO

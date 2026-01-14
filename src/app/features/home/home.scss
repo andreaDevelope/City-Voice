@@ -160,11 +160,9 @@
   }
 }
 
-@include da-editoriale {
+@include da-wide {
   .home > section {
     max-width: 60ch; // character units for readability
     margin-inline: auto;
-    padding-left: 0;
-    padding-right: 0;
   }
 }

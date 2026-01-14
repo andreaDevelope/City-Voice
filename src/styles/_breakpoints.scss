@@ -2,10 +2,17 @@
    BREAKPOINT — CAMBIO LINGUAGGIO VISIVO
    ============================ */
 
-$da-editoriale: 500px;
+$bp-wide: 500px;
+$bp-desktop: 1024px;
 
-@mixin da-editoriale {
-  @media (min-width: $da-editoriale) {
+@mixin da-wide {
+  @media (min-width: $bp-wide) {
+    @content;
+  }
+}
+
+@mixin da-desktop {
+  @media (min-width: $bp-desktop) {
     @content;
   }
 }

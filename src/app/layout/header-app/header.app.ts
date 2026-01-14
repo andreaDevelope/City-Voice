@@ -6,11 +6,11 @@ import { HeaderSlogan } from '../models/header-slogan.model';
 
 @Component({
   standalone: true,
-  selector: 'app-header-app-mobile',
-  templateUrl: './header.app.mobile.html',
-  styleUrls: ['./header.app.mobile.scss'],
+  selector: 'app-header-app',
+  templateUrl: './header.app.html',
+  styleUrls: ['./header.app.scss'],
 })
-export class HeaderAppMobile implements OnDestroy {
+export class HeaderApp implements OnDestroy {
   slogans: HeaderSlogan[] = [
     {
       title: 'Roma non è in vendita',
