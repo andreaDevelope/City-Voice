@@ -5,6 +5,10 @@
   padding: 2rem 1.5rem;
 }
 
+.header-hero--editorial {
+  display: none;
+}
+
 .header-pagination {
   display: flex;
   gap: 0.4rem;
@@ -81,6 +85,12 @@
 }
 
 @include da-desktop {
+  .header-hero--carousel {
+    display: none;
+  }
+  .header-hero--editorial {
+    display: block;
+  }
 }
 
 //  ANIMAZIONI HERO

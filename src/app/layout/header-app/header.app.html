@@ -1,23 +1,45 @@
 <header class="app-header">
-  <!-- indicatori -->
-  <div class="header-pagination">
-    @for (_ of slogans; track $index; let i = $index) {
-      <span [class.active]="i === currentIndex()"></span>
-    }
-  </div>
-
-  <!-- contenuto -->
-  <div class="header-carousel is-animating">
-    @for (s of slogans; track $index; let i = $index) {
-      @if (i === currentIndex()) {
-        <div class="header-item">
-          <img [src]="s.image" alt="" />
-          <div class="header-content">
-            <h1>{{ s.title }}</h1>
-            <p>{{ s.subtitle }}</p>
-          </div>
-        </div>
+  <!-- HEADER MOBILE/CAROUSEL -->
+  <div class="header-hero header-hero--carousel">
+    <!-- indicatori -->
+    <div class="header-pagination">
+      @for (_ of slogans; track $index; let i = $index) {
+        <span [class.active]="i === currentIndex()"></span>
       }
-    }
+    </div>
+
+    <!-- contenuto -->
+    <div class="header-carousel is-animating">
+      @for (s of slogans; track $index; let i = $index) {
+        @if (i === currentIndex()) {
+          <div class="header-item">
+            <img [src]="s.image" alt="" />
+            <div class="header-content">
+              <h1>{{ s.title }}</h1>
+              <p>{{ s.subtitle }}</p>
+            </div>
+          </div>
+        }
+      }
+    </div>
+  </div>
+  <!-- HEADER DESKTOP/EDITORIAL -->
+  <div class="header-hero header-hero--editorial">
+    <div class="editorial-hero">
+      <div class="editorial-hero__left">
+        <span class="editorial-hero__kicker"></span>
+        <h1 class="editorial-hero__title">PORCODIO</h1>
+        <p class="editorial-hero__subtitle">creatore del celo e della terra</p>
+      </div>
+
+      <nav class="editorial-hero__nav">
+        <a routerLink="">Storie</a>
+        <a routerLink="">Vangelo</a>
+        <a routerLink="">Progetti</a>
+      </nav>
+    </div>
+
+    <div class="editorial-hero__visual"></div>
+    <div class="editorial-hero__metrics"></div>
   </div>
 </header>

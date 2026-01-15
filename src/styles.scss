@@ -55,7 +55,7 @@ ol {
 /* Rimuove decorazioni link */
 a {
   text-decoration: none;
-  color: inherit;
+  color: var(--testo-principale);
 }
 
 /* Media elements responsive by default */
