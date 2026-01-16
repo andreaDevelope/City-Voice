@@ -18,7 +18,7 @@ export class Home {
 
   readonly latestStory: StoryPreview = {
     district: 'QUARTIERE',
-    date: '01-01-2026git puh',
+    date: '01-01-2026',
     description: 'descrizione della storia...',
   };
 

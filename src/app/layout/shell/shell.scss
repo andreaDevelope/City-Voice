@@ -10,3 +10,9 @@
 .shell-main {
   flex: 1;
 }
+
+@include da-desktop {
+  .shell {
+    border-top-left-radius: 0;
+  }
+}

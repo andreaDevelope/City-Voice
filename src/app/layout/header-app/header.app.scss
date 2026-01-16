@@ -5,11 +5,11 @@
   padding: 2rem 1.5rem;
 }
 
-.header-hero--editorial {
+.header__editorial {
   display: none;
 }
 
-.header-pagination {
+.header__pagination {
   display: flex;
   gap: 0.4rem;
   margin-bottom: 1.25rem;
@@ -27,7 +27,7 @@
 }
 
 /* Contenitore hero (immagine + testo sovrapposto) */
-.header-carousel {
+.header__carousel {
   position: relative;
   min-height: 70vh;
   overflow: hidden;
@@ -47,7 +47,7 @@
 }
 
 /* Testo sovrapposto all'immagine */
-.header-content {
+.header__content {
   min-height: 8.5rem;
   padding: 0 1rem;
   text-align: center;
@@ -75,7 +75,7 @@
   }
 }
 @include da-wide {
-  .app-header {
+  .header__hero--carousel {
     max-width: 720px;
     margin-inline: auto;
   }
@@ -85,25 +85,60 @@
 }
 
 @include da-desktop {
-  .header-hero--carousel {
+  .header__hero--carousel {
     display: none;
   }
-  .header-hero--editorial {
+  .header__editorial {
     display: block;
+  }
+  .editorial-hero {
+    display: flex;
+    .editorial-hero__left {
+      width: 50%;
+      div {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      span {
+        display: inline-block;
+        width: 0.5rem;
+        height: 0.5rem;
+        background-color: var(--rosso-denuncia);
+        border-radius: 50%;
+      }
+      h2 {
+        font-size: 2.5rem;
+      }
+      .editorial-hero__subtitle {
+        font-size: 0.8rem;
+        margin-left: 1rem;
+      }
+    }
+    .editorial-hero__nav {
+      display: flex;
+      justify-content: end;
+      gap: 1rem;
+      width: 50%;
+      a {
+        font-size: 0.8rem;
+        font-weight: 800;
+      }
+    }
   }
 }
 
 //  ANIMAZIONI HERO
 
-.header-carousel.is-animating img {
+.header__carousel.is-animating img {
   animation: img-enter 1200ms ease-out forwards;
 }
 
-.header-carousel.is-animating h1 {
+.header__carousel.is-animating h1 {
   animation: h1-enter 900ms ease-out forwards;
 }
 
-.header-carousel.is-animating p {
+.header__carousel.is-animating p {
   animation: p-enter 900ms ease-out forwards;
   animation-delay: 520ms;
 }

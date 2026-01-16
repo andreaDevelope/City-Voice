@@ -4,6 +4,10 @@
   flex-direction: column;
 }
 
+.home > .home__hero {
+  display: none;
+}
+
 .home > section {
   min-height: 70vh;
   display: flex;
@@ -13,7 +17,7 @@
   padding: 2rem 1.5rem;
   margin-top: 1rem;
 }
-.home-top {
+.home__top {
   background: linear-gradient(
     180deg,
     color-mix(in srgb, var(--sfondo-principale) 95%, transparent),
@@ -21,7 +25,7 @@
   );
 }
 
-.home-intro {
+.home__intro {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,12 +42,12 @@
   }
 }
 
-.home-action {
-  .home-lead {
+.home__action {
+  .home__lead {
     text-align: center;
     min-height: 10vh;
   }
-  .home-metrics {
+  .home__metrics {
     margin-block: 2rem;
     display: flex;
     align-items: center;
@@ -77,7 +81,7 @@
       }
     }
   }
-  .home-cta {
+  .home__cta {
     display: flex;
     flex-direction: column;
     gap: 1.3rem;
@@ -88,18 +92,18 @@
   }
 }
 
-.home > .section-separator {
+.home__separator {
   min-height: 5vh;
   display: flex;
-  align-items: center;
-  .separator-line {
+  align-items: start;
+  .home__separator-line {
     width: 80%;
     border-bottom: 2px solid var(--testo-principale);
     margin-inline: auto;
     opacity: 0.6;
   }
 }
-.home > .home-latest {
+.home__latest {
   min-height: 40vh;
   background-color: var(--sfondo-principale);
   .latest-intro {
@@ -128,34 +132,34 @@
       border-radius: 50%;
     }
   }
-  .latest-list {
-    h2 {
-      font-size: 0.8rem;
-      margin-bottom: 0.5rem;
-    }
+}
+.latest-list {
+  h2 {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
 
-    .latest-item {
-      border-radius: 0.8rem;
-      padding: 1rem;
-      border: 1px solid var(--border-subtle);
-      background: linear-gradient(to bottom, var(--panel-highlight-top), rgba(255, 255, 255, 0));
-      .item-header {
-        h3 {
-          font-size: 1rem;
-          color: var(--rosso-denuncia);
-        }
-        span {
-          font-size: 0.8rem;
-          color: var(--testo-discreto);
-        }
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 1rem;
-      }
+  .latest-item {
+    border-radius: 0.8rem;
+    padding: 1rem;
+    border: 1px solid var(--border-subtle);
+    background: linear-gradient(to bottom, var(--panel-highlight-top), rgba(255, 255, 255, 0));
+    .item-header {
       h3 {
-        color: var(--testo-principale);
+        font-size: 1rem;
+        color: var(--rosso-denuncia);
       }
+      span {
+        font-size: 0.8rem;
+        color: var(--testo-discreto);
+      }
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    h3 {
+      color: var(--testo-principale);
     }
   }
 }
