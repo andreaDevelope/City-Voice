@@ -42,8 +42,10 @@ body {
     Arial,
     sans-serif;
 
-  background: transparent;
+
   color: inherit;
+  background-color: var(--sfondo-principale);
+
 }
 
 /* Rimuove stili predefiniti su liste */

@@ -1,6 +1,7 @@
 @use 'styles/breakpoints' as *;
 
 .shell {
+  height: 100vh;
   border-top-left-radius: 3rem;
   display: flex;
   flex-direction: column;
