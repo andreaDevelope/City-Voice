@@ -2,12 +2,12 @@
   <!-- HERO DESKTOP -->
   <section class="home__hero">
     <div class="home__hero-content__left">
-      <h1>Qui nessuno è solo</h1>
-      <p>
-        Uno spazio dove i cittadini romani raccontano storie reali di
-        <em>ingiustizia, burocrazia e degrado.</em><br />
-        Perché nessuna voce deve rimanere inascoltata.
-      </p>
+      @for (s of slogans; track $index; let i = $index) {
+        @if (i === currentIndex()) {
+          <h1 class="home__hero__title">{{ s.slogan }}</h1>
+          <p [innerHTML]="s.description"></p>
+        }
+      }
     </div>
     <div class="home__hero-content__right">
       <div class="home__hero-content__right-metrics">
@@ -18,38 +18,37 @@
             </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>
-              <div>
-              <span>icon</span>
-              <p>visite</p>
-            </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div>
-              <span>icon</span>
-              <p>storie</p>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div>
-              <span>icon</span>
-              <p>Problemi sbloccati</p>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <h4>"Qui nessuno è solo ogni storia conta"</h4>
-            </td>
-          </tr>
+            <tr>
+              <td>
+                <div>
+                  <span>icon</span>
+                  <p>visite</p>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <span>icon</span>
+                  <p>storie</p>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <span>icon</span>
+                  <p>Problemi sbloccati</p>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h4>"Qui nessuno è solo ogni storia conta"</h4>
+              </td>
+            </tr>
           </tbody>
         </table>
-
       </div>
       <img src="/assets/images/home/community-01.jpg" alt="solidarity" />
     </div>
