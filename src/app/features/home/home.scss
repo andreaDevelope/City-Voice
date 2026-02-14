@@ -42,6 +42,11 @@
   }
 }
 
+.emoji {
+  // regola in comune mobile/desktop
+  color: var(--rosso-denuncia);
+}
+
 .home__action {
   .home__lead {
     text-align: center;
@@ -65,9 +70,6 @@
       p,
       span {
         margin-block: 0.3rem;
-      }
-      .emoji {
-        color: var(--rosso-denuncia);
       }
       p {
         font-size: 1.6rem;
@@ -175,6 +177,10 @@
   .home > .home__app {
     display: none;
   }
+  .home__latest > .home__app {
+    display: none;
+  }
+
   .home > section {
     min-width: 100%;
 
@@ -200,21 +206,50 @@
     flex: 1;
     width: 50%;
     background:
-      linear-gradient(to top, transparent 55%, var(--sfondo-principale)),
+      linear-gradient(to top, transparent 85%, var(--sfondo-principale)),
       color-mix(in srgb, var(--sfondo-secondario) 20%, transparent);
     transform: translateX(-32px);
-
     animation: hero__left-enter 1200ms ease-out forwards;
     .home__hero__title {
       opacity: 0;
       transform: translateY(-36px);
       animation: hero__h1-enter 900ms ease-out forwards;
+      margin-top: 4em;
+    }
+    .hero__pagination {
+      display: flex;
+      gap: 0.4rem;
+      margin-top: 6rem;
+      margin-bottom: 1.5rem;
+      max-width: 500px;
+      span {
+        flex: 1;
+        height: 3px;
+        width: 10px;
+        background-color: var(--border-subtle);
+        border-radius: 2px;
+        &.active {
+          width: 15px;
+          background-color: var(--rosso-denuncia);
+        }
+      }
     }
     p {
       opacity: 0;
       animation: hero__p-enter 900ms ease-out forwards;
       transform: translateX(28px);
       animation-delay: 200ms;
+    }
+    .home__cta {
+      display: flex;
+      gap: 1rem;
+      max-width: 600px;
+      margin-block: 3rem;
+      button {
+        &:hover {
+          scale: 0.9;
+        }
+      }
     }
   }
   .home__hero-content__right {
@@ -254,6 +289,58 @@
             div {
               display: flex;
               gap: 0.5rem;
+              align-items: center;
+              span {
+                --s: 50px;
+                --ring: 3px;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: var(--s);
+                height: var(--s);
+                border-radius: 50%;
+
+                background: radial-gradient(
+                  circle at 50% 50%,
+                  color-mix(in srgb, var(--rosso-denuncia) 5%, transparent) 0%,
+                  color-mix(in srgb, var(--rosso-denuncia) 28%, transparent) 45%,
+                  color-mix(in srgb, var(--rosso-denuncia) 85%, transparent) 70%,
+                  transparent 100%
+                );
+              }
+              span::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                border-radius: inherit;
+                pointer-events: none;
+                background: conic-gradient(
+                  from 45deg,
+                  var(--rosso-denuncia) 0deg 20deg,
+                  transparent 20deg 70deg,
+                  var(--rosso-denuncia) 70deg 110deg,
+                  transparent 110deg 160deg,
+                  var(--rosso-denuncia) 160deg 200deg,
+                  transparent 200deg 250deg,
+                  var(--rosso-denuncia) 250deg 290deg,
+                  transparent 290deg 360deg
+                );
+                -webkit-mask: radial-gradient(
+                  circle,
+                  transparent calc(100% - var(--ring)),
+                  #000 calc(100% - var(--ring))
+                );
+                mask: radial-gradient(
+                  circle,
+                  transparent calc(100% - var(--ring)),
+                  #000 calc(100% - var(--ring))
+                );
+              }
+              span > svg {
+                position: relative;
+                z-index: 1;
+              }
             }
             h4 {
               font-style: italic;
