@@ -1,27 +1,4 @@
 <header class="app-header">
-  <!-- HEADER MOBILE/CAROUSEL -->
-  <div class="header__hero header__hero--carousel">
-    <!-- indicatori -->
-    <div class="header__pagination">
-      @for (_ of slogans; track $index; let i = $index) {
-        <span [class.active]="i === currentIndex()"></span>
-      }
-    </div>
-    <!-- contenuto -->
-    <div class="header__carousel is-animating">
-      @for (s of slogans; track $index; let i = $index) {
-        @if (i === currentIndex()) {
-          <div class="header__item">
-            <img [src]="s.image" alt="" />
-            <div class="header__content">
-              <h1>{{ s.title }}</h1>
-              <p>{{ s.subtitle }}</p>
-            </div>
-          </div>
-        }
-      }
-    </div>
-  </div>
   <!-- HEADER DESKTOP/EDITORIAL -->
   <div class="header__editorial">
     <div class="editorial-hero">

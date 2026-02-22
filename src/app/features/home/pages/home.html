@@ -120,6 +120,30 @@
 
   <!-- ESPERIENZA APP-LIKE (MOBILE-FIRST) -->
   <section class="home__app">
+    <!-- HEADER MOBILE/CAROUSEL -->
+    <div class="header__hero header__hero--carousel home-mobile-hero">
+      <!-- indicatori -->
+      <div class="header__pagination">
+        @for (_ of heroSlides; track $index; let i = $index) {
+          <span [class.active]="i === currentIndex()"></span>
+        }
+      </div>
+      <!-- contenuto -->
+      <div class="header__carousel is-animating">
+        @for (s of heroSlides; track $index; let i = $index) {
+          @if (i === currentIndex()) {
+            <div class="header__item">
+              <img [src]="s.image" alt="" />
+              <div class="header__content">
+                <h1>{{ s.title }}</h1>
+                <p>{{ s.subtitle }}</p>
+              </div>
+            </div>
+          }
+        }
+      </div>
+    </div>
+
     <section class="home__top">
       <div class="home__intro">
         <h2>Qui nessuno è solo</h2>

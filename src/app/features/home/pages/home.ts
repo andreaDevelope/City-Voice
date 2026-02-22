@@ -1,10 +1,17 @@
 /* eslint-disable @angular-eslint/prefer-inject */
 import { afterNextRender, Component, Inject, PLATFORM_ID, signal, OnDestroy } from '@angular/core';
-import { HomeStats } from './models/home-stats.model';
-import { StoryPreview } from './models/story-preview.model';
-import { AppSignature } from './models/app-signature.model';
-import { HomeSlogan } from './models/home-slogan.model';
+
 import { isPlatformBrowser } from '@angular/common';
+import { HomeStats } from '../models/home-stats.model';
+import { StoryPreview } from '../models/story-preview.model';
+import { AppSignature } from '../models/app-signature.model';
+import { HomeSlogan } from '../models/home-slogan.model';
+
+interface HomeHeroSlide {
+  title: string;
+  subtitle: string;
+  image: string;
+}
 
 @Component({
   standalone: true,
@@ -29,6 +36,34 @@ export class Home implements OnDestroy {
     location: 'ROMA',
     year: '2026',
   };
+
+  readonly heroSlides: HomeHeroSlide[] = [
+    {
+      title: 'Roma non è in vendita',
+      subtitle: 'Una città abbandonata non è una fatalità.',
+      image: '/assets/images/header/header-rome-collapse-01.jpg',
+    },
+    {
+      title: 'Siamo stanchi',
+      subtitle: 'Ma non invisibili.',
+      image: '/assets/images/header/header-rome-solidarity-01.jpg',
+    },
+    {
+      title: 'Qui nessuno è solo',
+      subtitle: 'Le storie contano.',
+      image: '/assets/images/header/header-rome-fire-01.jpeg',
+    },
+    {
+      title: 'Siamo stanchi',
+      subtitle: 'Ma non invisibili.',
+      image: '/assets/images/header/header-rome-solidarity-01.jpg',
+    },
+    {
+      title: 'Qui nessuno è solo',
+      subtitle: 'Le storie contano.',
+      image: '/assets/images/header/header-rome-fire-01.jpeg',
+    },
+  ];
 
   slogans: HomeSlogan[] = [
     {
@@ -66,7 +101,7 @@ export class Home implements OnDestroy {
 
     afterNextRender(() => {
       this.timer = setInterval(() => {
-        this.currentIndex.set((this.currentIndex() + 1) % this.slogans.length);
+        this.currentIndex.set((this.currentIndex() + 1) % this.heroSlides.length);
       }, 4500);
     });
   }

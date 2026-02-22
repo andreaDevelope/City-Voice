@@ -2,7 +2,7 @@
 
 //  HEADER MOBILE (APP-LIKE)
 .app-header {
-  padding: 2rem 1.5rem;
+  padding: 0;
 }
 
 .header__editorial {
@@ -26,65 +26,10 @@
   }
 }
 
-/* Contenitore hero (immagine + testo sovrapposto) */
-.header__carousel {
-  position: relative;
-  min-height: 70vh;
-  overflow: hidden;
-
-  img {
-    border-top-left-radius: 3rem;
-    border-bottom-right-radius: 3rem;
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-
-    opacity: 0;
-    transform: translateX(-32px);
-  }
-}
-
-/* Testo sovrapposto all'immagine */
-.header__content {
-  min-height: 8.5rem;
-  padding: 0 1rem;
-  text-align: center;
-  position: absolute;
-  inset: 0;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  h1 {
-    margin-bottom: 0.5rem;
-    opacity: 0;
-    transform: translateY(-36px);
-  }
-
-  p {
-    color: var(--rosso-denuncia);
-    font-weight: 700;
-    font-size: 1.25rem;
-
-    opacity: 0;
-    transform: translateX(28px);
-  }
-}
-@include da-wide {
-  .header__hero--carousel {
-    max-width: 720px;
-    margin-inline: auto;
-  }
-  p {
-    max-width: 32ch;
-  }
-}
-
 @include da-desktop {
+  .app-header {
+    padding: 2rem 1.5rem;
+  }
   .header__hero--carousel {
     display: none;
   }
@@ -125,41 +70,5 @@
         font-weight: 800;
       }
     }
-  }
-}
-
-//  ANIMAZIONI HERO
-
-.header__carousel.is-animating img {
-  animation: img-enter 1200ms ease-out forwards;
-}
-
-.header__carousel.is-animating h1 {
-  animation: h1-enter 900ms ease-out forwards;
-}
-
-.header__carousel.is-animating p {
-  animation: p-enter 900ms ease-out forwards;
-  animation-delay: 520ms;
-}
-
-@keyframes img-enter {
-  to {
-    opacity: 0.7;
-    transform: translateX(0);
-  }
-}
-
-@keyframes h1-enter {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes p-enter {
-  to {
-    opacity: 1;
-    transform: translateX(0);
   }
 }
