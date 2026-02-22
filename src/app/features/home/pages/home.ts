@@ -6,6 +6,8 @@ import { HomeStats } from '../models/home-stats.model';
 import { StoryPreview } from '../models/story-preview.model';
 import { AppSignature } from '../models/app-signature.model';
 import { HomeSlogan } from '../models/home-slogan.model';
+import { DesktopButtonDrawer } from '../../../shared/ui/desktop-buttons/desktop-button-drawer';
+import { DesktopButtonFancy } from '../../../shared/ui/desktop-buttons/desktop-button-fancy';
 
 interface HomeHeroSlide {
   title: string;
@@ -16,7 +18,7 @@ interface HomeHeroSlide {
 @Component({
   standalone: true,
   selector: 'app-home',
-  imports: [],
+  imports: [DesktopButtonDrawer, DesktopButtonFancy],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
@@ -37,6 +39,10 @@ export class Home implements OnDestroy {
     year: '2026',
   };
 
+  addStory = 'RACCONTA LA TUA STORIA';
+  microTop = 'ANONIMO GARANTITO';
+  microBotton = 'NO INFO PERSONALI';
+  storiesList = 'LEGGI STORIE';
   readonly heroSlides: HomeHeroSlide[] = [
     {
       title: 'Roma non è in vendita',

@@ -12,8 +12,14 @@
           </div>
           <p [innerHTML]="s.description"></p>
           <div class="home__cta">
-            <button class="button-primary">RACCONTA LA TUA STORIA</button>
-            <button class="button-secondary">LEGGI STORIE</button>
+            <app-desktop-button-drawer
+              [label]="addStory"
+              ,
+              [microTop]="microTop"
+              ,
+              [microBottom]="microBotton"
+            ></app-desktop-button-drawer>
+            <app-desktop-button-fancy [label]="storiesList"></app-desktop-button-fancy>
           </div>
         }
       }
@@ -207,7 +213,6 @@
             <span>STORIE</span>
           </div>
         </div>
-
         <div class="home__cta">
           <button class="button-primary">RACCONTA LA TUA STORIA</button>
           <button class="button-secondary">LEGGI STORIE</button>
