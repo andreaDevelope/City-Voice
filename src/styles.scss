@@ -42,10 +42,8 @@ body {
     Arial,
     sans-serif;
 
-
   color: inherit;
   background-color: var(--sfondo-principale);
-
 }
 
 /* Rimuove stili predefiniti su liste */
@@ -81,10 +79,22 @@ select {
   background: transparent;
   border: none;
   outline: none;
+  border-radius: 0.8em;
 }
 
 /* CTA / bottoni */
 button {
+  cursor: pointer;
+  width: 100%;
+  color: var(--testo-secondario);
+  width: 100%;
+  border-radius: 0.8em;
+  text-align: center;
+  &:active {
+    scale: 0.9;
+  }
+}
+.button {
   cursor: pointer;
   background: none;
   isolation: isolate;
@@ -93,7 +103,7 @@ button {
   color: var(--testo-principale);
   font-weight: 700;
   width: 100%;
-  border-radius: 0.8rem;
+  border-radius: 0.8em;
   text-align: center;
   min-height: 4rem;
   line-height: 4rem;

@@ -1,27 +1,48 @@
 <section class="stories">
   <div class="stories-header">
-    <div class="stories-title">
-      <h1>Storie</h1>
-      <span class="stories-count">8</span>
+    <div>
+      <div class="stories-title">
+        <h1>Storie</h1>
+        <span class="stories-count">{{ stories.length }}</span>
+      </div>
+
+      <div class="stories-manifesto">
+        <p>
+          <strong>Siamo stanchi</strong> di promesse non mantenute. <strong>Uniti</strong>,
+          documentiamo quello che non funziona a Roma.
+        </p>
+        <span>Approfondisci ></span>
+      </div>
     </div>
 
-    <div class="stories-manifesto">
-      <p>
-        <strong>Siamo stanchi</strong> di promesse non mantenute. <strong>Uniti</strong>,
-        documentiamo quello che non funziona a Roma.
-      </p>
-      <span>Approfondisci ></span>
-    </div>
+    <div>
+      <div class="stories-search">
+        <div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-search-icon lucide-search"
+          >
+            <path d="m21 21-4.34-4.34" />
+            <circle cx="11" cy="11" r="8" />
+          </svg>
+        </div>
+        <input type="text" placeholder="Cerca categoria..." />
+      </div>
 
-    <div class="stories-search">
-      <input type="text" placeholder="Cerca quartiere, tema..." />
-    </div>
-
-    <div class="stories-filters">
-      <button class="stories-filter is-active">Tutte</button>
-      <button class="stories-filter">Degrado urbano</button>
-      <button class="stories-filter">Burocrazia</button>
-      <button class="stories-filter">Sanità</button>
+      <div class="stories-filters">
+        <button class="stories-filter is-active">Tutte</button>
+        @for (s of stories; track $index) {
+          <button class="stories-filter is-active">{{ s.category }}</button>
+        }
+      </div>
     </div>
   </div>
 </section>

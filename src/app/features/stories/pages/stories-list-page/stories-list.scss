@@ -2,29 +2,101 @@
   padding-block: 2rem;
   padding-inline: 1rem;
 }
-
 .stories-header {
   height: 50vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid var(--testo-discreto);
 }
-
 .stories-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  .stories-count {
+    font-size: 0.7em;
+    font-weight: 800;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 2px;
+    line-height: 24px;
+    text-align: center;
+    color: var(--rosso-azione);
+    background-color: color-mix(in srgb, var(--rosso-denuncia) 20%, transparent);
+  }
 }
-
 .stories-manifesto {
+  margin-top: 1em;
+  border: 1px solid var(--rosso-denuncia);
+  border-radius: 0.8em;
+  background-color: color-mix(in srgb, var(--rosso-denuncia) 10%, transparent);
+  padding: 1em;
   span {
     display: inline-block;
     font-weight: 800;
     cursor: pointer;
     color: var(--rosso-denuncia);
-
     &:active {
       scale: 0.9;
     }
   }
+}
+.stories-search {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  div {
+    width: 30px;
+    text-align: center;
+  }
+  svg {
+    box-sizing: content-box;
+    border-radius: 0.8em;
+    color: var(--testo-secondario);
+    border: 1px solid var(--testo-secondario);
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-block: 1em;
+    padding-left: 1em;
+  }
+  input {
+    color: var(--testo-discreto);
+    border: 1px solid var(--testo-discreto);
+    border-left: none;
+    padding-inline: 1em;
+    padding-block: 1em;
+    width: 100%;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+  }
+}
+.stories-filters {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  button {
+    font-size: 0.8em;
+    padding-block: 0.5em;
+    padding-inline: 0.8em;
+    background-color: var(--sfondo-secondario);
+    border: 1px solid var(--testo-discreto);
+    border-radius: 2em;
+  }
+  .is-active {
+    color: var(--testo-principale);
+    background-color: var(--rosso-denuncia);
+  }
+}
+.stories-filters::-webkit-scrollbar {
+  display: none;
 }
