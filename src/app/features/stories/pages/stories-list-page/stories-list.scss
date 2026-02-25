@@ -1,0 +1,30 @@
+.stories {
+  padding-block: 2rem;
+  padding-inline: 1rem;
+}
+
+.stories-header {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.stories-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stories-manifesto {
+  span {
+    display: inline-block;
+    font-weight: 800;
+    cursor: pointer;
+    color: var(--rosso-denuncia);
+
+    &:active {
+      scale: 0.9;
+    }
+  }
+}

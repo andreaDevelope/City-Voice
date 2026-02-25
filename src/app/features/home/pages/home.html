@@ -16,8 +16,12 @@
               [label]="addStory"
               [microTop]="microTop"
               [microBottom]="microBotton"
+              routerLink="/racconta"
             ></app-desktop-button-drawer>
-            <app-desktop-button-fancy [label]="storiesList"></app-desktop-button-fancy>
+            <app-desktop-button-fancy
+              [label]="storiesList"
+              routerLink="/storie"
+            ></app-desktop-button-fancy>
           </div>
         }
       }
@@ -212,8 +216,8 @@
           </div>
         </div>
         <div class="home__cta">
-          <button class="button-primary">RACCONTA LA TUA STORIA</button>
-          <button class="button-secondary">LEGGI STORIE</button>
+          <button class="button-primary" routerLink="/racconta">RACCONTA LA TUA STORIA</button>
+          <button class="button-secondary" routerLink="/storie">LEGGI STORIE</button>
         </div>
       </section>
     </section>

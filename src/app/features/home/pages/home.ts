@@ -8,6 +8,7 @@ import { AppSignature } from '../models/app-signature.model';
 import { HomeSlogan } from '../models/home-slogan.model';
 import { DesktopButtonDrawer } from '../../../shared/ui/desktop-buttons/desktop-button-drawer';
 import { DesktopButtonFancy } from '../../../shared/ui/desktop-buttons/desktop-button-fancy';
+import { RouterLink } from '@angular/router';
 
 interface HomeHeroSlide {
   title: string;
@@ -18,7 +19,7 @@ interface HomeHeroSlide {
 @Component({
   standalone: true,
   selector: 'app-home',
-  imports: [DesktopButtonDrawer, DesktopButtonFancy],
+  imports: [DesktopButtonDrawer, DesktopButtonFancy, RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
