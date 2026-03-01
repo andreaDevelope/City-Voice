@@ -1,5 +1,5 @@
 <section class="stories">
-  <div class="stories-header">
+  <section class="stories-header">
     <div>
       <div class="stories-title">
         <h1>Storie</h1>
@@ -44,5 +44,19 @@
         }
       </div>
     </div>
-  </div>
+  </section>
+  <section class="stories__main">
+    <div class="stories__feedbar">
+      <span class="stories__feedbar-left">Feed aggiornato</span>
+      <span class="stories__feedbar-right">Roma</span>
+    </div>
+    <div class="stories__list"></div>
+    @for (s of stories; track $index) {
+      <app-story-card [story]="s"></app-story-card>
+    }
+  </section>
+
+  <button type="button" class="stories__cta-fixed button button-primary" routerLink="/racconta">
+    + Racconta La Tua Storia
+  </button>
 </section>

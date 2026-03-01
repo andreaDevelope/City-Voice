@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { Story } from '../../models/story';
+import { StoryCard } from '../../components/story-card-components/story-card';
+import { RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'app-home',
-  imports: [],
+  imports: [StoryCard, RouterLink],
   templateUrl: './stories-list.html',
   styleUrl: './stories-list.scss',
 })
@@ -14,6 +16,7 @@ export class StoriesList {
       category: 'Porcodio',
       district: 'Sottocasa',
       date: '25-02-2026',
+      title: 'PORCODIO',
       description:
         'Porcodio e la madonna e tutti gli angeli in colonna li ho contati son 31 porco dio ne manca 1',
     },
@@ -21,6 +24,7 @@ export class StoriesList {
       category: 'Porcodio2',
       district: 'Sottocasa',
       date: '25-02-2026',
+      title: 'PORCODIO2',
       description:
         'Porcodio e la madonna e tutti gli angeli in colonna li ho contati son 31 porco dio ne manca 1',
     },
@@ -28,6 +32,7 @@ export class StoriesList {
       category: 'Porcodio3',
       district: 'Sottocasa',
       date: '25-02-2026',
+      title: 'PORCODIO3',
       description:
         'Porcodio e la madonna e tutti gli angeli in colonna li ho contati son 31 porco dio ne manca 1',
     },
@@ -35,6 +40,7 @@ export class StoriesList {
       category: 'Porcodio4',
       district: 'Sottocasa',
       date: '25-02-2026',
+      title: 'PORCODIO4',
       description:
         'Porcodio e la madonna e tutti gli angeli in colonna li ho contati son 31 porco dio ne manca 1',
     },

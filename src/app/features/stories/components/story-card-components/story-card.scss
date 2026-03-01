@@ -1,0 +1,41 @@
+.story-card {
+  cursor: pointer;
+  &:active {
+    scale: 0.9;
+  }
+}
+.story-card__category {
+  font-size: 0.8em;
+  display: inline-block;
+  padding-block: 0.2em;
+  padding-inline: 1em;
+  margin-top: 1em;
+  border: 1px solid var(--rosso-denuncia);
+  border-radius: 3px;
+  background-color: color-mix(in srgb, var(--rosso-denuncia) 10%, transparent);
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-block: 0.6em;
+}
+
+.story-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  p {
+    color: var(--testo-discreto);
+  }
+}
+
+.story-card__location,
+.story-card__date {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 0.6em;
+  margin-top: 1em;
+  font-style: italic;
+}

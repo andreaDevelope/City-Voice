@@ -2,6 +2,18 @@
   padding-block: 2rem;
   padding-inline: 1rem;
 }
+.button {
+  border-radius: 3rem;
+  width: 60%;
+  max-width: 200px;
+  font-size: 0.8em;
+  height: 40px;
+  min-height: 40px;
+  line-height: 40px;
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+}
 .stories-header {
   height: 50vh;
   display: flex;
@@ -99,4 +111,21 @@
 }
 .stories-filters::-webkit-scrollbar {
   display: none;
+}
+
+// -------------MAIN-------------
+
+.stories__main {
+  margin-bottom: 3em;
+}
+
+.stories__feedbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.6em;
+}
+
+.stories__list {
+  margin-top: 1em;
 }
