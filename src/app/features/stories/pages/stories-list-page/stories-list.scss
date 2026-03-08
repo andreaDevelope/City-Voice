@@ -16,8 +16,9 @@
   right: 1em;
 }
 .stories-header {
-  height: 40vh;
+  min-height: 40vh;
   display: flex;
+  gap: 2em;
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: 1em;
