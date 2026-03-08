@@ -3,15 +3,19 @@ import { Story } from '../../models/story';
 import { StoryCard } from '../../components/story-card-components/story-card';
 import { RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
+import { DesktopButtonDrawer } from '../../../../shared/ui/desktop-buttons/desktop-button-drawer';
 
 @Component({
   standalone: true,
   selector: 'app-home',
-  imports: [StoryCard, RouterLink, NgClass],
+  imports: [StoryCard, RouterLink, NgClass, DesktopButtonDrawer],
   templateUrl: './stories-list.html',
   styleUrl: './stories-list.scss',
 })
 export class StoriesList {
+  addStory = 'RACCONTA LA TUA STORIA';
+  microTop = 'ANONIMO GARANTITO';
+  microBotton = 'NO INFO PERSONALI';
   manifestoIsShowMore = false;
   selectedCategory = 'tutte';
   stories: Story[] = [

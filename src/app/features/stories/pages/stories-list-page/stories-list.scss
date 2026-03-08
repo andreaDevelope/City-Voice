@@ -1,6 +1,10 @@
+@use 'styles/breakpoints' as *;
+.menu-sidebar {
+  display: none;
+}
 .stories {
-  padding-block: 2rem;
-  padding-inline: 1rem;
+  padding-block: 2em;
+  padding-inline: 1em;
   opacity: 1;
 }
 .button {
@@ -195,5 +199,57 @@
   }
   100% {
     transform: translateY(0);
+  }
+}
+
+@include da-wide {
+  .stories {
+    max-width: 500px;
+    margin-inline: auto;
+  }
+}
+
+@include da-desktop {
+  .container {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .stories-header__desktop + .stories {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+  }
+  .stories-header {
+    display: none;
+  }
+
+  .stories-header__desktop,
+  .menu-sidebar {
+    padding-block: 2em;
+    padding-inline: 1em;
+  }
+
+  .stories-header__desktop {
+    position: relative;
+    width: 100%;
+  }
+  .menu-sidebar {
+    display: block;
+    width: 300px;
+    min-height: 100vh;
+    background-color: aqua;
+  }
+
+  .add-story-btn {
+    position: absolute;
+    top: 1em;
+    right: 2em;
+  }
+
+  .container > div {
+    display: flex;
+    width: 100%;
   }
 }

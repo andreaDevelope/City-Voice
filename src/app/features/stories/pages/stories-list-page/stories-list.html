@@ -1,28 +1,107 @@
-<section class="stories" [class.is-manifesto-open]="manifestoIsShowMore">
-  <section class="stories-header">
-    <div>
-      <div class="stories-title">
-        <h1>Storie</h1>
-        <span class="stories-count">{{ stories.length }}</span>
+<div class="container">
+  <div>
+    <section class="menu-sidebar">sads</section>
+    <!-- ----------------INIZIO stories-heder ------------------- -->
+    <section class="stories-header__desktop">
+      <div>
+        <div></div>
+        <app-desktop-button-drawer
+          [label]="addStory"
+          [microBottom]="microBotton"
+          [microTop]="microTop"
+          class="add-story-btn"
+        ></app-desktop-button-drawer>
+      </div>
+      <div></div>
+    </section>
+  </div>
+  <!-- ---------------FINE stories-heder DESKTOP---------------- -->
+  <section class="stories" [class.is-manifesto-open]="manifestoIsShowMore">
+    <section class="stories-header">
+      <div>
+        <div class="stories-title">
+          <h1>Storie</h1>
+          <span class="stories-count">{{ stories.length }}</span>
+        </div>
+
+        <div class="stories-manifesto">
+          <p>
+            <strong>Siamo stanchi</strong> di promesse non mantenute. <strong>Uniti</strong>,
+            documentiamo quello che non funziona a Roma.
+          </p>
+          <button (click)="manifestoShowMoreToggle()">
+            {{ manifestoIsShowMore ? 'Chiudi' : 'Approfondisci' }}>
+          </button>
+        </div>
       </div>
 
-      <div class="stories-manifesto">
-        <p>
-          <strong>Siamo stanchi</strong> di promesse non mantenute. <strong>Uniti</strong>,
-          documentiamo quello che non funziona a Roma.
-        </p>
+      <div>
+        <div class="stories-search">
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-search-icon lucide-search"
+            >
+              <path d="m21 21-4.34-4.34" />
+              <circle cx="11" cy="11" r="8" />
+            </svg>
+          </div>
+          <input (input)="onSearch($event)" type="text" placeholder="Cerca categoria..." />
+        </div>
+
+        <div class="stories-filters">
+          <button
+            (click)="filterCategory('tutte')"
+            class="stories-filter"
+            [class.is-active]="selectedCategory === 'tutte'"
+          >
+            Tutte
+          </button>
+          @for (s of stories; track $index) {
+            <button
+              (click)="filterCategory(s.category)"
+              class="stories-filter"
+              [class.is-active]="selectedCategory === s.category"
+            >
+              {{ s.category }}
+            </button>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="stories__main">
+      <div class="stories__feedbar">
+        <span class="stories__feedbar-left">Feed aggiornato</span>
+        <span class="stories__feedbar-right">Roma</span>
+      </div>
+      <div class="stories__list">
+        @for (s of filtredStories; track $index) {
+          <app-story-card [story]="s"></app-story-card>
+        }
+      </div>
+    </section>
+
+    <button type="button" class="stories__cta-fixed button button-primary" routerLink="/racconta">
+      + Racconta La Tua Storia
+    </button>
+  </section>
+  <div [class.manifesto__show-more-open]="manifestoIsShowMore" class="manifesto__show-more-close">
+    <div class="show-more-container">
+      <div class="show-more-header">
+        <h2>City Voice</h2>
         <button (click)="manifestoShowMoreToggle()">
-          {{ manifestoIsShowMore ? 'Chiudi' : 'Approfondisci' }}>
-        </button>
-      </div>
-    </div>
-
-    <div>
-      <div class="stories-search">
-        <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="16"
+            width="24"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
@@ -30,103 +109,44 @@
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="lucide lucide-search-icon lucide-search"
+            class="lucide lucide-square-x-icon lucide-square-x"
           >
-            <path d="m21 21-4.34-4.34" />
-            <circle cx="11" cy="11" r="8" />
+            <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+            <path d="m15 9-6 6" />
+            <path d="m9 9 6 6" />
           </svg>
-        </div>
-        <input (input)="onSearch($event)" type="text" placeholder="Cerca categoria..." />
-      </div>
-
-      <div class="stories-filters">
-        <button
-          (click)="filterCategory('tutte')"
-          class="stories-filter"
-          [class.is-active]="selectedCategory === 'tutte'"
-        >
-          Tutte
         </button>
-        @for (s of stories; track $index) {
-          <button
-            (click)="filterCategory(s.category)"
-            class="stories-filter"
-            [class.is-active]="selectedCategory === s.category"
-          >
-            {{ s.category }}
-          </button>
-        }
       </div>
-    </div>
-  </section>
-  <section class="stories__main">
-    <div class="stories__feedbar">
-      <span class="stories__feedbar-left">Feed aggiornato</span>
-      <span class="stories__feedbar-right">Roma</span>
-    </div>
-    <div class="stories__list">
-      @for (s of filtredStories; track $index) {
-        <app-story-card [story]="s"></app-story-card>
-      }
-    </div>
-  </section>
+      <div class="show-more-content">
+        <p>
+          Questa piattaforma nasce dalla <span>stanchezza</span>. Dalla stanchezza di vedere le
+          stesse storie ripetersi, quartiere dopo quartiere, anno dopo anno. Nessuno ci ascolta,
+          nessuno interviene, e intanto continuiamo a pagare per servizi che non arrivano.
+        </p>
 
-  <button type="button" class="stories__cta-fixed button button-primary" routerLink="/racconta">
-    + Racconta La Tua Storia
-  </button>
-</section>
-<div [class.manifesto__show-more-open]="manifestoIsShowMore" class="manifesto__show-more-close">
-  <div class="show-more-container">
-    <div class="show-more-header">
-      <h2>City Voice</h2>
-      <button (click)="manifestoShowMoreToggle()">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-square-x-icon lucide-square-x"
-        >
-          <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
-          <path d="m15 9-6 6" />
-          <path d="m9 9 6 6" />
-        </svg>
-      </button>
-    </div>
-    <div class="show-more-content">
-      <p>
-        Questa piattaforma nasce dalla <span>stanchezza</span>. Dalla stanchezza di vedere le stesse
-        storie ripetersi, quartiere dopo quartiere, anno dopo anno. Nessuno ci ascolta, nessuno
-        interviene, e intanto continuiamo a pagare per servizi che non arrivano.
-      </p>
+        <p>
+          Roma è una città di <span>promesse non mantenute</span>. Marciapiedi impraticabili,
+          ambulatori che chiudono senza preavviso, pratiche burocratiche che si perdono nei
+          cassetti. Non sono eccezioni: è il sistema.
+        </p>
 
-      <p>
-        Roma è una città di <span>promesse non mantenute</span>. Marciapiedi impraticabili,
-        ambulatori che chiudono senza preavviso, pratiche burocratiche che si perdono nei cassetti.
-        Non sono eccezioni: è il sistema.
-      </p>
+        <p>
+          City Voice è un archivio permanente di quello che non funziona. Ogni storia documentata
+          qui è una prova che non siamo soli, che il problema non siamo noi. È un modo per dire:
+          <span>"Basta. Vi stiamo guardando."</span>
+        </p>
 
-      <p>
-        City Voice è un archivio permanente di quello che non funziona. Ogni storia documentata qui
-        è una prova che non siamo soli, che il problema non siamo noi. È un modo per dire:
-        <span>"Basta. Vi stiamo guardando."</span>
-      </p>
+        <p>
+          Non siamo un movimento politico. Non promettiamo soluzioni immediate. Ma crediamo che la
+          <span>trasparenza sia potere</span>, e che <span>uniti</span> possiamo almeno pretendere
+          di essere ascoltati.
+        </p>
 
-      <p>
-        Non siamo un movimento politico. Non promettiamo soluzioni immediate. Ma crediamo che la
-        <span>trasparenza sia potere</span>, e che <span>uniti</span> possiamo almeno pretendere di
-        essere ascoltati.
-      </p>
-
-      <p class="show-more-content__closing">
-        Ogni voce conta. Ogni storia è una tessera del mosaico. Benvenuto in City Voice. Benvenuto a
-        Roma.
-      </p>
+        <p class="show-more-content__closing">
+          Ogni voce conta. Ogni storia è una tessera del mosaico. Benvenuto in City Voice. Benvenuto
+          a Roma.
+        </p>
+      </div>
     </div>
   </div>
 </div>
