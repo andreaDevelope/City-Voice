@@ -1,6 +1,7 @@
 .stories {
   padding-block: 2rem;
   padding-inline: 1rem;
+  opacity: 1;
 }
 .button {
   border-radius: 3rem;
@@ -15,7 +16,7 @@
   right: 1em;
 }
 .stories-header {
-  height: 50vh;
+  height: 40vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -46,7 +47,8 @@
   border-radius: 0.8em;
   background-color: color-mix(in srgb, var(--rosso-denuncia) 10%, transparent);
   padding: 1em;
-  span {
+  button {
+    width: auto;
     display: inline-block;
     font-weight: 800;
     cursor: pointer;
@@ -128,4 +130,69 @@
 
 .stories__list {
   margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+.manifesto__show-more-close {
+  width: 100%;
+  min-height: 70%;
+  background-color: var(--sfondo-secondario);
+  transform: translateY(100%);
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+}
+
+.manifesto__show-more-open {
+  animation: manifestoShowMoreIn 0.5s ease forwards;
+}
+
+.is-manifesto-open {
+  opacity: 0.1;
+}
+
+.show-more-container {
+  padding: 1em;
+  color: var(--testo-discreto);
+}
+.show-more-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1em;
+  border-bottom: 1px solid var(--testo-discreto);
+  button {
+    width: auto;
+    color: var(--rosso-azione);
+  }
+}
+
+.show-more-content {
+  margin-top: 1em;
+  padding-block: 1em;
+  p {
+    margin-bottom: 1em;
+  }
+  span {
+    color: var(--rosso-denuncia);
+    font-weight: 600;
+  }
+
+  .show-more-content__closing {
+    font-style: italic;
+    font-size: 0.9em;
+  }
+}
+
+@keyframes manifestoShowMoreIn {
+  50% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
