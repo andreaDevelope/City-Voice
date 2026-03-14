@@ -1,4 +1,17 @@
 @use 'styles/breakpoints' as *;
+.dot {
+  display: inline-block;
+  margin-inline: 0.2em;
+  margin-bottom: 0.3em;
+  width: 0.3em;
+  height: 0.3em;
+  background-color: var(--testo-principale);
+  border-radius: 50%;
+}
+
+.stories-header__desktop {
+  display: none;
+}
 .menu-sidebar {
   display: none;
 }
@@ -216,6 +229,19 @@
     flex-direction: column;
   }
 
+  .container > div {
+    display: flex;
+    width: 100%;
+  }
+
+  .stories__rigth-desktop {
+    width: 100%;
+  }
+
+  .stories__cta-fixed.button-primary {
+    display: none;
+  }
+
   .stories-header__desktop + .stories {
     display: block;
     max-width: 100%;
@@ -227,7 +253,7 @@
 
   .stories-header__desktop,
   .menu-sidebar {
-    padding-block: 2em;
+    padding-block: 1em;
     padding-inline: 1em;
   }
 
@@ -237,9 +263,52 @@
   }
   .menu-sidebar {
     display: block;
-    width: 300px;
-    min-height: 100vh;
-    background-color: aqua;
+    color: var(--testo-secondario);
+    min-width: 300px;
+    max-width: 350px;
+    background-color: var(--sfondo-secondario);
+
+    h2 {
+      margin-block: 0.5em;
+    }
+
+    .sidebar-description {
+      color: var(--testo-secondario);
+      margin-bottom: 1em;
+    }
+
+    .sidebar-hero {
+      padding-block: 1em;
+      border-block: 1px solid var(--testo-discreto);
+    }
+
+    .sidebar-hero__header {
+      display: flex;
+      gap: 0.5em;
+    }
+  }
+
+  .stories__desktop-sidebar {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    .dot {
+      background-color: var(--rosso-denuncia);
+      margin-top: 0.3em;
+    }
+  }
+
+  h1 {
+    margin-block: 0.5em;
+  }
+
+  .desktop-content-feedbar {
+    display: flex;
+    gap: 1em;
+  }
+
+  svg {
+    color: var(--testo-discreto);
   }
 
   .add-story-btn {
@@ -248,8 +317,25 @@
     right: 2em;
   }
 
-  .container > div {
-    display: flex;
+  .stories {
+    max-width: 100%;
     width: 100%;
+  }
+
+  .stories-header__desktop {
+    display: block;
+  }
+
+  .sidebar-hero__main {
+    padding: 0.8em;
+  }
+
+  .categories__item {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    span {
+      color: var(--testo-secondario);
+    }
   }
 }
