@@ -104,9 +104,61 @@
             Roma. Ogni storia qui è una prova che non <br />siamo soli, che il provblema non siamo
             noi.
           </p>
-          <button>
-            <b>Fold me!</b>
+          <button class="manifesto-showmore-dsk" (click)="manifestoShowMoreToggleDsk()">
+            <b>{{ manifestoIsShowMoreDsk ? 'Chiudi' : 'Approfondisci!' }}</b>
           </button>
+          @if (manifestoIsShowMoreDsk) {
+            <div class="all-manifesto-dsk">
+              <div class="all-manifesto-dsk__header">
+                <h4>il manifesto</h4>
+                <button (click)="manifestoShowMoreToggleDsk()">chiudi</button>
+              </div>
+              <div class="manifesto-text">
+                <p>
+                  <span>
+                    Questa piattaforma nasce dalla <span class="highlight-red">stanchezza</span>.
+                    Dalla stanchezza di vedere le stesse storie ripetersi, quartiere dopo quartiere,
+                    anno dopo anno. <span class="highlight-strong">Nessuno ci ascolta</span>,
+                    nessuno interviene, e intanto continuiamo a pagare per servizi che non arrivano.
+                  </span>
+                </p>
+
+                <p>
+                  <span>
+                    Roma è una città di <span class="highlight-red">promesse non mantenute</span>.
+                    Marciapiedi impraticabili, ambulatori che chiudono senza preavviso, pratiche
+                    burocratiche che si perdono nei cassetti. Non sono eccezioni:
+                    <span class="highlight-strong">è il sistema</span>.
+                  </span>
+                </p>
+
+                <p>
+                  <span>
+                    City Voice è un <span class="highlight-strong">archivio permanente</span>
+                    di quello che non funziona. Ogni storia documentata qui è una prova che non
+                    siamo soli, che il problema non siamo noi. È un modo per dire:
+                    <span class="highlight-red">"Basta. Vi stiamo guardando"</span>.
+                  </span>
+                </p>
+
+                <p>
+                  <span>
+                    Non siamo un movimento politico. Non promettiamo soluzioni immediate. Ma
+                    crediamo che la <span class="highlight-strong">trasparenza sia potere</span>, e
+                    che <span class="highlight-red">uniti</span> possiamo almeno pretendere di
+                    essere ascoltati.
+                  </span>
+                </p>
+
+                <p>
+                  <span class="manifesto-closing">
+                    Ogni voce conta. Ogni storia è una tessera del mosaico. Benvenuto in City Voice.
+                    Benvenuto a Roma.
+                  </span>
+                </p>
+              </div>
+            </div>
+          }
 
           <div class="stories-search">
             <div>

@@ -17,6 +17,7 @@ export class StoriesList {
   microTop = 'ANONIMO GARANTITO';
   microBotton = 'NO INFO PERSONALI';
   manifestoIsShowMore = false;
+  manifestoIsShowMoreDsk = false;
   categorySelected!: string;
   isSelectedAllCategory = true;
   stories: Story[] = [
@@ -105,5 +106,9 @@ export class StoriesList {
 
   manifestoShowMoreToggle() {
     this.manifestoIsShowMore = !this.manifestoIsShowMore;
+  }
+
+  manifestoShowMoreToggleDsk() {
+    this.manifestoIsShowMoreDsk = !this.manifestoIsShowMoreDsk;
   }
 }

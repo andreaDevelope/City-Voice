@@ -263,8 +263,10 @@
       font-size: 2.5em;
       font-weight: 700;
     }
-    button {
-      width: 186px;
+    .manifesto-showmore-dsk {
+      min-width: 186px;
+      max-width: 220px;
+      height: 50px;
       position: relative;
       font-size: 1.2em;
       padding: 0.7em 1.4em;
@@ -272,11 +274,11 @@
       text-decoration: none;
       border: none;
       border-radius: 2px;
-      color: #dedede;
+      color: var(--testo-principale);
       box-shadow: 0.5em 0.5em 0.5em var(--sfondo-principale);
     }
 
-    button::before {
+    .manifesto-showmore-dsk::before {
       position: absolute;
       content: '';
       height: 0;
@@ -295,19 +297,59 @@
       transition: 0.3s;
     }
 
-    button:hover::before {
+    .manifesto-showmore-dsk:hover::before {
       width: 1.6em;
       height: 1.6em;
     }
 
-    button:active {
+    .manifesto-showmore-dsk:active {
       box-shadow: 0.2em 0.2em 0.3em var(--sfondo-principale);
       transform: translate(0.1em, 0.1em);
     }
 
-    input,
-    svg {
-      // background-color: var(--sfondo-secondario);
+    .all-manifesto-dsk {
+      border: 1px solid var(--testo-discreto);
+      background-color: var(--sfondo-secondario);
+      max-width: 1200px;
+      min-height: 400px;
+      border-radius: 0.5em;
+      padding-block: 1.5em;
+      padding-inline: 1em;
+    }
+
+    .all-manifesto-dsk__header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1.5em;
+
+      h4 {
+        font-weight: 800;
+        color: var(--testo-principale);
+      }
+      h4 + button {
+        min-width: auto;
+        max-width: auto;
+        width: auto;
+        height: auto;
+        font-size: 0.8em;
+      }
+
+      .manifesto-text p {
+        margin-bottom: 1em;
+      }
+    }
+
+    .highlight-red {
+      color: var(--rosso-denuncia);
+    }
+
+    .highlight-strong {
+      color: var(--testo-principale);
+    }
+
+    input {
+      max-width: 1170px;
     }
   }
 
