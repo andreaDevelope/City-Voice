@@ -1,5 +1,6 @@
 <div class="container">
   <div>
+    <!-- ---------INIZIO SIDEBAR DESKTOP------------ -->
     <section class="menu-sidebar">
       <div class="stories__desktop-sidebar">
         <span class="dot"></span>
@@ -33,20 +34,20 @@
         </div>
         <div class="sidebar-hero__main">
           <ul class="categories">
-            <li class="categories__item is-active">
-              <span>Tutte</span>
-              <span class="categories__count">8</span>
+            <li [ngClass]="{ 'is-active': isSelectedAllCategory }" class="categories__item">
+              <button (click)="getCategorySelected('tutte')" (click)="filterCategory('tutte')">
+                tutte
+              </button>
+              <span class="stories-count">{{ stories.length }}</span>
             </li>
-
-            <li class="categories__item">
-              <span>Degrado urbano</span>
-              <span class="categories__count">2</span>
-            </li>
-
-            <li class="categories__item">
-              <span>Burocrazia</span>
-              <span class="categories__count">1</span>
-            </li>
+            @for (c of categories; track $index) {
+              <li [ngClass]="{ 'is-active': categorySelected === c }" class="categories__item">
+                <button (click)="getCategorySelected(c)" (click)="filterCategory(c)">
+                  {{ c }}
+                </button>
+                <span class="stories-count">{{ getStoriesForCategoryNumber(c) }}</span>
+              </li>
+            }
           </ul>
         </div>
       </div>
@@ -90,9 +91,44 @@
             class="add-story-btn"
           ></app-desktop-button-drawer>
         </div>
-        <h1>Archivio Delle Voci</h1>
+        <div class="hero-desktop">
+          <h1>Archivio Delle Voci</h1>
 
-        <div></div>
+          <p>
+            Questa piattaforma nasce dalla <span>stanchezza</span>. Dalla stanchezza di vedere le
+            stesse cose storie ripetersi, quartiere dopo quartiere,<br />anno dopo anno.
+            <span>Nessuno ci ascolta</span>, nessuno interviene
+          </p>
+          <p>
+            <span>City Voice</span> è un <span>archivio anonimo</span> di ciò che non funziona a
+            Roma. Ogni storia qui è una prova che non <br />siamo soli, che il provblema non siamo
+            noi.
+          </p>
+          <button>
+            <b>Fold me!</b>
+          </button>
+
+          <div class="stories-search">
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-search-icon lucide-search"
+              >
+                <path d="m21 21-4.34-4.34" />
+                <circle cx="11" cy="11" r="8" />
+              </svg>
+            </div>
+            <input (input)="onSearch($event)" type="text" placeholder="Cerca categoria..." />
+          </div>
+        </div>
       </section>
       <!-- ---------------FINE stories-heder DESKTOP---------------- -->
       <section class="stories" [class.is-manifesto-open]="manifestoIsShowMore">
@@ -140,7 +176,7 @@
               <button
                 (click)="filterCategory('tutte')"
                 class="stories-filter"
-                [class.is-active]="selectedCategory === 'tutte'"
+                [class.is-active]="categorySelected === 'tutte'"
               >
                 Tutte
               </button>
@@ -148,7 +184,7 @@
                 <button
                   (click)="filterCategory(s.category)"
                   class="stories-filter"
-                  [class.is-active]="selectedCategory === s.category"
+                  [class.is-active]="categorySelected === s.category"
                 >
                   {{ s.category }}
                 </button>

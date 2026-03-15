@@ -17,7 +17,8 @@ export class StoriesList {
   microTop = 'ANONIMO GARANTITO';
   microBotton = 'NO INFO PERSONALI';
   manifestoIsShowMore = false;
-  selectedCategory = 'tutte';
+  categorySelected!: string;
+  isSelectedAllCategory = true;
   stories: Story[] = [
     {
       category: 'porcodio',
@@ -55,6 +56,32 @@ export class StoriesList {
 
   filtredStories: Story[] = this.stories;
 
+  categories: string[] = [...new Set(this.stories.map((s) => s.category))];
+
+  getStoriesForCategoryNumber(param: string): number {
+    let storiesForCategoryCount = 0;
+    this.stories.filter((s) => {
+      if (s.category === param) {
+        storiesForCategoryCount++;
+      }
+    });
+    return storiesForCategoryCount;
+  }
+
+  getCategorySelected(param: string): void {
+    // eslint-disable-next-line @typescript-eslint/prefer-for-of
+    for (let i = 0; i < this.categories.length; i++) {
+      if (param === this.categories[i]) {
+        this.categorySelected = this.categories[i];
+        this.isSelectedAllCategory = false;
+        return;
+      } else {
+        this.categorySelected = 'tutte';
+        this.isSelectedAllCategory = true;
+      }
+    }
+  }
+
   onSearch(event: Event) {
     const value = (event.target as HTMLInputElement).value.toLocaleLowerCase();
 
@@ -69,13 +96,11 @@ export class StoriesList {
   filterCategory(category: string) {
     if (category === 'tutte' || category === '') {
       this.filtredStories = this.stories;
-      this.selectedCategory = category;
+      this.categorySelected = category;
       return;
     }
-    this.filtredStories = this.stories.filter((s) =>
-      s.category.includes(category.toLocaleLowerCase()),
-    );
-    this.selectedCategory = category;
+    this.filtredStories = this.stories.filter((s) => s.category === category.toLocaleLowerCase());
+    this.categorySelected = category;
   }
 
   manifestoShowMoreToggle() {

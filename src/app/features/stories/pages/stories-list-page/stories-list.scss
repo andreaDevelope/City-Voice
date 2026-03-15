@@ -128,7 +128,19 @@
     color: var(--testo-principale);
     background-color: var(--rosso-denuncia);
   }
+  .stories-count {
+    font-size: 0.7em;
+    font-weight: 800;
+    width: 24px;
+    height: 24px;
+    border-radius: 2px;
+    line-height: 24px;
+    text-align: center;
+    color: var(--rosso-azione);
+    background-color: color-mix(in srgb, var(--rosso-denuncia) 20%, transparent);
+  }
 }
+
 .stories-filters::-webkit-scrollbar {
   display: none;
 }
@@ -242,6 +254,63 @@
     display: none;
   }
 
+  .hero-desktop {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    h1 {
+      margin-top: 1em;
+      font-size: 2.5em;
+      font-weight: 700;
+    }
+    button {
+      width: 186px;
+      position: relative;
+      font-size: 1.2em;
+      padding: 0.7em 1.4em;
+      background-color: var(--rosso-denuncia);
+      text-decoration: none;
+      border: none;
+      border-radius: 2px;
+      color: #dedede;
+      box-shadow: 0.5em 0.5em 0.5em var(--sfondo-principale);
+    }
+
+    button::before {
+      position: absolute;
+      content: '';
+      height: 0;
+      width: 0;
+      top: 0;
+      left: 0;
+      background: linear-gradient(
+        135deg,
+        var(--sfondo-principale) 0%,
+        var(--sfondo-principale) 50%,
+        var(--rosso-denuncia) 50%,
+        var(--rosso-azione) 60%
+      );
+      border-radius: 0 0 0.5em 0;
+      box-shadow: 0.2em 0.2em 0.2em var(--sfondo-principale);
+      transition: 0.3s;
+    }
+
+    button:hover::before {
+      width: 1.6em;
+      height: 1.6em;
+    }
+
+    button:active {
+      box-shadow: 0.2em 0.2em 0.3em var(--sfondo-principale);
+      transform: translate(0.1em, 0.1em);
+    }
+
+    input,
+    svg {
+      // background-color: var(--sfondo-secondario);
+    }
+  }
+
   .stories-header__desktop + .stories {
     display: block;
     max-width: 100%;
@@ -278,7 +347,7 @@
     }
 
     .sidebar-hero {
-      padding-block: 1em;
+      padding-top: 1.5em;
       border-block: 1px solid var(--testo-discreto);
     }
 
@@ -296,10 +365,6 @@
       background-color: var(--rosso-denuncia);
       margin-top: 0.3em;
     }
-  }
-
-  h1 {
-    margin-block: 0.5em;
   }
 
   .desktop-content-feedbar {
@@ -334,8 +399,40 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    margin-bottom: 1em;
     span {
       color: var(--testo-secondario);
     }
+
+    button {
+      width: auto;
+    }
+  }
+}
+.categories__item {
+  padding-block: 0.3em;
+  padding-inline: 0.6em;
+  span {
+    font-weight: 600;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 2px;
+    line-height: 24px;
+    text-align: center;
+    color: var(--testo-secondario);
+  }
+}
+.is-active.categories__item {
+  border: 1px solid var(--rosso-denuncia);
+  border-radius: 2px;
+
+  background-color: color-mix(in srgb, var(--rosso-denuncia) 10%, transparent);
+  span {
+    color: var(--rosso-azione);
+    background-color: color-mix(in srgb, var(--rosso-denuncia) 20%, transparent);
+  }
+  button {
+    color: var(--rosso-azione);
   }
 }
