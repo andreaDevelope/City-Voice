@@ -1,4 +1,7 @@
+@use 'styles/breakpoints' as *;
+
 .story-card {
+  display: block;
   cursor: pointer;
   padding-bottom: 1.5em;
   border-bottom: 1px solid var(--testo-discreto);
@@ -40,4 +43,10 @@ h2 {
   font-size: 0.6em;
   margin-top: 1em;
   font-style: italic;
+}
+
+@include da-desktop {
+  .story-card {
+    display: none;
+  }
 }

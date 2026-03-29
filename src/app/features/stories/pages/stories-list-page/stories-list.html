@@ -255,6 +255,11 @@
               <app-story-card [story]="s"></app-story-card>
             }
           </div>
+          <div class="story-cards-editorial">
+            @for (s of filtredStories; track $index) {
+              <app-story-card-editorial [story]="s"></app-story-card-editorial>
+            }
+          </div>
         </section>
 
         <button

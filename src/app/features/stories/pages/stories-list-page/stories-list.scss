@@ -165,6 +165,10 @@
   gap: 1.5em;
 }
 
+.story-cards-editorial {
+  display: none;
+}
+
 .manifesto__show-more-close {
   width: 100%;
   min-height: 70%;
@@ -320,6 +324,7 @@
     .all-manifesto-dsk__header {
       display: flex;
       align-items: baseline;
+      flex-wrap: wrap;
       justify-content: space-between;
       margin-bottom: 1.5em;
 
@@ -375,8 +380,7 @@
   .menu-sidebar {
     display: block;
     color: var(--testo-secondario);
-    min-width: 300px;
-    max-width: 350px;
+    max-width: 250px;
     background-color: var(--sfondo-secondario);
 
     h2 {
@@ -449,6 +453,18 @@
     button {
       width: auto;
     }
+  }
+
+  .stories__list {
+    display: none;
+  }
+
+  .story-cards-editorial {
+    margin-top: 1.5em;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2.5em;
   }
 }
 .categories__item {

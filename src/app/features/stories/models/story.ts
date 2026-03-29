@@ -4,4 +4,10 @@ export interface Story {
   date: string;
   title: string;
   description: string;
+  username: string;
+  likes: number;
+  badjes: string[];
+  avatar: string;
+  commentsCount: number;
+  comments: string[];
 }

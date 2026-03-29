@@ -4,11 +4,12 @@ import { StoryCard } from '../../components/story-card-components/story-card';
 import { RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { DesktopButtonDrawer } from '../../../../shared/ui/desktop-buttons/desktop-button-drawer';
+import { StoryCardEditorial } from '../../components/story-card-editorial-components/story-card-editorial';
 
 @Component({
   standalone: true,
   selector: 'app-home',
-  imports: [StoryCard, RouterLink, NgClass, DesktopButtonDrawer],
+  imports: [StoryCard, RouterLink, NgClass, DesktopButtonDrawer, StoryCardEditorial],
   templateUrl: './stories-list.html',
   styleUrl: './stories-list.scss',
 })
@@ -28,6 +29,12 @@ export class StoriesList {
       title: 'PORCODIO',
       description:
         'Porcodio e la madonna e tutti gli angeli in colonna li ho contati son 31 porco dio ne manca 1',
+      username: 'user1',
+      likes: 10,
+      badjes: [],
+      avatar: '',
+      commentsCount: 3,
+      comments: [],
     },
     {
       category: 'porcodio2',
@@ -36,6 +43,12 @@ export class StoriesList {
       title: 'PORCODIO2',
       description:
         'Porcodio e la madonna e tutti gli angeli in colonna li ho contati son 31 porco dio ne manca 1',
+      username: 'user2',
+      likes: 10,
+      badjes: [],
+      avatar: '',
+      commentsCount: 3,
+      comments: [],
     },
     {
       category: 'porcodio3',
@@ -44,6 +57,12 @@ export class StoriesList {
       title: 'PORCODIO3',
       description:
         'Porcodio e la madonna e tutti gli angeli in colonna li ho contati son 31 porco dio ne manca 1',
+      username: 'user3',
+      likes: 10,
+      badjes: [],
+      avatar: '',
+      commentsCount: 3,
+      comments: [],
     },
     {
       category: 'porcodio4',
@@ -52,6 +71,12 @@ export class StoriesList {
       title: 'PORCODIO4',
       description:
         'Porcodio e la madonna e tutti gli angeli in colonna li ho contati son 31 porco dio ne manca 1',
+      username: 'user4',
+      likes: 10,
+      badjes: [],
+      avatar: '',
+      commentsCount: 3,
+      comments: [],
     },
   ];
 
