@@ -22,6 +22,10 @@
     gap: 1.5em;
     color: white;
 
+    h2 {
+      text-align: center;
+    }
+
     .story-card__category {
       font-size: 0.8em;
       display: inline-block;
@@ -37,14 +41,60 @@
       margin-inline: auto;
       margin-block: 1.5em;
       width: 80%;
-      border-bottom: 2px solid var(--testo-discreto);
+      border-bottom: 1px solid var(--testo-discreto);
     }
   }
   .card-footer {
+    .card-footer-main {
+      display: flex;
+      gap: 1em;
+    }
+    .avatar {
+      position: relative;
+      width: 45px;
+      height: 45px;
+      padding: 2px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 220deg,
+        rgba(37, 99, 235, 0.95) 0deg,
+        rgba(96, 165, 250, 1) 90deg,
+        rgba(59, 130, 246, 0.85) 150deg,
+        rgba(15, 23, 42, 0.1) 260deg,
+        rgba(37, 99, 235, 0.95) 360deg
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .avatar-ring {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: #0b1220;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        right: -1px;
+        bottom: -1px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #1d4ed8;
+        border: 2px solid #0b1220;
+      }
+    }
     .story-card__meta {
       display: flex;
       align-items: center;
+      justify-content: end;
       gap: 1em;
+      width: 410px;
       p {
         color: var(--testo-discreto);
       }
@@ -59,5 +109,48 @@
       margin-top: 1em;
       font-style: italic;
     }
+
+    .badjes {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+  }
+}
+
+.story-card__engagement {
+  margin-block: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 1.1rem;
+
+  .engagement-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    width: auto;
+    padding: 0;
+    background: transparent;
+    border: none;
+    color: var(--testo-discreto);
+    cursor: pointer;
+
+    p {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1;
+    }
+
+    span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+  }
+
+  .engagement-item.is-like {
+    color: var(--rosso-denuncia);
   }
 }

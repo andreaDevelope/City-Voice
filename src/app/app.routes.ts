@@ -23,6 +23,11 @@ export const routes: Routes = [
             (m) => m.StoryCreate,
           ),
       },
+      {
+        path: 'setting',
+        loadComponent: () =>
+          import('./features/stories/pages/setting-page/setting').then((m) => m.Setting),
+      },
     ],
   },
   { path: '**', redirectTo: '' },

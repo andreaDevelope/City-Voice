@@ -23,12 +23,12 @@ export class StoriesList {
   isSelectedAllCategory = true;
   stories: Story[] = [
     {
-      category: 'porcodio',
-      district: 'Sottocasa',
+      category: 'categoria1',
+      district: 'indirizzo1',
       date: '25-02-2026',
-      title: 'PORCODIO',
+      title: 'TITOLO1',
       description:
-        'Porcodio e la madonna e tutti gli angeli in colonna li ho contati son 31 porco dio ne manca 1',
+        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores.',
       username: 'user1',
       likes: 10,
       badjes: [],
@@ -37,12 +37,12 @@ export class StoriesList {
       comments: [],
     },
     {
-      category: 'porcodio2',
-      district: 'Sottocasa',
+      category: 'categoria2',
+      district: 'indirizzo2',
       date: '25-02-2026',
-      title: 'PORCODIO2',
+      title: 'TITOLO2',
       description:
-        'Porcodio e la madonna e tutti gli angeli in colonna li ho contati son 31 porco dio ne manca 1',
+        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores.',
       username: 'user2',
       likes: 10,
       badjes: [],
@@ -51,12 +51,12 @@ export class StoriesList {
       comments: [],
     },
     {
-      category: 'porcodio3',
-      district: 'Sottocasa',
+      category: 'categoria3',
+      district: 'indirizzo3',
       date: '25-02-2026',
-      title: 'PORCODIO3',
+      title: 'TITOLO3',
       description:
-        'Porcodio e la madonna e tutti gli angeli in colonna li ho contati son 31 porco dio ne manca 1',
+        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores.',
       username: 'user3',
       likes: 10,
       badjes: [],
@@ -65,12 +65,12 @@ export class StoriesList {
       comments: [],
     },
     {
-      category: 'porcodio4',
-      district: 'Sottocasa',
+      category: 'categoria4',
+      district: 'indirizzo',
       date: '25-02-2026',
-      title: 'PORCODIO4',
+      title: 'TITOLO4',
       description:
-        'Porcodio e la madonna e tutti gli angeli in colonna li ho contati son 31 porco dio ne manca 1',
+        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores.',
       username: 'user4',
       likes: 10,
       badjes: [],

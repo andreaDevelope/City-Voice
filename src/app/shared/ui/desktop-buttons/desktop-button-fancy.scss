@@ -9,6 +9,7 @@
   }
 }
 .fancy {
+  max-height: 46px;
   background-color: transparent;
   border: 2px solid var(--rosso-azione);
   border-radius: 0;
@@ -50,9 +51,10 @@
 }
 
 .fancy .text {
-  font-size: 1.125em;
-  line-height: 1.33333em;
+  font-size: 1em;
   padding-left: 2em;
+  position: relative;
+  bottom: 0.5em;
   display: block;
   text-align: left;
   transition: all 0.3s ease-in-out;
