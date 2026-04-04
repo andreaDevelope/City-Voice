@@ -1,16 +1,16 @@
 .setting-container {
   padding: 1em;
+}
+
+.setting-header {
   padding-right: 0;
   display: flex;
   align-items: center;
   gap: 1em;
 }
-
-h3 {
-  margin-top: 1em;
-}
 .avatar {
   position: relative;
+  top: 0.6em;
   width: 45px;
   height: 45px;
   padding: 2px;
@@ -52,8 +52,6 @@ h3 {
 .story-card__meta {
   display: flex;
   align-items: center;
-  justify-content: end;
-  width: 70vw;
   gap: 1em;
   p {
     color: var(--testo-discreto);
@@ -110,5 +108,77 @@ h3 {
 
   .engagement-item.is-like {
     color: var(--rosso-denuncia);
+  }
+}
+span {
+  margin-left: auto;
+  svg {
+    cursor: pointer;
+  }
+}
+
+.setting-main {
+  margin-top: 3em;
+  .main-container {
+    width: 85%;
+    padding-inline: 1em;
+    padding-block: 0.6em;
+    margin-inline: auto;
+    min-height: 300px;
+    border: 1px solid var(--testo-discreto);
+    background-color: var(--sfondo-secondario);
+    border-radius: 0.5em;
+  }
+  h3 {
+    margin-top: 1em;
+    font-size: 0.8em;
+    color: var(--testo-discreto);
+  }
+
+  .voice-count-container {
+    display: flex;
+    align-items: baseline;
+  }
+
+  .voice-count {
+    font-size: 3em;
+    font-weight: 800;
+    color: var(--testo-principale);
+    margin-right: 0.2em;
+  }
+
+  .voice-count + p {
+    color: var(--testo-secondario);
+  }
+
+  .voice-count-container + p {
+    color: var(--testo-secondario);
+    font-size: 0.6em;
+  }
+
+  .divider {
+    margin-inline: auto;
+    margin-block: 1.5em;
+    width: 100%;
+    border-bottom: 1px solid var(--testo-discreto);
+  }
+  .main-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .info-count {
+      p {
+        font-size: 0.7em;
+      }
+      .info-count-data {
+        font-size: 1em;
+        font-weight: 800;
+        color: var(--testo-principale);
+      }
+
+      .info-count-err {
+        color: var(--rosso-denuncia);
+      }
+    }
   }
 }
