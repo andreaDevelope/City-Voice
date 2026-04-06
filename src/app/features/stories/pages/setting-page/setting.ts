@@ -13,7 +13,7 @@ import { StoryStatus } from '../../models/story-status';
 export class Setting {
   stories: Story[] = [
     {
-      stato: StoryStatus.PUBLISHED,
+      state: StoryStatus.PUBLISHED,
       category: 'categoria1',
       district: 'indirizzo1',
       date: '25-02-2026',
@@ -25,11 +25,11 @@ export class Setting {
       username: 'user1',
     },
     {
-      stato: StoryStatus.PUBLISHED,
+      state: StoryStatus.PUBLISHED,
       category: 'categoria2',
       district: 'indirizzo2',
       date: '25-02-2026',
-      title: 'TITOLO2',
+      title: 'TITOLO2ghjeytvbj6u7jvb6rukjb6utvbuunvbrtynh6rtynr5ny',
       description:
         'Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenet  Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo,',
       storyContent:
@@ -37,7 +37,7 @@ export class Setting {
       username: 'user2',
     },
     {
-      stato: StoryStatus.PUBLISHED,
+      state: StoryStatus.PUBLISHED,
       category: 'categoria3',
       district: 'indirizzo3',
       date: '25-02-2026',
@@ -49,7 +49,7 @@ export class Setting {
       username: 'user3',
     },
     {
-      stato: StoryStatus.PUBLISHED,
+      state: StoryStatus.PUBLISHED,
       category: 'categoria4',
       district: 'indirizzo',
       date: '25-02-2026',

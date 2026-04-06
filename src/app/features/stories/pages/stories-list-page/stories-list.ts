@@ -24,7 +24,7 @@ export class StoriesList {
   isSelectedAllCategory = true;
   stories: StorySocial[] = [
     {
-      stato: StoryStatus.PUBLISHED,
+      state: StoryStatus.PUBLISHED,
       category: 'categoria1',
       district: 'indirizzo1',
       date: '25-02-2026',
@@ -41,7 +41,7 @@ export class StoriesList {
       comments: [],
     },
     {
-      stato: StoryStatus.PUBLISHED,
+      state: StoryStatus.PUBLISHED,
       category: 'categoria2',
       district: 'indirizzo2',
       date: '25-02-2026',
@@ -58,7 +58,7 @@ export class StoriesList {
       comments: [],
     },
     {
-      stato: StoryStatus.PUBLISHED,
+      state: StoryStatus.PUBLISHED,
       category: 'categoria3',
       district: 'indirizzo3',
       date: '25-02-2026',
@@ -75,7 +75,7 @@ export class StoriesList {
       comments: [],
     },
     {
-      stato: StoryStatus.PUBLISHED,
+      state: StoryStatus.PUBLISHED,
       category: 'categoria4',
       district: 'indirizzo',
       date: '25-02-2026',

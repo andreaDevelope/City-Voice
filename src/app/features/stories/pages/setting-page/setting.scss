@@ -1,4 +1,11 @@
+@use 'styles/breakpoints' as *;
+
+.setting-side-editorial {
+  display: none;
+}
 .setting-container {
+  display: flex;
+  justify-content: center;
   padding: 1em;
 }
 
@@ -125,6 +132,7 @@ section {
   margin-top: 3em;
   .hero-container {
     width: 85%;
+    max-width: 280px;
     margin-inline: auto;
     padding-inline: 0.8em;
     min-height: 300px;
@@ -161,7 +169,7 @@ section {
 
   .divider {
     margin-inline: auto;
-    margin-block: 1.5em;
+    margin-top: 1.5em;
     width: 100%;
     border-bottom: 1px solid var(--testo-discreto);
   }
@@ -190,11 +198,43 @@ section {
       margin-bottom: 1em;
       font-size: 0.8em;
       color: var(--testo-principale);
+      max-width: 280px;
+      margin-inline: auto;
     }
     .story-list-container {
       border: 1px solid var(--testo-discreto);
       background-color: var(--sfondo-secondario);
       border-radius: 0.5em;
+      max-width: 280px;
+      margin-inline: auto;
     }
+  }
+}
+@include da-desktop {
+  .setting-container {
+    justify-content: space-between;
+  }
+  .setting-story-list {
+    width: 100%;
+  }
+  .setting-header {
+    display: none;
+  }
+  .setting-side-editorial {
+    display: block;
+    background-color: orange;
+    max-width: 300px;
+    margin-inline: 0;
+
+    div {
+      width: 100px;
+      height: 100px;
+      color: wheat;
+      background-color: red;
+    }
+  }
+
+  .setting-story-list > .story-list-container {
+    min-width: 70vw;
   }
 }

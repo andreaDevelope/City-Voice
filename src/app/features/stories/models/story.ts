@@ -8,5 +8,5 @@ export interface Story {
   description: string;
   storyContent: string;
   username: string;
-  stato: StoryStatus;
+  state: StoryStatus;
 }

@@ -168,12 +168,13 @@ h6 {
   /* Sfondo */
   --sfondo-principale: #0e0e0e;
   --sfondo-secondario: #191919;
+  --sfondo-cip-state: #1c2921;
 
   /* Testo */
   --testo-principale: #ffffff; /* titoli principali */
   --testo-secondario: #b0b6ba; /* h3 / sottotitoli */
   --testo-discreto: #8b8a78; /* testo piccolo */
-
+  --testo-cip-state: #399134;
   /* Accento / denuncia */
   --rosso-denuncia: #bc1a17; /* evidenze, parole chiave */
   --rosso-azione: #ff3333; /* bottoni / CTA */
@@ -221,4 +222,7 @@ li {
 strong,
 em {
   color: var(--rosso-denuncia);
+}
+
+@mixin da-desktop {
 }
