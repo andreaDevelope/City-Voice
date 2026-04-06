@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Story } from '../../models/story';
+import { StorySocial } from '../../models/Story-social';
 
 @Component({
   standalone: true,
@@ -8,5 +8,5 @@ import { Story } from '../../models/story';
   styleUrl: './story-card.scss',
 })
 export class StoryCard {
-  @Input({ required: true }) story!: Story;
+  @Input({ required: true }) story!: StorySocial;
 }

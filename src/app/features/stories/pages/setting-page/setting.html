@@ -83,7 +83,7 @@
     </span>
   </section>
   <section class="setting-main">
-    <div class="main-container">
+    <div class="hero-container">
       <h3>LA TUA VOCE</h3>
       <div>
         <div class="voice-count-container">
@@ -93,7 +93,7 @@
         <p>hai contribuito con <strong>... segnalazioni</strong> alla città</p>
       </div>
       <div class="divider"></div>
-      <div class="main-footer">
+      <div class="hero-footer">
         <div class="info-count">
           <p class="info-count-data">2</p>
           <p>Quartieri</p>
@@ -108,5 +108,17 @@
         </div>
       </div>
     </div>
+    <section class="setting-story-list">
+      <h3>LE TUE SEGNALAZIONI</h3>
+      <div class="story-list-container">
+        @if (stories.length > 0) {
+          @for (s of stories; track $index) {
+            <app-setting-story-card [story]="s"></app-setting-story-card>
+          }
+        } @else {
+          <p>0 storie publicate</p>
+        }
+      </div>
+    </section>
   </section>
 </div>

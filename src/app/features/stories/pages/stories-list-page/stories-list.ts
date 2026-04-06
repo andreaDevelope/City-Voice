@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { Story } from '../../models/story';
 import { StoryCard } from '../../components/story-card-components/story-card';
 import { RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { DesktopButtonDrawer } from '../../../../shared/ui/desktop-buttons/desktop-button-drawer';
 import { StoryCardEditorial } from '../../components/story-card-editorial-components/story-card-editorial';
+import { StorySocial } from '../../models/Story-social';
+import { StoryStatus } from '../../models/story-status';
 
 @Component({
   standalone: true,
@@ -21,13 +22,16 @@ export class StoriesList {
   manifestoIsShowMoreDsk = false;
   categorySelected!: string;
   isSelectedAllCategory = true;
-  stories: Story[] = [
+  stories: StorySocial[] = [
     {
+      stato: StoryStatus.PUBLISHED,
       category: 'categoria1',
       district: 'indirizzo1',
       date: '25-02-2026',
       title: 'TITOLO1',
       description:
+        'Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenet  Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo,',
+      storyContent:
         'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores.',
       username: 'user1',
       likes: 10,
@@ -37,11 +41,14 @@ export class StoriesList {
       comments: [],
     },
     {
+      stato: StoryStatus.PUBLISHED,
       category: 'categoria2',
       district: 'indirizzo2',
       date: '25-02-2026',
       title: 'TITOLO2',
       description:
+        'Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenet  Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo,',
+      storyContent:
         'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores.',
       username: 'user2',
       likes: 10,
@@ -51,11 +58,14 @@ export class StoriesList {
       comments: [],
     },
     {
+      stato: StoryStatus.PUBLISHED,
       category: 'categoria3',
       district: 'indirizzo3',
       date: '25-02-2026',
       title: 'TITOLO3',
       description:
+        'Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenet  Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo,',
+      storyContent:
         'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores.',
       username: 'user3',
       likes: 10,
@@ -65,12 +75,15 @@ export class StoriesList {
       comments: [],
     },
     {
+      stato: StoryStatus.PUBLISHED,
       category: 'categoria4',
       district: 'indirizzo',
       date: '25-02-2026',
       title: 'TITOLO4',
       description:
-        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores.',
+        'Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenet  Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo,',
+      storyContent:
+        ' Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenet  Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenet',
       username: 'user4',
       likes: 10,
       badjes: [],
@@ -80,7 +93,7 @@ export class StoriesList {
     },
   ];
 
-  filtredStories: Story[] = this.stories;
+  filtredStories: StorySocial[] = this.stories;
 
   categories: string[] = [...new Set(this.stories.map((s) => s.category))];
 
