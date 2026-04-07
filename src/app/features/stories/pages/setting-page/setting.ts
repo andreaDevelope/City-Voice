@@ -2,15 +2,19 @@ import { Component } from '@angular/core';
 import { Story } from '../../models/story';
 import { SettingStoryCard } from '../../components/setting-story-card-components/setting-story-card';
 import { StoryStatus } from '../../models/story-status';
+import { DesktopButtonDrawer } from "../../../../shared/ui/desktop-buttons/desktop-button-drawer";
 
 @Component({
   standalone: true,
   selector: 'app-setting',
-  imports: [SettingStoryCard],
+  imports: [SettingStoryCard, DesktopButtonDrawer],
   templateUrl: './setting.html',
   styleUrl: './setting.scss',
 })
 export class Setting {
+  label: string = 'RACCONTA LA TUA STORIA';
+  microBottom: string = 'NO INFO PERSONALI'
+  microTop: string = 'ANONIMO GARANTITO'
   stories: Story[] = [
     {
       state: StoryStatus.PUBLISHED,
