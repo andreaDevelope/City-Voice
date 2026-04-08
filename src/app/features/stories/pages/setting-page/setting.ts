@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { Story } from '../../models/story';
 import { SettingStoryCard } from '../../components/setting-story-card-components/setting-story-card';
 import { StoryStatus } from '../../models/story-status';
-import { DesktopButtonDrawer } from "../../../../shared/ui/desktop-buttons/desktop-button-drawer";
+import { DesktopButtonFancy } from '../../../../shared/ui/desktop-buttons/desktop-button-fancy';
 
 @Component({
   standalone: true,
   selector: 'app-setting',
-  imports: [SettingStoryCard, DesktopButtonDrawer],
+  imports: [SettingStoryCard, DesktopButtonFancy],
   templateUrl: './setting.html',
   styleUrl: './setting.scss',
 })

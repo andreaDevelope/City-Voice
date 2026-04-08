@@ -91,7 +91,7 @@
             <p>Ogni segnalazione è un atto di cura per Roma</p>
           </div>
         </div>
-        <app-desktop-button-drawer [label]="label" [microBottom]="microBottom" [microTop]="microTop"></app-desktop-button-drawer>
+        <app-desktop-button-fancy [label]="label"></app-desktop-button-fancy>
       </div>
       <section class="setting-story-list">
         <h3>LE TUE SEGNALAZIONI</h3>
@@ -108,6 +108,28 @@
     </section>
   </div>
   <section class="setting-side-editorial">
-    <div>SIDEBAR</div>
+    <div class="user-meta">
+      <div class="avatar">
+        <div class="avatar-ring">🏙️</div>
+      </div>
+      <div>
+        <p>{{stories[0].username}}</p>
+        <div class="story-card__location">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="lucide lucide-map-pin-icon lucide-map-pin">
+              <path
+                d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+          </span>
+          <p>sottocasa</p>
+        </div>
+      </div>
+    </div>
+    <div class="user-statistics">dsfd</div>
+    <div class="info">dFdf</div>
+
   </section>
 </div>
