@@ -318,15 +318,7 @@ section {
       padding-block: 0.5em;
       color: var(--testo-discreto);
       border-radius: 0.5em;
-          transform-origin: left center;
-  transform: rotateX(-18deg) rotateY(-12deg);
-        box-shadow: var(--rosso-azione) -30px 10px 30px -40px, var(--rosso-denuncia) -10px 15px 15px 0px;
-      &:hover {
-        transform: rotate3d(0, 0, 0, 0);
-        box-shadow: none;
-        box-shadow:  var(--rosso-denuncia) 0px 0px 0px 10px;
 
-      }
 
 
     }
@@ -386,6 +378,19 @@ section {
         &:hover {
           background-color: var(--border-subtle);
         }
+      }
+    }
+
+    .info{
+            transform-origin: bottom left 50px;
+      transform: rotateX(-18deg) rotateY(-12deg);
+      box-shadow: var(--rosso-azione) -30px 10px 30px -40px, var(--rosso-denuncia) -10px 15px 15px 0px;
+
+      &:hover {
+        transform: rotate3d(0, 0, 0, 0);
+        box-shadow: none;
+        box-shadow: var(--rosso-denuncia) 0px 0px 10px 10px;
+
       }
     }
   }
