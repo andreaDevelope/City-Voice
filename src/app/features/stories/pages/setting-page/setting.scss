@@ -317,14 +317,62 @@ section {
       border-radius: 0.5em;
     }
 
-    .user-meta{
+    .user-meta-header {
+      width: 100%;
       display: flex;
       align-items: center;
       gap: 0.5em;
     }
 
-    .story-card__location{
-      margin-top:0;
+    .user-data {
+      width: 70%;
+      margin-inline: auto;
+
+      .username {
+        font-weight: 700;
+        color: var(--testo-principale);
+      }
+    }
+
+    .story-card__location {
+      margin-top: 0;
+
+      span {
+        margin-left: 0;
+      }
+    }
+
+    .divider {
+      margin-inline: auto;
+      margin-top: .5em;
+      width: 100%;
+      border-bottom: 1px solid var(--testo-discreto);
+    }
+
+    .user-meta-footer {
+      p {
+        font-size: 0.6em;
+        margin-top: 0.5em
+      }
+    }
+
+    .user-statistics {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      min-height: 250px;
+      p {
+        font-size: 0.8em;
+        display: flex;
+        justify-content: space-between;
+        padding-inline: 0.8em;
+        padding-block: 0.4em;
+        cursor: pointer;
+        &:hover{
+          background-color: var(--border-subtle);
+        }
+      }
+
     }
   }
 }

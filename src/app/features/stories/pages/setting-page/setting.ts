@@ -3,6 +3,7 @@ import { Story } from '../../models/story';
 import { SettingStoryCard } from '../../components/setting-story-card-components/setting-story-card';
 import { StoryStatus } from '../../models/story-status';
 import { DesktopButtonFancy } from '../../../../shared/ui/desktop-buttons/desktop-button-fancy';
+import { User } from '../../models/user';
 
 @Component({
   standalone: true,
@@ -15,6 +16,10 @@ export class Setting {
   label: string = 'RACCONTA LA TUA STORIA';
   microBottom: string = 'NO INFO PERSONALI'
   microTop: string = 'ANONIMO GARANTITO'
+  user: User = {
+    username: 'user1',
+    inscriction: 'Settembre 2025',
+  }
   stories: Story[] = [
     {
       state: StoryStatus.PUBLISHED,

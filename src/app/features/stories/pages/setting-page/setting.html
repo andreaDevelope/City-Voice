@@ -109,27 +109,45 @@
   </div>
   <section class="setting-side-editorial">
     <div class="user-meta">
-      <div class="avatar">
-        <div class="avatar-ring">🏙️</div>
-      </div>
-      <div>
-        <p>{{stories[0].username}}</p>
-        <div class="story-card__location">
-          <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="14" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="lucide lucide-map-pin-icon lucide-map-pin">
-              <path
-                d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-          </span>
-          <p>sottocasa</p>
+      <div class="user-meta-header">
+        <div class="avatar">
+          <div class="avatar-ring">🏙️</div>
+        </div>
+        <div class="user-data">
+          <p class="username">{{stories[0].username}}</p>
+          <div class="story-card__location">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-map-pin-icon lucide-map-pin">
+                <path
+                  d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </span>
+            <p>sottocasa</p>
+
+          </div>
+
         </div>
       </div>
+      <div class="divider"></div>
+      <div class="user-meta-footer">
+        <p>Membro dal {{user.inscriction}}</p>
+      </div>
+
     </div>
-    <div class="user-statistics">dsfd</div>
-    <div class="info">dFdf</div>
+    <div class="user-statistics">
+      <h4>STATISTICHE</h4>
+      <p>Contributi totali <span>10</span></p>
+      <p>Publicati <span>1</span></p>
+      <p>In revisione <span>9</span></p>
+      <p>Quartieri coperti<span>1</span></p>
+
+    </div>
+    <div class="info">
+      Le tue segnalazioni sono pubbliche ma il tuo profilo resta anonimo. City Voice non raccoglie dati personali.
+    </div>
 
   </section>
 </div>
