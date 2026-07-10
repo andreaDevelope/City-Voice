@@ -36,6 +36,12 @@
   .header__editorial {
     display: block;
   }
+  .nav-buttons {
+    width: auto;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--testo-principale);
+  }
   .editorial-hero {
     display: flex;
     .editorial-hero__left {
