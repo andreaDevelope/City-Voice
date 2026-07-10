@@ -16,19 +16,23 @@
   gap: 1em;
   padding-inline: 0;
 }
-
+.hero-container-editorial {
+  display: none;
+}
 .avatar {
   position: relative;
   width: 45px;
   height: 45px;
   padding: 2px;
   border-radius: 50%;
-  background: conic-gradient(from 220deg,
-      rgba(37, 99, 235, 0.95) 0deg,
-      rgba(96, 165, 250, 1) 90deg,
-      rgba(59, 130, 246, 0.85) 150deg,
-      rgba(15, 23, 42, 0.1) 260deg,
-      rgba(37, 99, 235, 0.95) 360deg);
+  background: conic-gradient(
+    from 220deg,
+    rgba(37, 99, 235, 0.95) 0deg,
+    rgba(96, 165, 250, 1) 90deg,
+    rgba(59, 130, 246, 0.85) 150deg,
+    rgba(15, 23, 42, 0.1) 260deg,
+    rgba(37, 99, 235, 0.95) 360deg
+  );
   display: flex;
   align-items: center;
   justify-content: center;
@@ -163,11 +167,11 @@ section {
     margin-right: 0.2em;
   }
 
-  .voice-count+p {
+  .voice-count + p {
     color: var(--testo-secondario);
   }
 
-  .voice-count-container+p {
+  .voice-count-container + p {
     color: var(--testo-secondario);
     font-size: 0.6em;
   }
@@ -220,10 +224,6 @@ section {
 }
 
 @include da-wide {
-  .hero-container-editorial {
-    display: none;
-  }
-
   .setting-story-list {
     h3 {
       max-width: 280px;
@@ -273,7 +273,7 @@ section {
     }
   }
 
-  .voice-count-container>.voice-count-container-text {
+  .voice-count-container > .voice-count-container-text {
     color: var(--testo-principale);
   }
 
@@ -289,7 +289,7 @@ section {
     display: none;
   }
 
-  .setting-story-list>.story-list-container {
+  .setting-story-list > .story-list-container {
     margin-right: auto;
     min-width: 69vw;
     max-width: 1000px;
@@ -306,8 +306,6 @@ section {
     margin-top: 3em;
     perspective: 1000px;
 
-
-
     .user-meta,
     .user-statistics,
     .info {
@@ -318,9 +316,6 @@ section {
       padding-block: 0.5em;
       color: var(--testo-discreto);
       border-radius: 0.5em;
-
-
-
     }
 
     .user-meta-header {
@@ -349,7 +344,7 @@ section {
 
     .divider {
       margin-inline: auto;
-      margin-top: .5em;
+      margin-top: 0.5em;
       width: 100%;
       border-bottom: 1px solid var(--testo-discreto);
     }
@@ -357,7 +352,7 @@ section {
     .user-meta-footer {
       p {
         font-size: 0.6em;
-        margin-top: 0.5em
+        margin-top: 0.5em;
       }
     }
 
@@ -381,16 +376,17 @@ section {
       }
     }
 
-    .info{
-            transform-origin: bottom left 50px;
+    .info {
+      transform-origin: bottom left 50px;
       transform: rotateX(-18deg) rotateY(-12deg);
-      box-shadow: var(--rosso-azione) -30px 10px 30px -40px, var(--rosso-denuncia) -10px 15px 15px 0px;
+      box-shadow:
+        var(--rosso-azione) -30px 10px 30px -40px,
+        var(--rosso-denuncia) -10px 15px 15px 0px;
 
       &:hover {
         transform: rotate3d(0, 0, 0, 0);
         box-shadow: none;
         box-shadow: var(--rosso-denuncia) 0px 0px 10px 10px;
-
       }
     }
   }
