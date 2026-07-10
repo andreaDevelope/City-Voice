@@ -1,0 +1,22 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<div class="dialog-overlay">
+  <div class="login-dialog-container" (click)="$event.stopPropagation()">
+    <button type="button" class="login-dialog-close" aria-label="Chiudi" (click)="close()">×</button>
+    <h2>City Voice</h2>
+    <form formGroup="loginForm">
+      <label for="username">nome da supereroe</label>
+      <input placeholder=" ES. La Viaggiatrice.." type="text" id="username" name="username" />
+
+    <label for="password">Password</label>
+    <input placeholder="Inserisci la tua password" type="password" id="password" name="password" />
+
+    <button class="button">
+      <span class="shadow"></span>
+      <span class="edge"></span>
+      <div class="front">
+        <span>ACCEDI</span>
+      </div>
+    </button>
+  </form>
+</div>

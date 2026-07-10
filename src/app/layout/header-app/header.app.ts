@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import { Component, EventEmitter, Output } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -8,4 +8,12 @@ import { RouterLink } from "@angular/router";
   styleUrls: ['./header.app.scss'],
   imports: [RouterLink],
 })
-export class HeaderApp {}
+export class HeaderApp {
+  @Output()
+  loginClick = new EventEmitter<void>();
+
+  openLoginDialog() {
+    this.loginClick.emit();
+    console.log('Login dialog opened');
+  }
+}
