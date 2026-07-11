@@ -12,19 +12,26 @@
       ×
     </button>
     <h2 id="login-dialog-title">City Voice</h2>
-    <form formGroup="loginForm">
+    <form [formGroup]="form">
       <label for="username">nome da supereroe</label>
-      <input placeholder=" ES. La Viaggiatrice.." type="text" id="username" name="username" />
+      <input
+        formControlName="username"
+        placeholder=" ES. La Viaggiatrice.."
+        type="text"
+        id="username"
+        name="username"
+      />
 
       <label for="password">Password</label>
       <input
+        formControlName="password"
         placeholder="Inserisci la tua password"
         type="password"
         id="password"
         name="password"
       />
 
-      <button class="button">
+      <button class="button" type="button" (click)="login()">
         <span class="shadow"></span>
         <span class="edge"></span>
         <div class="front">
