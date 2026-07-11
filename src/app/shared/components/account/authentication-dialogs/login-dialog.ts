@@ -1,8 +1,8 @@
-/* eslint-disable @angular-eslint/prefer-inject */
-import { ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, inject, Output } from '@angular/core';
 import { AuthService } from '../../../../core/auth/auth.service';
 import { iLoginRequest } from '../../../../core/auth/models/iLoginRequest';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { iAccessData } from '../../../../core/auth/models/iAccessData';
 
 @Component({
   selector: 'app-login-dialog',
@@ -16,12 +16,10 @@ export class LoginDialogComponent {
   form: FormGroup;
   loading = false;
   errorMessage = '';
-
-  constructor(
-    private authService: AuthService,
-    private fb: FormBuilder,
-    private cdr: ChangeDetectorRef,
-  ) {
+  private fb: FormBuilder = inject(FormBuilder);
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+  private authService: AuthService = inject(AuthService);
+  constructor() {
     this.form = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -39,12 +37,12 @@ export class LoginDialogComponent {
     };
 
     this.authService.login(loginData).subscribe({
-      next: (response) => {
+      next: (response: iAccessData) => {
         this.authService.saveAuth(response);
         this.loading = false;
         this.close();
       },
-      error: (err) => {
+      error: (err: { error: { message: string; }; }) => {
         this.errorMessage = err.error?.message || 'Errore nel login';
         this.loading = false;
         this.cdr.markForCheck();

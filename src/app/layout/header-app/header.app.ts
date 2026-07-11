@@ -14,6 +14,5 @@ export class HeaderApp {
 
   openLoginDialog() {
     this.loginClick.emit();
-    console.log('Login dialog opened');
   }
 }

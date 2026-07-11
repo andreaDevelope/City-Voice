@@ -29,10 +29,8 @@ export class Shell {
 
   openLoginDialog() {
     this.loginDialogOpen = true;
-    console.log('Login dialog opened');
   }
   closeLoginDialog() {
     this.loginDialogOpen = false;
-    console.log('Login dialog closed');
   }
 }
