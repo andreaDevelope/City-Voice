@@ -1,4 +1,3 @@
-/* eslint-disable @angular-eslint/prefer-inject */
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({

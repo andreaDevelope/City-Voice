@@ -13,9 +13,9 @@ import { User } from '../../models/user';
   styleUrl: './setting.scss',
 })
 export class Setting {
-  label: string = 'RACCONTA LA TUA STORIA';
-  microBottom: string = 'NO INFO PERSONALI'
-  microTop: string = 'ANONIMO GARANTITO'
+  label = 'RACCONTA LA TUA STORIA';
+  microBottom = 'NO INFO PERSONALI'
+  microTop = 'ANONIMO GARANTITO'
   user: User = {
     username: 'user1',
     inscriction: 'Settembre 2025',
