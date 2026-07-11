@@ -1,5 +1,5 @@
 /* eslint-disable @angular-eslint/prefer-inject */
-import { Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../../../../core/auth/auth.service';
 import { iLoginRequest } from '../../../../core/auth/models/iLoginRequest';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -17,7 +17,11 @@ export class LoginDialogComponent {
   loading = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService, private fb: FormBuilder) {
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private cdr: ChangeDetectorRef,
+  ) {
     this.form = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -43,6 +47,7 @@ export class LoginDialogComponent {
       error: (err) => {
         this.errorMessage = err.error?.message || 'Errore nel login';
         this.loading = false;
+        this.cdr.markForCheck();
       },
     });
   }

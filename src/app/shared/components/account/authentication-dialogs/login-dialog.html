@@ -31,6 +31,10 @@
         name="password"
       />
 
+      @if (errorMessage) {
+        <p class="errorMessage">{{ errorMessage }}</p>
+      }
+
       <button class="button" type="button" (click)="login()">
         <span class="shadow"></span>
         <span class="edge"></span>
