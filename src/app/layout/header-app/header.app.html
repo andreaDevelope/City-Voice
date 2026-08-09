@@ -13,8 +13,8 @@
       <nav class="editorial-hero__nav">
         <a [routerLink]="'/'">Home</a>
         <a [routerLink]="'/storie'">Storie</a>
-        <button class="nav-buttons" (click)="openLoginDialog()">Login</button>
-        <button class="nav-buttons">Registrati</button>
+        <button type="button" class="nav-buttons" (click)="openLoginDialog()">Login</button>
+        <button type="button" class="nav-buttons" (click)="openSignupDialog()">Registrati</button>
         <a [routerLink]="'/setting'">
           <svg
             xmlns="http://www.w3.org/2000/svg"

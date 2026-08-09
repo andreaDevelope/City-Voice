@@ -10,7 +10,7 @@ import { AuthService } from "../../../../core/auth/auth.service";
   styleUrls: ["./signup-dialog.scss"],
 })
 export class SignupDialogComponent {
-  @Output() closeDialog = new EventEmitter<void>();
+  @Output() closeSignupDialog = new EventEmitter<void>();
 
   form: FormGroup;
   loading = false;
@@ -26,4 +26,7 @@ export class SignupDialogComponent {
     });
   }
 
+  close(): void{
+    this.closeSignupDialog.emit();
+  }
 }

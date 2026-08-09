@@ -12,7 +12,15 @@ export class HeaderApp {
   @Output()
   loginClick = new EventEmitter<void>();
 
+  @Output()
+    signupClick  = new EventEmitter<void>()
+
+
   openLoginDialog() {
     this.loginClick.emit();
+  }
+
+  openSignupDialog() {
+    this.signupClick.emit();
   }
 }
