@@ -13,11 +13,11 @@ export class HeaderApp {
   loginClick = new EventEmitter<void>();
 
   @Output()
-    signupClick  = new EventEmitter<void>()
-
+  signupClick = new EventEmitter<void>();
 
   openLoginDialog() {
     this.loginClick.emit();
+    console.log('loginClick event emitted');
   }
 
   openSignupDialog() {

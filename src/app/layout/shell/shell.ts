@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router } from '@angular/router';
 import { HeaderApp } from '../header-app/header.app';
 import { LoginDialogComponent } from '../../shared/components/account/authentication-dialogs/login-dialog';
 import { SignupDialogComponent } from '../../shared/components/account/authentication-dialogs/signup-dialog';
@@ -17,9 +17,8 @@ export class Shell {
   signupDialogOpen = false;
   private title: Title = inject(Title);
   private meta: Meta = inject(Meta);
-
-  constructor(
-  ) {
+  private router: Router = inject(Router);
+  constructor() {
     this.title.setTitle('CityVoice-Roma non è in vendita');
 
     this.meta.updateTag({
@@ -30,14 +29,15 @@ export class Shell {
   }
 
   openLoginDialog() {
+    this.router.navigate(['/login']);
     this.loginDialogOpen = true;
   }
   closeLoginDialog() {
     this.loginDialogOpen = false;
   }
 
-  openSignupDialog(){
-     this.signupDialogOpen = true;
+  openSignupDialog() {
+    this.signupDialogOpen = true;
   }
   closeSignupDialog() {
     this.signupDialogOpen = false;

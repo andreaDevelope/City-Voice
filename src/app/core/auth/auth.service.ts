@@ -10,8 +10,8 @@ import { iLoginRequest } from './models/iLoginRequest';
   providedIn: 'root',
 })
 export class AuthService {
-  registerUrl = 'http://localhost:3000/api/auth/register';
-  loginUrl = 'http://localhost:3000/api/auth/login';
+  registerUrl = 'http://localhost:8080/api/auth/register';
+  loginUrl = 'http://localhost:8080/api/auth/login';
 
   authSubject = new BehaviorSubject<iAccessData | null>(null);
 
@@ -23,7 +23,9 @@ export class AuthService {
   }
 
   login(authData: iLoginRequest) {
-    return this.http.post<iAccessData>(this.loginUrl, authData);
+    return this.http.post(this.loginUrl, authData, {
+      withCredentials: true,
+    });
   }
 
   saveAuth(accessData: iAccessData) {
