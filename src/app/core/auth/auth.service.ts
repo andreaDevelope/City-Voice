@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { iAccessData } from './models/iAccessData';
 import { iUser } from './models/iUser';
 import { iLoginRequest } from './models/iLoginRequest';
+import { iAuthUser } from './models/iAuthUser';
 
 @Injectable({
   providedIn: 'root',
@@ -28,14 +29,60 @@ export class AuthService {
     });
   }
 
+  checkAuth() {
+    return this.http.get<iAuthUser>('http://localhost:8080/api/auth/me', {
+      withCredentials: true,
+    });
+  }
+
+  refreshToken() {
+    return this.http.post('http://localhost:8080/api/auth/refresh-token', {}, {
+      withCredentials: true,
+    });
+  }
+
+  private refreshTimerId: ReturnType<typeof setTimeout> | null = null;
+
+  startRefreshTimer() {
+    // Token vive 86400 secondi (24 ore)
+    // Refresh 300 secondi PRIMA (5 minuti prima)
+    const refreshMs = (86400 - 300) * 1000;
+
+    // Cancella timer precedente se esiste
+    if (this.refreshTimerId) {
+      clearTimeout(this.refreshTimerId);
+    }
+
+    // Avvia nuovo timer
+    this.refreshTimerId = setTimeout(() => {
+      this.refreshToken().subscribe({
+        next: () => {
+          console.log('Token refreshed successfully');
+          this.startRefreshTimer(); // Riavvia il timer
+        },
+        error: (err) => {
+          console.error('Token refresh failed:', err);
+          // Opzionale: reindirizza a login se refresh fallisce
+          this.logout();
+        }
+      });
+    }, refreshMs);
+  }
+
+  stopRefreshTimer() {
+    if (this.refreshTimerId) {
+      clearTimeout(this.refreshTimerId);
+      this.refreshTimerId = null;
+    }
+  }
+
   saveAuth(accessData: iAccessData) {
     this.authSubject.next(accessData);
-    localStorage.setItem('accessData', JSON.stringify(accessData));
   }
 
   logout() {
+    this.stopRefreshTimer();
     this.authSubject.next(null);
-    localStorage.removeItem('accessData');
     this.router.navigate(['/login']);
   }
 

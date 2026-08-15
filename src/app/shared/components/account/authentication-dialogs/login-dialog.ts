@@ -41,6 +41,9 @@ export class LoginDialogComponent {
 
     this.authService.login(loginData).subscribe({
       next: () => {
+        // Login riuscito, token è nel cookie
+        // Avvia il timer per il refresh proattivo
+        this.authService.startRefreshTimer();
         this.loading = false;
         this.close();
       },
