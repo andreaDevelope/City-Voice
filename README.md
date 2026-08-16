@@ -14,12 +14,15 @@ City Voice nasce come strumento di democrazia partecipativa per permettere ai ci
 ## Avvio del progetto
 
 ### Sviluppo locale
+
 ```bash
 npm start
 ```
+
 Il server di sviluppo sarà disponibile su `http://localhost:4200/`.
 
 ### Build e SSR
+
 ```bash
 # Build del progetto
 npm run build:ssr

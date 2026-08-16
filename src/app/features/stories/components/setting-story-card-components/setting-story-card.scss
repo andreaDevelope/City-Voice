@@ -72,17 +72,17 @@ h2 {
     max-width: 2000px;
   }
 
-  h2, .state-container-width,  .story-card__location,
+  h2,
+  .state-container-width,
+  .story-card__location,
   .story-card__date,
-  .story-card__category{
+  .story-card__category {
     font-size: 1em;
   }
 
-  .state-container{
-    .state{
-    font-size: 0.8em;
-
+  .state-container {
+    .state {
+      font-size: 0.8em;
     }
-
   }
 }

@@ -14,12 +14,12 @@ import { User } from '../../models/user';
 })
 export class Setting {
   label = 'RACCONTA LA TUA STORIA';
-  microBottom = 'NO INFO PERSONALI'
-  microTop = 'ANONIMO GARANTITO'
+  microBottom = 'NO INFO PERSONALI';
+  microTop = 'ANONIMO GARANTITO';
   user: User = {
     username: 'user1',
     inscriction: 'Settembre 2025',
-  }
+  };
   stories: Story[] = [
     {
       state: StoryStatus.PUBLISHED,
