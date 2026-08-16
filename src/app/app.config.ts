@@ -1,36 +1,47 @@
-import { ApplicationConfig, APP_INITIALIZER, provideBrowserGlobalErrorListeners } from '@angular/core';
+import {
+  ApplicationConfig,
+  APP_INITIALIZER,
+  provideBrowserGlobalErrorListeners,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { AuthService } from './core/auth/auth.service';
-import { catchError, of, tap } from 'rxjs';
+import { HttpCredentialsInterceptor } from './core/http/http-credentials.interceptor';
+import { catchError, firstValueFrom, of, tap } from 'rxjs';
+import { provideHttpClient, withInterceptorsFromDi, withFetch } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
+    provideHttpClient(withInterceptorsFromDi(), withFetch()),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpCredentialsInterceptor,
+      multi: true,
+    },
     {
       provide: APP_INITIALIZER,
       useFactory: (authService: AuthService) => () => {
-        // Al startup, controlla se l'utente ha un cookie valido
-        return authService.checkAuth().pipe(
-          tap((authUser) => {
-            // Utente autenticato, popola authSubject
-            authService.authSubject.next(authUser as any); // Cast temporaneo
-            // Avvia il timer per il refresh
-            authService.startRefreshTimer();
-          }),
-          catchError(() => {
-            // Nessun cookie valido o scaduto, utente anonimo
-            authService.authSubject.next(null);
-            return of(null);
-          })
-        ).toPromise() as Promise<any>;
+        return firstValueFrom(
+          authService.checkAuth().pipe(
+            tap((authUser) => {
+              authService.authSubject.next(authUser);
+              authService.startRefreshTimer();
+            }),
+            catchError(() => {
+              authService.authSubject.next(null);
+              return of(null);
+            }),
+          ),
+        );
       },
       deps: [AuthService],
       multi: true,
-    }
-  ]
+    },
+  ],
 };

@@ -28,32 +28,47 @@ export class LoginDialogComponent {
     });
   }
 
-  login() {
-    if (this.form.invalid) return;
-    this.router.navigate(['/setting']);
-    this.loading = true;
-    this.errorMessage = '';
+login() {
+  if (this.form.invalid) return;
+  this.loading = true;
+  this.errorMessage = '';
 
-    const loginData: iLoginRequest = {
-      username: this.form.value.username,
-      password: this.form.value.password,
-    };
+  const loginData: iLoginRequest = {
+    username: this.form.value.username,
+    password: this.form.value.password,
+  };
 
-    this.authService.login(loginData).subscribe({
-      next: () => {
-        // Login riuscito, token è nel cookie
-        // Avvia il timer per il refresh proattivo
-        this.authService.startRefreshTimer();
-        this.loading = false;
-        this.close();
-      },
-      error: (err: { error: { message: string } }) => {
-        this.errorMessage = err.error?.message || 'Errore nel login';
-        this.loading = false;
-        this.cdr.markForCheck();
-      },
-    });
-  }
+  this.authService.login(loginData).subscribe({
+    next: () => {
+      // Login riuscito, token è nel cookie
+      // Ora recupera i dati dell'utente e ripristina lo stato
+      this.authService.checkAuth().subscribe({
+        next: (user) => {
+          // Salva l'utente in memoria
+          this.authService.authSubject.next(user);
+
+          // Avvia il timer per il refresh proattivo
+          this.authService.startRefreshTimer();
+
+          // Chiudi dialog e naviga
+          this.loading = false;
+          this.close();
+          this.router.navigate(['/setting']);
+        },
+        error: (err) => {
+          this.errorMessage = 'Errore nel recuperare i dati utente' + err.error?.message || '';
+          this.loading = false;
+          this.cdr.markForCheck();
+        }
+      });
+    },
+    error: (err: { error: { message: string } }) => {
+      this.errorMessage = err.error?.message || 'Errore nel login';
+      this.loading = false;
+      this.cdr.markForCheck();
+    },
+  });
+}
 
   close(): void {
     this.closeDialog.emit();
