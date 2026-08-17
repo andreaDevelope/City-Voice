@@ -14,8 +14,17 @@
   flex: 1;
 }
 
+.nav-mobile {
+  display: fixed;
+  bottom: 0;
+}
+
 @include da-desktop {
   .shell {
     border-top-left-radius: 0;
+  }
+
+  .nav-mobile {
+    display: none;
   }
 }

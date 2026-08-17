@@ -4,11 +4,12 @@ import { RouterOutlet, Router } from '@angular/router';
 import { HeaderApp } from '../header-app/header.app';
 import { LoginDialogComponent } from '../../features/auth/dialogs/login-dialog';
 import { SignupDialogComponent } from '../../features/auth/dialogs/signup-dialog';
+import { NavMobile } from '../nav-mobile/nav-mobile';
 
 @Component({
   standalone: true,
   selector: 'app-shell',
-  imports: [RouterOutlet, HeaderApp, LoginDialogComponent, SignupDialogComponent],
+  imports: [RouterOutlet, HeaderApp, NavMobile, LoginDialogComponent, SignupDialogComponent],
   templateUrl: './shell.html',
   styleUrl: './shell.scss',
 })
