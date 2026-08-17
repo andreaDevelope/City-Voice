@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component, EventEmitter, inject, Output } from '@angular/core';
-import { AuthService } from '../../../../core/auth/auth.service';
-import { iLoginRequest } from '../../../../core/auth/models/iLoginRequest';
+import { AuthService } from '../../../core/auth/auth.service';
+import { iLoginRequest } from '../../../core/auth/models/iLoginRequest';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-// import { iAccessData } from '../../../../core/auth/models/iAccessData';
+// import { iAccessData } from '../../../core/auth/models/iAccessData';
 
 @Component({
   selector: 'app-login-dialog',

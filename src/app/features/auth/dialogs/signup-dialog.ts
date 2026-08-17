@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../../../core/auth/auth.service';
-import { iUser } from '../../../../core/auth/models/iUser';
+import { AuthService } from '../../../core/auth/auth.service';
+import { iUser } from '../../../core/auth/models/iUser';
 
 @Component({
   selector: 'app-signup-dialog',

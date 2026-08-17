@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterOutlet, Router } from '@angular/router';
 import { HeaderApp } from '../header-app/header.app';
-import { LoginDialogComponent } from '../../shared/components/account/authentication-dialogs/login-dialog';
-import { SignupDialogComponent } from '../../shared/components/account/authentication-dialogs/signup-dialog';
+import { LoginDialogComponent } from '../../features/auth/dialogs/login-dialog';
+import { SignupDialogComponent } from '../../features/auth/dialogs/signup-dialog';
 
 @Component({
   standalone: true,
