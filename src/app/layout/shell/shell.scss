@@ -15,9 +15,17 @@
 }
 
 .nav-mobile {
-  z-index: 999999999999999999999999999999999999999999999999999999999999999999999999999999;
+  z-index: 1000;
   position: fixed;
   bottom: 0;
+  right: 0;
+  cursor: grab;
+  touch-action: none; /* Disabilita scroll nativo su drag */
+  transition: transform 0.1s ease-out; /* Smooth drag */
+
+  &:active {
+    cursor: grabbing;
+  }
 }
 
 @include da-desktop {
