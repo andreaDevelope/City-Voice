@@ -1,9 +1,28 @@
-/* ============================
-   BREAKPOINT — CAMBIO LINGUAGGIO VISIVO
-   ============================ */
+//   BREAKPOINT
 
+$bp-mobile1: 350px;
+$bp-mobile2: 400px;
+$bp-mobile3: 450px;
 $bp-wide: 500px;
 $bp-desktop: 1024px;
+
+@mixin da-mobile1 {
+  @media (min-width: $bp-mobile1) {
+    @content;
+  }
+}
+
+@mixin da-mobile2 {
+  @media (min-width: $bp-mobile2) {
+    @content;
+  }
+}
+
+@mixin da-mobile3 {
+  @media (min-width: $bp-mobile3) {
+    @content;
+  }
+}
 
 @mixin da-wide {
   @media (min-width: $bp-wide) {

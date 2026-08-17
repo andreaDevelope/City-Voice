@@ -13,18 +13,41 @@
 .shell-main {
   flex: 1;
 }
-
 .nav-mobile {
   z-index: 1000;
   position: fixed;
   bottom: 0;
-  right: 0;
+  left: 55%;
   cursor: grab;
-  touch-action: none; /* Disabilita scroll nativo su drag */
+  touch-action: manipulation; /* Permette scroll, disabilita double-tap delay */
   will-change: transform; /* Optimize rendering */
 
   &:active {
     cursor: grabbing;
+  }
+}
+
+@include da-mobile1 {
+  .nav-mobile {
+    left: 60%;
+  }
+}
+
+@include da-mobile2 {
+  .nav-mobile {
+    left: 65%;
+  }
+}
+
+@include da-mobile3 {
+  .nav-mobile {
+    left: 70%;
+  }
+}
+
+@include da-wide {
+  .nav-mobile {
+    left: 75%;
   }
 }
 
