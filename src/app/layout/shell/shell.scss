@@ -16,7 +16,7 @@
 .nav-mobile {
   z-index: 1000;
   position: fixed;
-  bottom: 0;
+  bottom: -100px;
   left: 55%;
   cursor: grab;
   touch-action: manipulation; /* Permette scroll, disabilita double-tap delay */
