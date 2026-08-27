@@ -14,7 +14,7 @@
       <app-login-dialog (closeDialog)="closeLoginDialog()"></app-login-dialog>
     }
 
-    @if (signupDialogOpen) {
+    @if (signupDialogOpen()) {
       <app-signup-dialog (closeSignupDialog)="closeSignupDialog()"></app-signup-dialog>
     }
   </main>

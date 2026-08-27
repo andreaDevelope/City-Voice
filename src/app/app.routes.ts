@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/auth/auth.guard';
 
 export const routes: Routes = [
   {
@@ -25,6 +26,7 @@ export const routes: Routes = [
       },
       {
         path: 'setting',
+        canActivate: [authGuard],
         loadComponent: () =>
           import('./features/stories/pages/setting-page/setting').then((m) => m.Setting),
       },

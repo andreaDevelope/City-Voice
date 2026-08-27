@@ -5,6 +5,7 @@ import { HeaderApp } from '../header-app/header.app';
 import { LoginDialogComponent } from '../../features/auth/dialogs/login-dialog';
 import { SignupDialogComponent } from '../../features/auth/dialogs/signup-dialog';
 import { NavMobile } from '../nav-mobile/nav-mobile';
+import { AuthPromptService } from '../../core/auth/auth-prompt.service';
 
 @Component({
   standalone: true,
@@ -15,10 +16,17 @@ import { NavMobile } from '../nav-mobile/nav-mobile';
 })
 export class Shell {
   loginDialogOpen = false;
-  signupDialogOpen = false;
+
   private title: Title = inject(Title);
   private meta: Meta = inject(Meta);
   private router: Router = inject(Router);
+  private authPrompt: AuthPromptService = inject(AuthPromptService);
+
+  // Il signup dialog è governato da AuthPromptService: si apre sia dal bottone
+  // "Registrati" nell'header, sia da qualunque punto del codice (es. authGuard)
+  // che non ha visibilità diretta su Shell.
+  signupDialogOpen = this.authPrompt.isOpen;
+
   constructor() {
     this.title.setTitle('CityVoice-Roma non è in vendita');
 
@@ -38,9 +46,9 @@ export class Shell {
   }
 
   openSignupDialog() {
-    this.signupDialogOpen = true;
+    this.authPrompt.open();
   }
   closeSignupDialog() {
-    this.signupDialogOpen = false;
+    this.authPrompt.close();
   }
 }
