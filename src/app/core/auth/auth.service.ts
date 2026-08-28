@@ -1,7 +1,8 @@
 import { inject, Injectable } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { iUser } from './models/iUser';
 import { iLoginRequest } from './models/iLoginRequest';
 import { iAuthUser } from './models/iAuthUser';
@@ -14,6 +15,15 @@ export class AuthService {
   loginUrl = 'http://localhost:8080/api/auth/login';
 
   authSubject = new BehaviorSubject<iAuthUser | null>(null);
+
+  /**
+   * Stato di autenticazione come signal: unica fonte per i template.
+   * La sintassi di lettura `isLoggedIn()` resta identica al vecchio metodo,
+   * quindi la guard e gli altri chiamanti non cambiano.
+   */
+  isLoggedIn = toSignal(this.authSubject.pipe(map((user) => user !== null)), {
+    initialValue: this.authSubject.value !== null,
+  });
 
   private http = inject(HttpClient);
   private router = inject(Router);
@@ -82,9 +92,5 @@ export class AuthService {
   getUser() {
     const auth = this.authSubject.value;
     return auth ? auth.user : null;
-  }
-
-  isLoggedIn() {
-    return this.authSubject.value !== null;
   }
 }

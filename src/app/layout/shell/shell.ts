@@ -6,6 +6,7 @@ import { LoginDialogComponent } from '../../features/auth/dialogs/login-dialog';
 import { SignupDialogComponent } from '../../features/auth/dialogs/signup-dialog';
 import { NavMobile } from '../nav-mobile/nav-mobile';
 import { AuthPromptService } from '../../core/auth/auth-prompt.service';
+import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
   standalone: true,
@@ -21,10 +22,10 @@ export class Shell {
   private meta: Meta = inject(Meta);
   private router: Router = inject(Router);
   private authPrompt: AuthPromptService = inject(AuthPromptService);
+  private authService = inject(AuthService);
 
-  // Il signup dialog è governato da AuthPromptService: si apre sia dal bottone
-  // "Registrati" nell'header, sia da qualunque punto del codice (es. authGuard)
-  // che non ha visibilità diretta su Shell.
+  isLoggedIn = this.authService.isLoggedIn;
+
   signupDialogOpen = this.authPrompt.isOpen;
 
   constructor() {

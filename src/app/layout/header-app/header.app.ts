@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
   standalone: true,
@@ -14,6 +15,10 @@ export class HeaderApp {
 
   @Output()
   signupClick = new EventEmitter<void>();
+
+  private authService = inject(AuthService);
+
+  isLoggedIn = this.authService.isLoggedIn;
 
   openLoginDialog() {
     this.loginClick.emit();

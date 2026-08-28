@@ -91,7 +91,7 @@ export class NavMobile {
 
   getNavStyle() {
     return {
-      transform: `translate(${this.dragX()}px, ${this.dragY()}px)`
+      transform: `translate(${this.dragX()}px, ${this.dragY()}px)`,
     };
   }
 }
