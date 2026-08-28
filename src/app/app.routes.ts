@@ -30,6 +30,12 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/stories/pages/setting-page/setting').then((m) => m.Setting),
       },
+      {
+        path: 'profilo',
+        canActivate: [authGuard],
+        loadComponent: () =>
+          import('./features/profile/pages/profile-page/profile').then((m) => m.Profile),
+      },
     ],
   },
   { path: '**', redirectTo: '' },
