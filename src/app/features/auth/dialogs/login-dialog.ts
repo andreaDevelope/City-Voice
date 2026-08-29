@@ -15,8 +15,11 @@ import { Router } from '@angular/router';
 export class LoginDialogComponent {
   @Output() closeDialog = new EventEmitter<void>();
   form: FormGroup;
+  recoveryForm: FormGroup;
+  recoveryMode = false;
   loading = false;
   errorMessage = '';
+  successMessage = '';
   private fb: FormBuilder = inject(FormBuilder);
   private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
   private authService: AuthService = inject(AuthService);
@@ -25,6 +28,39 @@ export class LoginDialogComponent {
     this.form = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
+    });
+    this.recoveryForm = this.fb.group({
+      username: ['', Validators.required],
+      recoveryKey: ['', Validators.required],
+      newPassword: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
+
+  toggleRecoveryMode() {
+    this.recoveryMode = !this.recoveryMode;
+    this.errorMessage = '';
+    this.successMessage = '';
+  }
+
+  recover() {
+    if (this.recoveryForm.invalid) return;
+    this.loading = true;
+    this.errorMessage = '';
+    this.successMessage = '';
+
+    this.authService.recoverAccount(this.recoveryForm.value).subscribe({
+      next: () => {
+        this.loading = false;
+        this.successMessage = 'Password aggiornata. Ora puoi accedere.';
+        this.recoveryMode = false;
+        this.form.patchValue({ username: this.recoveryForm.value.username });
+        this.cdr.markForCheck();
+      },
+      error: (err: { error: { message?: string } }) => {
+        this.errorMessage = err.error?.message || 'Chiave di recovery non valida';
+        this.loading = false;
+        this.cdr.markForCheck();
+      },
     });
   }
 

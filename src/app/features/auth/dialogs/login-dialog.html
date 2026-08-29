@@ -12,36 +12,78 @@
       ×
     </button>
     <h2 id="login-dialog-title">City Voice</h2>
-    <form [formGroup]="form">
-      <label for="username">nome da supereroe</label>
-      <input
-        formControlName="username"
-        placeholder=" ES. La Viaggiatrice.."
-        type="text"
-        id="username"
-        name="username"
-      />
+    @if (!recoveryMode) {
+      <form [formGroup]="form">
+        <label for="username">nome da supereroe</label>
+        <input
+          formControlName="username"
+          placeholder=" ES. La Viaggiatrice.."
+          type="text"
+          id="username"
+          name="username"
+        />
 
-      <label for="password">Password</label>
-      <input
-        formControlName="password"
-        placeholder="Inserisci la tua password"
-        type="password"
-        id="password"
-        name="password"
-      />
+        <label for="password">Password</label>
+        <input
+          formControlName="password"
+          placeholder="Inserisci la tua password"
+          type="password"
+          id="password"
+          name="password"
+        />
+        <button class="button" type="button" (click)="login()">
+          <span class="shadow"></span>
+          <span class="edge"></span>
+          <div class="front">
+            <span>ACCEDI</span>
+          </div>
+        </button>
 
-      @if (errorMessage) {
-        <p class="errorMessage">{{ errorMessage }}</p>
-      }
+        @if (errorMessage) {
+          <p class="errorMessage">{{ errorMessage }}</p>
+        }
 
-      <button class="button" type="button" (click)="login()">
-        <span class="shadow"></span>
-        <span class="edge"></span>
-        <div class="front">
-          <span>ACCEDI</span>
-        </div>
-      </button>
-    </form>
+        <button type="button" class="forgot-password-link" (click)="toggleRecoveryMode()">
+          Password dimenticata?
+        </button>
+      </form>
+    }
+
+    @if (recoveryMode) {
+      <form [formGroup]="recoveryForm">
+        <label for="recovery-username">nome da supereroe</label>
+        <input formControlName="username" type="text" id="recovery-username" />
+
+        <label for="recovery-key">chiave di recovery</label>
+        <input
+          formControlName="recoveryKey"
+          type="text"
+          id="recovery-key"
+          placeholder="parola-parola-parola-parola-parola-parola"
+        />
+
+        <label for="new-password">nuova password</label>
+        <input formControlName="newPassword" type="password" id="new-password" />
+
+        @if (errorMessage) {
+          <p class="errorMessage">{{ errorMessage }}</p>
+        }
+        @if (successMessage) {
+          <p class="successMessage">{{ successMessage }}</p>
+        }
+
+        <button class="button" type="button" (click)="recover()">
+          <span class="shadow"></span>
+          <span class="edge"></span>
+          <div class="front">
+            <span>RECUPERA</span>
+          </div>
+        </button>
+
+        <button type="button" class="forgot-password-link" (click)="toggleRecoveryMode()">
+          Torna al login
+        </button>
+      </form>
+    }
   </div>
 </div>

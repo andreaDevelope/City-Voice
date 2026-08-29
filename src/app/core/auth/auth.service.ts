@@ -13,14 +13,10 @@ import { iAuthUser } from './models/iAuthUser';
 export class AuthService {
   registerUrl = 'http://localhost:8080/api/auth/register';
   loginUrl = 'http://localhost:8080/api/auth/login';
+  recoveryUrl = 'http://localhost:8080/api/auth/recovery';
 
   authSubject = new BehaviorSubject<iAuthUser | null>(null);
 
-  /**
-   * Stato di autenticazione come signal: unica fonte per i template.
-   * La sintassi di lettura `isLoggedIn()` resta identica al vecchio metodo,
-   * quindi la guard e gli altri chiamanti non cambiano.
-   */
   isLoggedIn = toSignal(this.authSubject.pipe(map((user) => user !== null)), {
     initialValue: this.authSubject.value !== null,
   });
@@ -92,5 +88,9 @@ export class AuthService {
   getUser() {
     const auth = this.authSubject.value;
     return auth ? auth.user : null;
+  }
+
+  recoverAccount(data: { username: string; recoveryKey: string; newPassword: string }) {
+    return this.http.post(this.recoveryUrl, data, { responseType: 'text' });
   }
 }
