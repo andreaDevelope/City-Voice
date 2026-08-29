@@ -4,6 +4,8 @@ Leggere City Voice non richiede registrazione: chiunque può entrare e leggere t
 
 Per **scrivere** serve un account. Le storie restano collegate a un autore anonimo perché la community possa costruire fiducia attorno a chi contribuisce con costanza.
 
+Criticare un professionista o un servizio è legittimo: racconta cosa è successo, non etichettare la persona.
+
 ## Come si scrive
 
 Scegli la categoria (mobilità, degrado, burocrazia, sicurezza, proposte, avvistamenti, altro), racconta cosa hai visto o vissuto, indicare la zona è rilevante.
