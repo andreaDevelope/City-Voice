@@ -1,39 +1,31 @@
 # City Voice
 
-Piattaforma civica per la partecipazione e il coinvolgimento dei cittadini di Roma nella vita della città.
+Piattaforma civica anonima per i cittadini di Roma.
 
-## Obiettivo
+Questo repository contiene il frontend. L'API vive in un repository separato.
 
-City Voice nasce come strumento di democrazia partecipativa per permettere ai cittadini di Roma di esprimere opinioni, segnalare problematiche e contribuire attivamente al miglioramento della città. L'obiettivo è creare un ponte tra la comunità e le istituzioni, facilitando il dialogo e la collaborazione civica.
+## Documentazione
 
-## Stack tecnico
+### Per chi usa la piattaforma
 
-- **Frontend**: Angular standalone, SCSS, mobile-first, SSR
-- **Backend**: Spring Boot, microservizi (in evoluzione)
+- [Cos'è City Voice](docs/user/00-cosa-e-cityvoice.md)
+- [L'anonimato](docs/user/01-anonimato.md)
+- [Pubblicare una storia](docs/user/02-pubblicare-una-storia.md)
+- [Il tuo profilo](docs/user/03-profilo-e-percorso.md)
 
-## Avvio del progetto
+### Per chi sviluppa
 
-### Sviluppo locale
+- [Stack and architecture](docs/dev/00-stack-and-architecture.md)
+- [Local setup](docs/dev/01-local-setup.md)
+- [Authentication](docs/dev/02-authentication.md)
 
-```bash
-npm start
-```
+## Quick start
 
-Il server di sviluppo sarà disponibile su `http://localhost:4200/`.
+    npm install
+    npm start
 
-### Build e SSR
-
-```bash
-# Build del progetto
-npm run build:ssr
-
-# Avvio server SSR
-npm run serve:ssr
-
-# Build + serve SSR in un comando
-npm run dev:ssr
-```
+Requires Node 20.19+ and a running instance of the City Voice API. See [local setup](docs/dev/01-local-setup.md) for details.
 
 ## Stato del progetto
 
-Il progetto è attualmente in fase iniziale di sviluppo. La struttura è in costruzione attraverso micro-step incrementali, con focus su architettura solida e best practices.
+In sviluppo. Struttura e funzionalità cambiano frequentemente.
