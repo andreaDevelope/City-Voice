@@ -6,14 +6,17 @@ import { BehaviorSubject, map } from 'rxjs';
 import { iUser } from './models/iUser';
 import { iLoginRequest } from './models/iLoginRequest';
 import { iAuthUser } from './models/iAuthUser';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  registerUrl = 'http://localhost:8080/api/auth/register';
-  loginUrl = 'http://localhost:8080/api/auth/login';
-  recoveryUrl = 'http://localhost:8080/api/auth/recovery';
+  private readonly baseUrl = `${environment.apiUrl}/auth`;
+
+  registerUrl = `${this.baseUrl}/register`;
+  loginUrl = `${this.baseUrl}/login`;
+  recoveryUrl = `${this.baseUrl}/recovery`;
 
   authSubject = new BehaviorSubject<iAuthUser | null>(null);
 
@@ -33,11 +36,11 @@ export class AuthService {
   }
 
   checkAuth() {
-    return this.http.get<iAuthUser>('http://localhost:8080/api/auth/me');
+    return this.http.get<iAuthUser>(`${this.baseUrl}/me`);
   }
 
   refreshToken() {
-    return this.http.post('http://localhost:8080/api/auth/refresh-token', {});
+    return this.http.post(`${this.baseUrl}/refresh-token`, {});
   }
 
   private refreshTimerId: ReturnType<typeof setTimeout> | null = null;
