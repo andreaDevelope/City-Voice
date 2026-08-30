@@ -1,0 +1,39 @@
+<div class="dialog-overlay">
+  <div
+    class="dialog-container"
+    tabindex="0"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="recovery-key-title"
+  >
+    <h2 id="recovery-key-title">La tua chiave</h2>
+
+    <div class="dialog-body">
+      <p class="intro">
+        Non abbiamo la tua email. Questa chiave è l'unico modo per rientrare se dimentichi la
+        password: se la perdi, l'account è perso per sempre.
+      </p>
+
+      <div class="key-box">
+        <code>{{ recoveryKey }}</code>
+      </div>
+
+      <button type="button" class="copy-button" (click)="copyKey()">
+        {{ copied() ? 'Copiata' : 'Copia' }}
+      </button>
+
+      <label class="saved-check">
+        <input type="checkbox" [checked]="saved()" (change)="toggleSaved()" />
+        <span>L'ho salvata in un posto sicuro</span>
+      </label>
+
+      <button class="button" type="button" [disabled]="!saved()" (click)="confirm()">
+        <span class="shadow"></span>
+        <span class="edge"></span>
+        <div class="front">
+          <span>CONTINUA</span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>

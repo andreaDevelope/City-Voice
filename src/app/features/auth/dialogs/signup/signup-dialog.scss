@@ -144,3 +144,15 @@ input {
   user-select: none;
   color: var(--testo-principale);
 }
+
+.fieldError {
+  color: var(--rosso-denuncia);
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}

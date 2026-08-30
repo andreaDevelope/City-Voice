@@ -21,25 +21,43 @@
         id="username"
         name="username"
       />
+      @if (form.get('username')?.touched && form.get('username')?.invalid) {
+        <p class="fieldError">
+          @if (form.get('username')?.hasError('required')) {
+            Scegli un nome
+          } @else {
+            Almeno 3 caratteri
+          }
+        </p>
+      }
 
       <label for="password">Password</label>
       <input
         formControlName="password"
-        placeholder="Inserisci la tua password"
+        placeholder="Almeno 6 caratteri"
         type="password"
         id="password"
         name="password"
       />
+      @if (form.get('password')?.touched && form.get('password')?.invalid) {
+        <p class="fieldError">
+          @if (form.get('password')?.hasError('required')) {
+            Inserisci una password
+          } @else {
+            Almeno 6 caratteri
+          }
+        </p>
+      }
 
       @if (errorMessage) {
         <p class="errorMessage">{{ errorMessage }}</p>
       }
 
-      <button class="button" type="button">
+      <button class="button" type="button" [disabled]="form.invalid || loading" (click)="signup()">
         <span class="shadow"></span>
         <span class="edge"></span>
         <div class="front">
-          <button type="button" (click)="signup()">Iscriviti</button>
+          <span>ISCRIVITI</span>
         </div>
       </button>
     </form>

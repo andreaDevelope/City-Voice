@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, EventEmitter, inject, Output } from '@angular/core';
-import { AuthService } from '../../../core/auth/auth.service';
-import { iLoginRequest } from '../../../core/auth/models/iLoginRequest';
+import { AuthService } from '../../../../core/auth/auth.service';
+import { iLoginRequest } from '../../../../core/auth/models/iLoginRequest';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 // import { iAccessData } from '../../../core/auth/models/iAccessData';
@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class LoginDialogComponent {
   @Output() closeDialog = new EventEmitter<void>();
+
   form: FormGroup;
   recoveryForm: FormGroup;
   recoveryMode = false;
@@ -77,7 +78,6 @@ export class LoginDialogComponent {
     this.authService.login(loginData).subscribe({
       next: () => {
         // Login riuscito, token è nel cookie
-        // Ora recupera i dati dell'utente e ripristina lo stato
         this.authService.checkAuth().subscribe({
           next: (user) => {
             // Salva l'utente in memoria
@@ -91,14 +91,14 @@ export class LoginDialogComponent {
             this.close();
             this.router.navigate(['/setting']);
           },
-          error: (err) => {
-            this.errorMessage = 'Errore nel recuperare i dati utente' + err.error?.message || '';
+          error: () => {
+            this.errorMessage = 'Errore nel recuperare i dati utente';
             this.loading = false;
             this.cdr.markForCheck();
           },
         });
       },
-      error: (err: { error: { message: string } }) => {
+      error: (err: { error: { message?: string } }) => {
         this.errorMessage = err.error?.message || 'Errore nel login';
         this.loading = false;
         this.cdr.markForCheck();

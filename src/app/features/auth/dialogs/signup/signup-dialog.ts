@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../../core/auth/auth.service';
-import { iUser } from '../../../core/auth/models/iUser';
+import { AuthService } from '../../../../core/auth/auth.service';
+import { iUser } from '../../../../core/auth/models/iUser';
 
 @Component({
   selector: 'app-signup-dialog',
@@ -12,6 +12,7 @@ import { iUser } from '../../../core/auth/models/iUser';
 })
 export class SignupDialogComponent {
   @Output() closeSignupDialog = new EventEmitter<void>();
+  @Output() registered = new EventEmitter<string>();
 
   form: FormGroup;
   loading = false;
@@ -22,8 +23,8 @@ export class SignupDialogComponent {
   private authService = inject(AuthService);
   constructor() {
     this.form = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
+      username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(14)]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(14)]],
     });
   }
 
@@ -38,9 +39,9 @@ export class SignupDialogComponent {
     };
 
     this.authService.register(signupData).subscribe({
-      next: () => {
+      next: (response) => {
         this.loading = false;
-        this.close();
+        this.registered.emit(response.recoveryKey);
       },
       error: (err: { error: { message: string } }) => {
         this.errorMessage = err.error?.message || 'Errore nella registrazione';

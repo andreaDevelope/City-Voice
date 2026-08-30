@@ -7,6 +7,7 @@ import { iUser } from './models/iUser';
 import { iLoginRequest } from './models/iLoginRequest';
 import { iAuthUser } from './models/iAuthUser';
 import { environment } from '../../../environments/environment';
+import { iRegisterResponse } from './models/iRegisterResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +29,7 @@ export class AuthService {
   private router = inject(Router);
 
   register(newUser: iUser) {
-    return this.http.post<iAuthUser>(this.registerUrl, newUser);
+    return this.http.post<iRegisterResponse>(this.registerUrl, newUser);
   }
 
   login(authData: iLoginRequest) {
@@ -94,6 +95,6 @@ export class AuthService {
   }
 
   recoverAccount(data: { username: string; recoveryKey: string; newPassword: string }) {
-    return this.http.post(this.recoveryUrl, data, { responseType: 'text' });
+    return this.http.post(this.recoveryUrl, data);
   }
 }

@@ -10,12 +10,23 @@
 
   <main class="shell-main">
     <router-outlet />
-    @if (loginDialogOpen) {
+
+    @if (loginDialogOpen()) {
       <app-login-dialog (closeDialog)="closeLoginDialog()"></app-login-dialog>
     }
 
     @if (signupDialogOpen()) {
-      <app-signup-dialog (closeSignupDialog)="closeSignupDialog()"></app-signup-dialog>
+      <app-signup-dialog
+        (closeSignupDialog)="closeSignupDialog()"
+        (registered)="onRegistered($event)"
+      ></app-signup-dialog>
+    }
+
+    @if (recoveryKeyOpen()) {
+      <app-recovery-key-dialog
+        [recoveryKey]="recoveryKey()!"
+        (confirmed)="onRecoveryKeyConfirmed()"
+      ></app-recovery-key-dialog>
     }
   </main>
 </div>
