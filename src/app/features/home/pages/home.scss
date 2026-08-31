@@ -326,10 +326,14 @@
     }
     .home__cta {
       display: flex;
+      flex-wrap: wrap;
       gap: 1rem;
       max-width: 600px;
       margin-block: 3rem;
       button {
+        width: auto;
+        flex: 0 1 auto;
+        white-space: nowrap;
         &:hover {
           scale: 0.9;
         }
