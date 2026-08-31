@@ -144,3 +144,21 @@ input {
   user-select: none;
   color: var(--testo-principale);
 }
+
+.switch-hint {
+  color: var(--testo-secondario);
+  font-size: 0.85rem;
+  text-align: center;
+  margin-block: 0.75rem 1rem;
+}
+
+.switch-link {
+  background: none;
+  border: none;
+  color: var(--rosso-azione);
+  font-size: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}

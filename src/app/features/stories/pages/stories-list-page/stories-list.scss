@@ -172,6 +172,9 @@
 .manifesto__show-more-close {
   width: 100%;
   min-height: 70%;
+  max-height: 85dvh;
+  display: flex;
+  flex-direction: column;
   background-color: var(--sfondo-secondario);
   transform: translateY(100%);
   position: fixed;
@@ -192,6 +195,10 @@
 .show-more-container {
   padding: 1em;
   color: var(--testo-discreto);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
 }
 .show-more-header {
   display: flex;
@@ -199,6 +206,8 @@
   align-items: center;
   padding-bottom: 1em;
   border-bottom: 1px solid var(--testo-discreto);
+  flex-shrink: 0;
+
   button {
     width: auto;
     color: var(--rosso-azione);
@@ -208,6 +217,10 @@
 .show-more-content {
   margin-top: 1em;
   padding-block: 1em;
+  overflow-y: auto;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
+
   p {
     margin-bottom: 1em;
   }

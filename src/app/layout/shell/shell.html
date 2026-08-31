@@ -12,7 +12,10 @@
     <router-outlet />
 
     @if (loginDialogOpen()) {
-      <app-login-dialog (closeDialog)="closeLoginDialog()"></app-login-dialog>
+      <app-login-dialog
+        (closeDialog)="closeLoginDialog()"
+        (switchToSignup)="switchToSignup()"
+      ></app-login-dialog>
     }
 
     @if (signupDialogOpen()) {

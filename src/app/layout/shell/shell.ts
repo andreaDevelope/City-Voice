@@ -69,4 +69,8 @@ export class Shell {
   onRecoveryKeyConfirmed() {
     this.authPrompt.close();
   }
+
+  switchToSignup() {
+    this.authPrompt.openSignup();
+  }
 }

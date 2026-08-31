@@ -1,28 +1,78 @@
-import { Component, signal, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, signal, computed, inject, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../core/auth/auth.service';
+import { AuthPromptService } from '../../core/auth/auth-prompt.service';
+
+type NavIcon = 'home' | 'storie' | 'racconta' | 'profilo' | 'setting' | 'accedi';
+
+interface NavItem {
+  label: string;
+  icon: NavIcon;
+  path?: string;
+  action?: 'login';
+}
 
 @Component({
   standalone: true,
   selector: 'app-nav-mobile',
   templateUrl: './nav-mobile.html',
   styleUrls: ['./nav-mobile.scss'],
-  imports: [CommonModule],
+  imports: [],
 })
 export class NavMobile {
-  // Posizione trascinata (px)
+  private router = inject(Router);
+  private authService = inject(AuthService);
+  private authPrompt = inject(AuthPromptService);
+
+  private readonly commonItems: NavItem[] = [
+    { label: 'Home', icon: 'home', path: '/' },
+    { label: 'Storie', icon: 'storie', path: '/storie' },
+    { label: 'Racconta', icon: 'racconta', path: '/racconta' },
+  ];
+
+  items = computed<NavItem[]>(() =>
+    this.authService.isLoggedIn()
+      ? [
+          ...this.commonItems,
+          { label: 'Profilo', icon: 'profilo', path: '/profilo' },
+          { label: 'Impostazioni', icon: 'setting', path: '/setting' },
+        ]
+      : [...this.commonItems, { label: 'Accedi', icon: 'accedi', action: 'login' }],
+  );
+
+  open = signal(false);
+
   dragX = signal(0);
   dragY = signal(0);
 
   private isDragging = false;
-  private hasMoved = false; // Flag per ignorare click se mosso
+  private hasMoved = false;
   private dragStartX = 0;
   private dragStartY = 0;
   private dragStartOffsetX = 0;
   private dragStartOffsetY = 0;
-  private readonly DRAG_THRESHOLD = 5; // px
-  private readonly DRAG_SPEED = 1.3; // velocità moltiplicatore
+  private readonly DRAG_THRESHOLD = 5;
+  private readonly DRAG_SPEED = 1.3;
 
-  // Mouse drag
+  toggleMenu() {
+    if (this.hasMoved) return;
+    this.open.set(!this.open());
+  }
+
+  select(item: NavItem) {
+    if (this.hasMoved) return;
+    this.open.set(false);
+
+    if (item.action === 'login') {
+      this.authPrompt.openLogin();
+      return;
+    }
+
+    if (item.path) {
+      this.router.navigate([item.path]);
+    }
+  }
+
   onMouseDown(event: MouseEvent) {
     this.startDrag(event.clientX, event.clientY);
   }
@@ -38,7 +88,6 @@ export class NavMobile {
     this.isDragging = false;
   }
 
-  // Touch drag
   onTouchStart(event: TouchEvent) {
     this.startDrag(event.touches[0].clientX, event.touches[0].clientY);
   }
@@ -68,30 +117,18 @@ export class NavMobile {
     const deltaX = x - this.dragStartX;
     const deltaY = y - this.dragStartY;
 
-    // Detecta movimento oltre il threshold
     if (Math.abs(deltaX) > this.DRAG_THRESHOLD || Math.abs(deltaY) > this.DRAG_THRESHOLD) {
       this.hasMoved = true;
     }
 
-    // Applica velocità moltiplicata
-    const scaledDeltaX = deltaX * this.DRAG_SPEED;
-    const scaledDeltaY = deltaY * this.DRAG_SPEED;
-
-    this.dragX.set(this.dragStartOffsetX + scaledDeltaX);
-    this.dragY.set(this.dragStartOffsetY + scaledDeltaY);
-  }
-
-  toggleMenuSafe() {
-    // Ignora toggle se il touch si è mosso durante il drag
-    if (this.hasMoved) {
-      return;
-    }
-    // TODO: implementare toggle menù (per ora non esiste)
+    this.dragX.set(this.dragStartOffsetX + deltaX * this.DRAG_SPEED);
+    this.dragY.set(this.dragStartOffsetY + deltaY * this.DRAG_SPEED);
   }
 
   getNavStyle() {
     return {
       transform: `translate(${this.dragX()}px, ${this.dragY()}px)`,
+      '--count-buttons': this.items().length,
     };
   }
 }

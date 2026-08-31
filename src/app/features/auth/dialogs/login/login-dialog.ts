@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class LoginDialogComponent {
   @Output() closeDialog = new EventEmitter<void>();
+  @Output() switchToSignup = new EventEmitter<void>();
 
   form: FormGroup;
   recoveryForm: FormGroup;
@@ -104,6 +105,10 @@ export class LoginDialogComponent {
         this.cdr.markForCheck();
       },
     });
+  }
+
+  goToSignup(): void {
+    this.switchToSignup.emit();
   }
 
   close(): void {

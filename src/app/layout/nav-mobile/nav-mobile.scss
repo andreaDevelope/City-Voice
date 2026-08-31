@@ -3,9 +3,8 @@
 /**********/
 
 .social-clock {
-  --count-buttons: 7;
-  --size-button: 4rem;
-  --size-clock: 16rem;
+  --size-button: 3.5rem;
+  --size-clock: 14rem;
   --size-padding: 0.5rem;
 }
 
@@ -22,9 +21,9 @@
   pointer-events: none;
   position: relative;
   width: var(--size);
-  transition: all 0.5s linear;
-  scale: 0.7;
+  touch-action: none;
 }
+
 .social-clock,
 .social-clock__trigger {
   align-items: center;
@@ -36,57 +35,67 @@
 /* Trigger */
 /***********/
 
-/* Trigger */
 .social-clock__trigger {
   --size: var(--size-button);
 
-  background: #000;
+  background: var(--rosso-denuncia);
   border: none;
   border-radius: var(--size);
   height: var(--size);
   pointer-events: all;
   width: var(--size);
   z-index: 3;
+  cursor: pointer;
+  /* RGB di --rosso-denuncia (#bc1a17) scritto a mano: box-shadow non può usare una var hex dentro rgba() */
+  box-shadow: 0 0 20px rgba(188, 26, 23, 0.35);
+  transition: transform 0.3s ease-in-out;
 }
-/* Trigger - Icon */
-.social-clock__trigger svg {
-  --size: calc(0.65 * var(--size-button));
 
-  fill: #fff;
+.social-clock.is-open .social-clock__trigger {
+  transform: rotate(90deg);
+}
+
+.social-clock__trigger svg {
+  --size: calc(0.55 * var(--size-button));
+
+  color: #fff;
   height: var(--size);
   width: var(--size);
-  padding-right: calc(0.05 * var(--size-button));
 }
 
 /***********/
 /* Buttons */
 /***********/
 
-/* Wrapper */
 .social-clock__list {
   --size: calc(var(--size-button) + var(--size-padding));
 
   border-radius: inherit;
   height: var(--size);
   left: calc(50% - var(--size) / 2);
-  pointer-events: all;
+  pointer-events: none;
   position: absolute;
   top: calc(50% - var(--size) / 2);
   width: var(--size);
   transition:
-    all 0.3s ease-in-out,
-    transform 0.3s linear;
+    height 0.35s ease-in-out,
+    width 0.35s ease-in-out,
+    left 0.35s ease-in-out,
+    top 0.35s ease-in-out,
+    transform 0.35s ease-in-out;
 }
-/* Wrapper - Interactions */
-.social-clock:hover .social-clock__list {
+
+.social-clock.is-open .social-clock__list {
   --size: 100%;
 
+  left: 0;
+  top: 0;
+  pointer-events: all;
   transform: rotate(360deg);
 }
 
-/* Button */
 .social-clock__button {
-  --angle: calc(var(--index, 0) * 360deg / var(--count-buttons));
+  --angle: calc(var(--index, 0) * 360deg / var(--count-buttons, 4));
   --height: calc(100% - var(--size-padding) * 2);
   --size: var(--size-button);
 
@@ -97,65 +106,51 @@
   cursor: pointer;
   height: var(--height);
   left: calc(50% - var(--size) / 2);
+  opacity: 0;
   pointer-events: none;
   position: absolute;
   top: calc(50% - var(--height) / 2);
   transform: rotate(var(--angle));
   width: var(--size);
+  transition: opacity 0.25s ease-in-out;
 }
-/* Button - Background */
-.social-clock__button::after,
+
+.social-clock.is-open .social-clock__button {
+  opacity: 1;
+}
+
+/* Background del bottone */
 .social-clock__button::before {
   --size: var(--size-button);
 
+  background: var(--sfondo-secondario);
+  border: 1px solid var(--border-subtle);
   border-radius: inherit;
   box-sizing: border-box;
   content: '';
-  left: calc(50% - var(--size) / 2);
-  position: absolute;
-  width: var(--size);
-}
-/* Button - Background - Icon */
-.social-clock__button::before {
-  --fill-opacity: 0.5;
-
-  background: rgba(var(--color), var(--fill-opacity));
   height: var(--size);
+  left: calc(50% - var(--size) / 2);
   pointer-events: all;
+  position: absolute;
   top: 0;
-  transition: background 0.3s linear;
-}
-/* Button - Background - Interactions */
-.social-clock:hover .social-clock__button::before {
-  background: rgba(0, 0, 0, var(--fill-opacity));
-}
-.social-clock__button::after {
-  --fill-opacity: 0.7;
-  --fill-size: 0;
-  --height: calc(50% + var(--size) / 2);
-
-  bottom: calc(100% - var(--height));
-  box-shadow: inset 0 var(--fill-size) 0 rgba(var(--color), var(--fill-opacity));
-  height: var(--height);
-  pointer-events: none;
-  transition: box-shadow 0.3s ease-in-out;
-}
-/* Button - Interactions */
-.social-clock__button:hover::after {
-  --fill-size: calc(-0.5 * (var(--size-clock) + var(--size)));
-
-  pointer-events: all;
-}
-.social-clock__button:active::after {
-  --fill-opacity: 1;
+  width: var(--size);
+  transition:
+    background 0.2s linear,
+    border-color 0.2s linear;
 }
 
-/* Button - Icon */
+.social-clock.is-open .social-clock__button:hover::before,
+.social-clock.is-open .social-clock__button:active::before {
+  background: var(--rosso-denuncia);
+  border-color: var(--rosso-denuncia);
+}
+
+/* Icona */
 .social-clock__button svg {
   --padding: calc((var(--size-button) - var(--size)) / 2);
-  --size: calc(0.65 * var(--size-button));
+  --size: calc(0.5 * var(--size-button));
 
-  fill: #fff;
+  color: var(--testo-principale);
   height: var(--size);
   left: var(--padding);
   position: absolute;
@@ -163,46 +158,10 @@
   transform: rotate(calc(-1 * var(--angle)));
   width: var(--size);
   z-index: 2;
-}
-/* Button - Socials */
-.social-clock__button.discord {
-  --color: 88, 101, 242;
-}
-.social-clock__button.facebook {
-  --color: 24, 119, 242;
-}
-.social-clock__button.github {
-  --color: 0, 0, 0;
-}
-.social-clock__button.instagram {
-  --color: 225, 48, 108;
-}
-.social-clock__button.line {
-  --color: 0, 195, 0;
-}
-.social-clock__button.linkedin {
-  --color: 10, 102, 194;
-}
-.social-clock__button.reddit {
-  --color: 255, 87, 0;
-}
-.social-clock__button.tiktok {
-  --color: 0, 0, 0;
-}
-.social-clock__button.twitch {
-  --color: 145, 70, 255;
-}
-.social-clock__button.twitter {
-  --color: 29, 161, 242;
-}
-.social-clock__button.whatsapp {
-  --color: 37, 211, 102;
-}
-.social-clock__button.youtube {
-  --color: 205, 32, 31;
+  pointer-events: none;
 }
 
-/* Button - Order */
+/* Ordine dei bottoni */
 .social-clock__button:nth-child(1) {
   --index: 0;
 }
@@ -220,16 +179,4 @@
 }
 .social-clock__button:nth-child(6) {
   --index: 5;
-}
-.social-clock__button:nth-child(7) {
-  --index: 6;
-}
-.social-clock__button:nth-child(8) {
-  --index: 7;
-}
-.social-clock__button:nth-child(9) {
-  --index: 8;
-}
-.social-clock__button:nth-child(10) {
-  --index: 9;
 }
