@@ -43,8 +43,23 @@ export class SignupDialogComponent {
         this.loading = false;
         this.registered.emit(response.recoveryKey);
       },
-      error: (err: { error: { message: string } }) => {
-        this.errorMessage = err.error?.message || 'Errore nella registrazione';
+      error: (err: { error: Record<string, string> }) => {
+        let errorMessage: string;
+
+        if (err.error?.['message']) {
+          // Caso normale: BE ha risposto {"message": "..."} (conflitto, credenziali, ecc.)
+          errorMessage = err.error['message'];
+        } else if (err.error && Object.keys(err.error).length > 0) {
+          // Caso validazione: BE ha risposto {"username": "..."} o {"password": "..."}
+          // Non ho un campo "message", ma ho un oggetto con almeno un errore dentro.
+          // Prendo il primo valore, qualunque sia il nome del campo.
+          const primoErrore = Object.values(err.error)[0];
+          errorMessage = primoErrore;
+        } else {
+          errorMessage = 'Errore nella registrazione';
+        }
+
+        this.errorMessage = errorMessage;
         this.loading = false;
         this.cdr.markForCheck();
       },
