@@ -17,3 +17,19 @@ A new feature is not done when it works on one breakpoint. Expect to write two v
 ## Open question: NavMobile
 
 The radial menu is a prototype. It works today and is wired to the real routes and auth state, but the pattern itself has not been validated as the right long-term navigation for the app-like mobile experience. Revisit before treating its structure as fixed.
+
+## Nav drag bounds
+
+The mobile nav can be dragged. Bounds are computed once per drag in
+`computeOffsetBounds()`, as offsets in the same coordinate system as
+`dragX`/`dragY`, then clamped with two `Math.min`/`Math.max` calls. Keeping
+bounds and position in one coordinate system avoids converting between viewport
+coordinates and the applied transform on every move.
+
+`MIN_VISIBLE_RATIO` is measured against `.social-clock`, the 14rem radial
+container, not the 3.5rem trigger that is actually visible at rest. Most of that
+container is transparent, so the ratio does not map to visible pixels: 0.55 was
+picked empirically to keep the trigger reachable. Measuring the trigger instead
+would require decoupling the measured element from the transformed one. That
+work is deferred: the drag interaction itself is not confirmed, and reworking
+the geometry for a feature that may be removed is not worth the cost.
