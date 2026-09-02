@@ -62,87 +62,41 @@ input {
   padding: 0.4rem;
   background-color: #e8f0fe;
 }
-.button {
-  margin-top: 1em;
-  position: relative;
-  border: none;
-  background: transparent;
-  padding: 0;
-  outline: none;
-  cursor: pointer;
-  font-family: sans-serif;
-  scale: 0.6;
-}
-
-/* Shadow layer */
-.button .shadow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.25);
-  border-radius: 8px;
-  transform: translateY(2px);
-  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
-}
-
-/* Edge layer */
-.button .edge {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 8px;
-  background: linear-gradient(
-    to left,
-    hsl(217, 33%, 16%) 0%,
-    hsl(217, 33%, 32%) 8%,
-    hsl(217, 33%, 32%) 92%,
-    hsl(217, 33%, 16%) 100%
-  );
-}
-
-/* Front layer */
-.button .front {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 28px;
-  font-size: 1.25rem;
-  background: hsl(217, 33%, 17%);
-  border-radius: 8px;
-  transform: translateY(-4px);
-  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
-}
-
-/* Hover and active states */
-.button:hover .shadow {
-  transform: translateY(4px);
-  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
-}
-
-.button:hover .front {
-  transform: translateY(-6px);
-  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
-}
-
-.button:active .shadow {
-  transform: translateY(1px);
-  transition: transform 34ms;
-}
-
-.button:active .front {
-  transform: translateY(-2px);
-  transition: transform 34ms;
-}
-
-/* Disable text selection */
-.button .front span {
-  user-select: none;
+/* From Uiverse.io by absoluteSTrange */
+.submit-button {
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+  width: 80%;
+  margin-inline: auto;
+  padding-inline: 0.5em;
+  border-radius: 10px;
+  border: 0;
+  background-image: linear-gradient(180deg, #ff5c5c 0%, var(--rosso-azione) 55%, #e02a2a 100%);
+  letter-spacing: 1.5px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  box-shadow: var(--rosso-denuncia) 0px 10px 0px 0px;
   color: var(--testo-principale);
+  cursor: pointer;
+}
+
+.submit-button:hover:not(:disabled) {
+  background-image: linear-gradient(180deg, #ff7070 0%, #ff4040 55%, var(--rosso-azione) 100%);
+  box-shadow: var(--rosso-denuncia) 0px 7px 0px 0px;
+}
+
+.submit-button:active:not(:disabled) {
+  background-image: none;
+  background-color: var(--rosso-azione);
+  box-shadow: var(--rosso-denuncia) 0px 0px 0px 0px;
+  transform: translateY(5px);
+  scale: 1;
+  transition: 200ms;
+}
+
+.submit-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
 }
 
 .fieldError {
@@ -150,9 +104,4 @@ input {
   font-size: 0.8rem;
   margin-top: 0.25rem;
   margin-bottom: 0;
-}
-
-.button:disabled {
-  cursor: not-allowed;
-  opacity: 0.4;
 }

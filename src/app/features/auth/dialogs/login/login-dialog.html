@@ -31,13 +31,7 @@
           id="password"
           name="password"
         />
-        <button class="button" type="button" (click)="login()">
-          <span class="shadow"></span>
-          <span class="edge"></span>
-          <div class="front">
-            <span>ACCEDI</span>
-          </div>
-        </button>
+        <button class="submit-button" type="button" (click)="login()">ACCEDI</button>
 
         @if (errorMessage) {
           <p class="errorMessage">{{ errorMessage }}</p>
@@ -77,13 +71,7 @@
           <p class="successMessage">{{ successMessage }}</p>
         }
 
-        <button class="button" type="button" (click)="recover()">
-          <span class="shadow"></span>
-          <span class="edge"></span>
-          <div class="front">
-            <span>RECUPERA</span>
-          </div>
-        </button>
+        <button class="submit-button" type="button" (click)="recover()">RECUPERA</button>
 
         <button type="button" class="forgot-password-link" (click)="toggleRecoveryMode()">
           Torna al login

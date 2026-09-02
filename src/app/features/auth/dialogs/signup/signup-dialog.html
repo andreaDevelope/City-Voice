@@ -53,12 +53,13 @@
         <p class="errorMessage">{{ errorMessage }}</p>
       }
 
-      <button class="button" type="button" [disabled]="form.invalid || loading" (click)="signup()">
-        <span class="shadow"></span>
-        <span class="edge"></span>
-        <div class="front">
-          <span>ISCRIVITI</span>
-        </div>
+      <button
+        class="submit-button"
+        type="button"
+        [disabled]="form.invalid || loading"
+        (click)="signup()"
+      >
+        ISCRIVITI
       </button>
     </form>
   </div>
