@@ -1,1 +1,181 @@
-<h1>Profilo</h1>
+<div class="profile-container">
+  <header>
+    <h1>Profilo</h1>
+    <p>Rappresenta il tuo contributo alla città</p>
+  </header>
+  <div class="divider"></div>
+
+  <main>
+    <h2>Anteprima</h2>
+    <div class="hero box">
+      <div class="avatar-container">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="34"
+          height="34"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-building2-icon lucide-building-2"
+        >
+          <path d="M10 12h4" />
+          <path d="M10 8h4" />
+          <path d="M14 21v-3a2 2 0 0 0-4 0v3" />
+          <path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2" />
+          <path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16" />
+        </svg>
+      </div>
+      <h3 class="user-name">Aldo Rossi</h3>
+      <p class="quartiere">Quartiere, Roma</p>
+      <div class="featured-badges">
+        <div class="badje"></div>
+        <div class="badje"></div>
+        <div class="badje"></div>
+      </div>
+    </div>
+    <div class="avatars-container">
+      <h2>Scegli il tuo Avatar</h2>
+      <div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+      <div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+    </div>
+    <div class="colors-container">
+      <div class="color-container">
+        <div class="color"></div>
+        <p>Neutro</p>
+      </div>
+      <div class="color-container">
+        <div class="color"></div>
+        <p>Denuncia</p>
+      </div>
+      <div class="color-container">
+        <div class="color"></div>
+        <p>Attenzione</p>
+      </div>
+      <div class="color-container">
+        <div class="color"></div>
+        <p>Impatto</p>
+      </div>
+      <div class="color-container">
+        <div class="color"></div>
+        <p>Discrezione</p>
+      </div>
+    </div>
+    <div class="missioni-container">
+      <h2>Missioni</h2>
+      <div class="categories-container">
+        <div class="category-container">
+          <div class="attivita-dot"></div>
+          <p>attività</p>
+        </div>
+        <div class="category-container">
+          <div class="quartiere-dot"></div>
+          <p>quartiere</p>
+        </div>
+        <div class="category-container">
+          <div class="continuita-dot"></div>
+          <p>continuità</p>
+        </div>
+        <div class="category-container">
+          <div class="impatto-dot"></div>
+          <p>impatto</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="missioni-badjes-header__container">
+      <div class="title-support"></div>
+      <h2>Attivita</h2>
+    </div>
+    <div class="missioni-attivita__badjes">
+      @for (mission of attivitaMissions; track $index) {
+        <div class="badje"></div>
+        <div class="badje-details-container">
+          <div class="badje-name">{{ mission.badje.badjeName }}</div>
+          <div class="badje-description">{{ mission.badje.badjeDescription }}</div>
+        </div>
+        <div class="state-container">
+          <div class="status"></div>
+          <div class="progress">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+      }
+    </div>
+    <div class="missioni-badjes-header__container">
+      <div class="title-support"></div>
+      <h2>Quartiere</h2>
+    </div>
+    <div class="missioni-quartiere__badjes">
+      @for (mission of attivitaMissions; track $index) {
+        <div class="badje"></div>
+        <div class="badje-details-container">
+          <div class="badje-name">{{ mission.badje.badjeName }}</div>
+          <div class="badje-description">{{ mission.badje.badjeDescription }}</div>
+        </div>
+        <div class="state-container">
+          <div class="status"></div>
+          <div class="progress">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+      }
+    </div>
+    <div class="missioni-badjes-header__container">
+      <div class="title-support"></div>
+      <h2>Continuità</h2>
+    </div>
+    <div class="missioni-continuita__badjes">
+      @for (mission of attivitaMissions; track $index) {
+        <div class="badje"></div>
+        <div class="badje-details-container">
+          <div class="badje-name">{{ mission.badje.badjeName }}</div>
+          <div class="badje-description">{{ mission.badje.badjeDescription }}</div>
+        </div>
+        <div class="state-container">
+          <div class="status"></div>
+          <div class="progress">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+      }
+    </div>
+    <div class="missioni-badjes-header__container">
+      <div class="title-support"></div>
+      <h2>Impatto</h2>
+    </div>
+    <div class="missioni-impatto__badjes">
+      @for (mission of attivitaMissions; track $index) {
+        <div class="badje"></div>
+        <div class="badje-details-container">
+          <div class="badje-name">{{ mission.badje.badjeName }}</div>
+          <div class="badje-description">{{ mission.badje.badjeDescription }}</div>
+        </div>
+        <div class="state-container">
+          <div class="status"></div>
+          <div class="progress">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+      }
+    </div>
+  </main>
+</div>
