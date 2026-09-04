@@ -187,6 +187,19 @@ h6 {
   /* Border e highlight */
   --border-subtle: rgba(255, 255, 255, 0.08);
   --panel-highlight-top: rgba(255, 255, 255, 0.03);
+
+  // Categories colors
+  --colore-attivita: #5b9bf5;
+  --colore-quartiere: #f5a45b;
+  --colore-continuita: #e06850;
+  --colore-impatto: #5bf5a4;
+
+  // Avatar Colors
+  --profile-color-neutral: #e8e8e8;
+  --profile-color-complaint: var(--rosso-denuncia);
+  --profile-color-warning: #e0a83c;
+  --profile-color-impact: #4caf6d;
+  --profile-color-discretion: #7a7f8c;
 }
 
 body {

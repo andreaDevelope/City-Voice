@@ -1,4 +1,4 @@
-import { MissionCategory } from './mission-category.model';
+import { MissionCategory } from '../enums/mission-category';
 import { MissionBadge } from './mission-badge.model';
 
 export interface CategoryProgress {

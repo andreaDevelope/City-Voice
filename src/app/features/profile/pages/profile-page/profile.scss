@@ -35,6 +35,21 @@ main {
     border-radius: 50%;
     overflow: hidden;
     background-color: var(--border-subtle);
+    &.avatar-neutral {
+      background-color: var(--profile-color-neutral);
+    }
+    &.avatar-complaint {
+      background-color: var(--profile-color-complaint);
+    }
+    &.avatar-warning {
+      background-color: var(--profile-color-warning);
+    }
+    &.avatar-impact {
+      background-color: var(--profile-color-impact);
+    }
+    &.avatar-discretion {
+      background-color: var(--profile-color-discretion);
+    }
     svg {
       color: var(--testo-principale);
     }
@@ -86,6 +101,17 @@ main {
       margin-top: 3em;
       margin-bottom: 0.8em;
     }
+
+    button.box {
+      border: 3px solid var(--border-subtle);
+      background: none;
+      padding: 0;
+      cursor: pointer;
+
+      &.selected {
+        border-color: var(--rosso-azione);
+      }
+    }
   }
 
   .colors-container {
@@ -102,12 +128,36 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
   }
   .color {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background-color: var(--rosso-denuncia);
+    border: 2px solid transparent;
+
+    &.color-neutral {
+      background-color: var(--profile-color-neutral);
+    }
+    &.color-complaint {
+      background-color: var(--profile-color-complaint);
+    }
+    &.color-warning {
+      background-color: var(--profile-color-warning);
+    }
+    &.color-impact {
+      background-color: var(--profile-color-impact);
+    }
+    &.color-discretion {
+      background-color: var(--profile-color-discretion);
+    }
+
+    &.selected {
+      border-color: var(--testo-principale);
+    }
   }
 
   .missioni-container {
@@ -135,21 +185,21 @@ main {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #5b9bf5;
+    background-color: var(--colore-attivita);
     margin-right: 0.2em;
   }
   .quartiere-dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #f5a45b;
+    background-color: var(--colore-quartiere);
     margin-right: 0.2em;
   }
   .continuita-dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #e06850;
+    background-color: var(--colore-continuita);
     margin-right: 0.2em;
   }
 
@@ -157,7 +207,7 @@ main {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #5bf5a4;
+    background-color: var(--colore-impatto);
     margin-right: 0.2em;
   }
 
@@ -175,7 +225,19 @@ main {
     width: 4px;
     height: 16px;
     border-radius: 4px;
-    background-color: var(--rosso-denuncia);
+  }
+
+  .title-support.attivita {
+    background-color: var(--colore-attivita);
+  }
+  .title-support.quartiere {
+    background-color: var(--colore-quartiere);
+  }
+  .title-support.continuita {
+    background-color: var(--colore-continuita);
+  }
+  .title-support.impatto {
+    background-color: var(--colore-impatto);
   }
 
   .missioni-attivita__badjes,
