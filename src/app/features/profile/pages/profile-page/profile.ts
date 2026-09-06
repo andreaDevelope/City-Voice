@@ -47,7 +47,9 @@ export class Profile implements OnInit {
   colorLabels = PROFILE_COLOR_LABELS;
 
   selectSymbol(symbol: ProfileSymbol) {
-    this.profileService.updateVisualIdentity({ symbol, color: this.profile()!.color }).subscribe({
+    const current = this.profile();
+    if (!current) return;
+    this.profileService.updateVisualIdentity({ symbol, color: current.color }).subscribe({
       next: (response) => {
         this.profile.update((p) => (p ? { ...p, symbol: response.symbol } : p));
       },
@@ -55,7 +57,9 @@ export class Profile implements OnInit {
   }
 
   selectColor(color: ProfileColor) {
-    this.profileService.updateVisualIdentity({ symbol: this.profile()!.symbol, color }).subscribe({
+    const current = this.profile();
+    if (!current) return;
+    this.profileService.updateVisualIdentity({ symbol: current.symbol, color }).subscribe({
       next: (response) => {
         this.profile.update((p) => (p ? { ...p, color: response.color } : p));
       },

@@ -72,6 +72,9 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "allowedHosts": true
+          },
           "configurations": {
             "production": {
               "buildTarget": "city-voice:build:production"
