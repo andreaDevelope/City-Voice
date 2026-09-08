@@ -1,6 +1,7 @@
 export interface MissionBadge {
-  badgeImage: string;
-  badgeName: string;
-  badgeDescription: string;
-  badgeMissions: number; // soglia del contatore per sbloccare questo badge
+  id: number;
+  name: string;
+  description: string;
+  missionThreshold: number;
+  sequenceOrder: number; // soglia del contatore per sbloccare questo badge
 }
