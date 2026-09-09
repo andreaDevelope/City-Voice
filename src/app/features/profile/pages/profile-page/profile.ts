@@ -5,6 +5,7 @@ import { ProfileSymbol } from '../../enums/profile-symbol';
 import { ProfileColor } from '../../enums/profile-color';
 import { PROFILE_SYMBOL_LABELS } from '../../enums/profile-symbol-labels';
 import { PROFILE_COLOR_LABELS } from '../../enums/profile-color-labels';
+import { CategoryProgress } from '../../models/category-progress.model';
 
 @Component({
   standalone: true,
@@ -17,29 +18,26 @@ export class Profile implements OnInit {
   private profileService = inject(ProfileService);
 
   profile = signal<UserProfileDto | null>(null);
+  progress = signal<CategoryProgress[]>([]);
 
-  attivitaMissions: {
-    badje: { badjeImg: string; badjeName: string; badjeDescription: string };
-    missione: { active: boolean; progress: number };
-  }[] = [
-    {
-      badje: {
-        badjeImg: '',
-        badjeName: 'badje1',
-        badjeDescription: 'hai inviato le tue prime 3 segnalazioni',
-      },
-      missione: {
-        active: true,
-        progress: 2,
-      },
-    },
+  missionCategories = [
+    { key: 'activity', cssClass: 'attivita', label: 'Attivita' },
+    { key: 'neighborhood', cssClass: 'quartiere', label: 'Quartiere' },
+    { key: 'continuity', cssClass: 'continuita', label: 'Continuità' },
+    { key: 'impact', cssClass: 'impatto', label: 'Impatto' },
   ];
 
   ngOnInit(): void {
-    this.profileService.getMyBadgeProgress().subscribe();
+    this.profileService.getMyBadgeProgress().subscribe({
+      next: (data) => this.progress.set(data),
+    });
     this.profileService.getMyProfile().subscribe({
       next: (data) => this.profile.set(data),
     });
+  }
+
+  getProgressFor(category: string): CategoryProgress | undefined {
+    return this.progress().find((p) => p.category === category);
   }
 
   symbols = Object.values(ProfileSymbol);

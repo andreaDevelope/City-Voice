@@ -134,29 +134,70 @@ main {
     cursor: pointer;
   }
   .color {
-    width: 48px;
-    height: 48px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     border: 2px solid transparent;
 
     &.color-neutral {
       background-color: var(--profile-color-neutral);
+      &.selected {
+        box-shadow:
+          3px 3px 6px rgba(0, 0, 0, 0.5),
+          -1px -1px 4px rgba(255, 255, 255, 0.1),
+          inset 3px 3px 6px rgba(0, 0, 0, 0.5),
+          inset -1px -1px 4px rgba(255, 255, 255, 0.2),
+          0 0 12px 2px var(--profile-color-neutral);
+        transform: scale(1.1);
+      }
     }
     &.color-complaint {
       background-color: var(--profile-color-complaint);
+      &.selected {
+        box-shadow:
+          3px 3px 6px rgba(0, 0, 0, 0.5),
+          -1px -1px 4px rgba(255, 255, 255, 0.1),
+          inset 3px 3px 6px rgba(0, 0, 0, 0.5),
+          inset -1px -1px 4px rgba(255, 255, 255, 0.2),
+          0 0 12px 2px var(--profile-color-complaint);
+        transform: scale(1.1);
+      }
     }
     &.color-warning {
       background-color: var(--profile-color-warning);
+      &.selected {
+        box-shadow:
+          3px 3px 6px rgba(0, 0, 0, 0.5),
+          -1px -1px 4px rgba(255, 255, 255, 0.1),
+          inset 3px 3px 6px rgba(0, 0, 0, 0.5),
+          inset -1px -1px 4px rgba(255, 255, 255, 0.2),
+          0 0 12px 2px var(--profile-color-warning);
+        transform: scale(1.1);
+      }
     }
     &.color-impact {
       background-color: var(--profile-color-impact);
+      &.selected {
+        box-shadow:
+          3px 3px 6px rgba(0, 0, 0, 0.5),
+          -1px -1px 4px rgba(255, 255, 255, 0.1),
+          inset 3px 3px 6px rgba(0, 0, 0, 0.5),
+          inset -1px -1px 4px rgba(255, 255, 255, 0.2),
+          0 0 12px 2px var(--profile-color-impact);
+        transform: scale(1.1);
+      }
     }
     &.color-discretion {
       background-color: var(--profile-color-discretion);
-    }
-
-    &.selected {
-      border-color: var(--testo-principale);
+      &.selected {
+        box-shadow:
+          3px 3px 6px rgba(0, 0, 0, 0.5),
+          -1px -1px 4px rgba(255, 255, 255, 0.1),
+          inset 3px 3px 6px rgba(0, 0, 0, 0.5),
+          inset -1px -1px 4px rgba(255, 255, 255, 0.2),
+          0 0 12px 2px var(--profile-color-discretion);
+        transform: scale(1.1);
+      }
     }
   }
 
@@ -240,6 +281,18 @@ main {
     background-color: var(--colore-impatto);
   }
 
+  .missioni-container2 {
+    background-color: var(--sfondo-secondario);
+    border-radius: 12px;
+  }
+
+  .divider2 {
+    height: 3px;
+    width: 85%;
+    background-color: var(--border-subtle);
+    margin-inline: auto;
+  }
+
   .missioni-attivita__badjes,
   .missioni-quartiere__badjes,
   .missioni-continuita__badjes,
@@ -250,8 +303,6 @@ main {
     justify-content: space-between;
     padding-inline: 0.8em;
     padding-block: 0.5em;
-    background-color: var(--sfondo-secondario);
-    border-radius: 12px;
     width: 100%;
     .badje {
       background-color: var(--rosso-denuncia);
@@ -261,6 +312,7 @@ main {
   .badje-details-container {
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
 
   .badje-name {
@@ -282,10 +334,10 @@ main {
     gap: 0.5em;
   }
   .status {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
-    background-color: lightgreen;
+    background-color: var(--colore-impatto);
     border: 1px solid var(--border-subtle);
   }
   .progress {
@@ -293,10 +345,37 @@ main {
     align-items: center;
   }
   .dot {
-    width: 5px;
-    height: 5px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
-    background-color: var(--testo-principale);
-    margin: 0 2px;
+    transition: 0.3s;
+    border: 3px solid transparent;
+    box-shadow:
+      3px 3px 6px rgba(0, 0, 0, 0.5),
+      -1px -1px 4px rgba(255, 255, 255, 0.1);
+    scale: 0.4;
+
+    &.filled {
+      box-shadow:
+        3px 3px 6px rgba(0, 0, 0, 0.5),
+        -1px -1px 4px rgba(255, 255, 255, 0.1),
+        inset 3px 3px 6px rgba(0, 0, 0, 0.5),
+        inset -1px -1px 4px rgba(255, 255, 255, 0.2),
+        0 0 12px 2px var(--colore-impatto);
+      transform: scale(1.1);
+      background-color: var(--colore-impatto);
+    }
+  }
+
+  .missioni-badjes.locked {
+    opacity: 0.8;
+  }
+
+  .locked-status {
+    background-color: var(--border-subtle);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

@@ -176,90 +176,79 @@
         </div>
       </div>
     </div>
+    @for (cat of missionCategories; track cat.key) {
+      <div class="missioni-badjes-header__container">
+        <div class="title-support" [class]="cat.cssClass"></div>
+        <h2>{{ cat.label }}</h2>
+      </div>
+      <div class="missioni-container2">
+        @if (getProgressFor(cat.key); as p) {
+          <div class="missioni-badjes" [class]="'missioni-' + cat.cssClass + '__badjes'">
+            <div class="badje"></div>
+            <div class="badje-details-container">
+              <div class="badje-name">{{ p.currentBadge.name }}</div>
+              <div class="badje-description">{{ p.currentBadge.description }}</div>
+            </div>
+            <div class="state-container">
+              <div class="status">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-check"
+                >
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+              </div>
+              <div class="progress">
+                @for (i of [0, 1, 2]; track i) {
+                  <div class="dot" [class.filled]="i < 2"></div>
+                }
+              </div>
+            </div>
+          </div>
 
-    <div class="missioni-badjes-header__container">
-      <div class="title-support attivita"></div>
-      <h2>Attivita</h2>
-    </div>
-    <div class="missioni-attivita__badjes">
-      @for (mission of attivitaMissions; track $index) {
-        <div class="badje"></div>
-        <div class="badje-details-container">
-          <div class="badje-name">{{ mission.badje.badjeName }}</div>
-          <div class="badje-description">{{ mission.badje.badjeDescription }}</div>
-        </div>
-        <div class="state-container">
-          <div class="status"></div>
-          <div class="progress">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-          </div>
-        </div>
-      }
-    </div>
-    <div class="missioni-badjes-header__container">
-      <div class="title-support quartiere"></div>
-      <h2>Quartiere</h2>
-    </div>
-    <div class="missioni-quartiere__badjes">
-      @for (mission of attivitaMissions; track $index) {
-        <div class="badje"></div>
-        <div class="badje-details-container">
-          <div class="badje-name">{{ mission.badje.badjeName }}</div>
-          <div class="badje-description">{{ mission.badje.badjeDescription }}</div>
-        </div>
-        <div class="state-container">
-          <div class="status"></div>
-          <div class="progress">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-          </div>
-        </div>
-      }
-    </div>
-    <div class="missioni-badjes-header__container">
-      <div class="title-support continuita"></div>
-      <h2>Continuità</h2>
-    </div>
-    <div class="missioni-continuita__badjes">
-      @for (mission of attivitaMissions; track $index) {
-        <div class="badje"></div>
-        <div class="badje-details-container">
-          <div class="badje-name">{{ mission.badje.badjeName }}</div>
-          <div class="badje-description">{{ mission.badje.badjeDescription }}</div>
-        </div>
-        <div class="state-container">
-          <div class="status"></div>
-          <div class="progress">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-          </div>
-        </div>
-      }
-    </div>
-    <div class="missioni-badjes-header__container">
-      <div class="title-support impatto"></div>
-      <h2>Impatto</h2>
-    </div>
-    <div class="missioni-impatto__badjes">
-      @for (mission of attivitaMissions; track $index) {
-        <div class="badje"></div>
-        <div class="badje-details-container">
-          <div class="badje-name">{{ mission.badje.badjeName }}</div>
-          <div class="badje-description">{{ mission.badje.badjeDescription }}</div>
-        </div>
-        <div class="state-container">
-          <div class="status"></div>
-          <div class="progress">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-          </div>
-        </div>
-      }
-    </div>
+          <div class="divider2"></div>
+          @if (p.nextBadge) {
+            <div class="missioni-badjes locked" [class]="'missioni-' + cat.cssClass + '__badjes'">
+              <div class="badje"></div>
+              <div class="badje-details-container">
+                <div class="badje-name">{{ p.nextBadge.name }}</div>
+                <div class="badje-description">{{ p.nextBadge.description }}</div>
+              </div>
+              <div class="state-container">
+                <div class="status locked-status">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                </div>
+                <div class="progress">
+                  <div class="dot"></div>
+                  <div class="dot"></div>
+                  <div class="dot"></div>
+                </div>
+              </div>
+            </div>
+          }
+        }
+      </div>
+    }
   </main>
 </div>
