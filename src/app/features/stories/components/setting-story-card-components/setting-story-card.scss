@@ -48,9 +48,9 @@ h2 {
   justify-content: space-around;
   align-items: center;
 
-  .story-card__location,
-  .story-card__date,
-  .story-card__category {
+  .story-card-location,
+  .story-card-date,
+  .story-card-category {
     display: flex;
     align-items: center;
     gap: 0.5em;
@@ -74,9 +74,9 @@ h2 {
 
   h2,
   .state-container-width,
-  .story-card__location,
-  .story-card__date,
-  .story-card__category {
+  .story-card-location,
+  .story-card-date,
+  .story-card-category {
     font-size: 1em;
   }
 

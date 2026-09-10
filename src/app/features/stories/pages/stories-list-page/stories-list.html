@@ -2,7 +2,7 @@
   <div>
     <!-- ---------INIZIO SIDEBAR DESKTOP------------ -->
     <section class="menu-sidebar">
-      <div class="stories__desktop-sidebar">
+      <div class="stories-desktop-sidebar">
         <span class="dot"></span>
         <p>ARCHIVIO DI ROMA</p>
       </div>
@@ -11,7 +11,7 @@
         Catalogo civico di disservizi, ritardi e ingiustizie vissute dai Romani
       </p>
       <div class="sidebar-hero">
-        <div class="sidebar-hero__header">
+        <div class="sidebar-hero-header">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="18"
@@ -32,16 +32,16 @@
           </svg>
           <h4>CATEGORIE</h4>
         </div>
-        <div class="sidebar-hero__main">
+        <div class="sidebar-hero-main">
           <ul class="categories">
-            <li [ngClass]="{ 'is-active': isSelectedAllCategory }" class="categories__item">
+            <li [ngClass]="{ 'is-active': isSelectedAllCategory }" class="categories-item">
               <button (click)="getCategorySelected('tutte')" (click)="filterCategory('tutte')">
                 tutte
               </button>
               <span class="stories-count">{{ stories.length }}</span>
             </li>
             @for (c of categories; track $index) {
-              <li [ngClass]="{ 'is-active': categorySelected === c }" class="categories__item">
+              <li [ngClass]="{ 'is-active': categorySelected === c }" class="categories-item">
                 <button (click)="getCategorySelected(c)" (click)="filterCategory(c)">
                   {{ c }}
                 </button>
@@ -53,9 +53,9 @@
       </div>
     </section>
     <!-- ----------------INIZIO stories-heder DESKTOP------------------- -->
-    <div class="stories__rigth-desktop">
-      <section class="stories-header__desktop">
-        <div class="stories-header__desktop-content">
+    <div class="stories-rigth-desktop">
+      <section class="stories-header-desktop">
+        <div class="stories-header-desktop-content">
           <div class="desktop-content-feedbar">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +109,7 @@
           </button>
           @if (manifestoIsShowMoreDsk) {
             <div class="all-manifesto-dsk">
-              <div class="all-manifesto-dsk__header">
+              <div class="all-manifesto-dsk-header">
                 <h4>il manifesto</h4>
                 <button (click)="manifestoShowMoreToggleDsk()">chiudi</button>
               </div>
@@ -245,12 +245,12 @@
           </div>
         </section>
 
-        <section class="stories__main">
-          <div class="stories__feedbar">
-            <span class="stories__feedbar-left">Feed aggiornato</span>
-            <span class="stories__feedbar-right">Roma</span>
+        <section class="stories-main">
+          <div class="stories-feedbar">
+            <span class="stories-feedbar-left">Feed aggiornato</span>
+            <span class="stories-feedbar-right">Roma</span>
           </div>
-          <div class="stories__list">
+          <div class="stories-list">
             @for (s of filtredStories; track $index) {
               <app-story-card [story]="s"></app-story-card>
             }
@@ -264,7 +264,7 @@
 
         <button
           type="button"
-          class="stories__cta-fixed button button-primary"
+          class="stories-cta-fixed button button-primary"
           routerLink="/racconta"
         >
           + Racconta La Tua Storia
@@ -273,7 +273,7 @@
     </div>
   </div>
 
-  <div [class.manifesto__show-more-open]="manifestoIsShowMore" class="manifesto__show-more-close">
+  <div [class.manifesto-show-more-open]="manifestoIsShowMore" class="manifesto-show-more-close">
     <div class="show-more-container">
       <div class="show-more-header">
         <h2>City Voice</h2>
@@ -321,7 +321,7 @@
           di essere ascoltati.
         </p>
 
-        <p class="show-more-content__closing">
+        <p class="show-more-content-closing">
           Ogni voce conta. Ogni storia è una tessera del mosaico. Benvenuto in City Voice. Benvenuto
           a Roma.
         </p>

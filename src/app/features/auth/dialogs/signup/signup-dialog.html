@@ -22,7 +22,7 @@
         name="username"
       />
       @if (form.get('username')?.touched && form.get('username')?.invalid) {
-        <p class="fieldError">
+        <p class="field-error">
           @if (form.get('username')?.hasError('required')) {
             Scegli un nome
           } @else {
@@ -40,7 +40,7 @@
         name="password"
       />
       @if (form.get('password')?.touched && form.get('password')?.invalid) {
-        <p class="fieldError">
+        <p class="field-error">
           @if (form.get('password')?.hasError('required')) {
             Inserisci una password
           } @else {
@@ -50,7 +50,7 @@
       }
 
       @if (errorMessage) {
-        <p class="errorMessage">{{ errorMessage }}</p>
+        <p class="error-message">{{ errorMessage }}</p>
       }
 
       <button

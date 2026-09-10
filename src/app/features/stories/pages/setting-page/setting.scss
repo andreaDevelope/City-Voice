@@ -60,7 +60,7 @@
   }
 }
 
-.story-card__meta {
+.story-card-meta {
   display: flex;
   align-items: center;
   gap: 1em;
@@ -70,8 +70,8 @@
   }
 }
 
-.story-card__location,
-.story-card__date {
+.story-card-location,
+.story-card-date {
   display: flex;
   align-items: center;
   gap: 0.5em;
@@ -86,7 +86,7 @@
   gap: 0.5em;
 }
 
-.story-card__engagement {
+.story-card-engagement {
   margin-block: 1em;
   display: flex;
   align-items: center;
@@ -334,7 +334,7 @@ section {
       }
     }
 
-    .story-card__location {
+    .story-card-location {
       margin-top: 0;
 
       span {

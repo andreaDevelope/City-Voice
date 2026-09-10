@@ -5,11 +5,11 @@
   padding: 0;
 }
 
-.header__editorial {
+.header-editorial {
   display: none;
 }
 
-.header__pagination {
+.header-pagination {
   display: flex;
   gap: 0.4rem;
   margin-bottom: 1.25rem;
@@ -30,10 +30,10 @@
   .app-header {
     padding: 2rem 1.5rem;
   }
-  .header__hero--carousel {
+  .header-hero-carousel {
     display: none;
   }
-  .header__editorial {
+  .header-editorial {
     display: block;
   }
   .nav-buttons {
@@ -44,7 +44,7 @@
   }
   .editorial-hero {
     display: flex;
-    .editorial-hero__left {
+    .editorial-hero-left {
       width: 50%;
       div {
         display: flex;
@@ -61,12 +61,12 @@
       h2 {
         font-size: 2.5rem;
       }
-      .editorial-hero__subtitle {
+      .editorial-hero-subtitle {
         font-size: 0.8rem;
         margin-left: 1rem;
       }
     }
-    .editorial-hero__nav {
+    .editorial-hero-nav {
       display: flex;
       justify-content: end;
       align-items: center;

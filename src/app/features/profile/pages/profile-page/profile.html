@@ -177,13 +177,13 @@
       </div>
     </div>
     @for (cat of missionCategories; track cat.key) {
-      <div class="missioni-badges-header__container">
+      <div class="missioni-badges-header-container">
         <div class="title-support" [class]="cat.cssClass"></div>
         <h2>{{ cat.label }}</h2>
       </div>
       <div class="missioni-container2">
         @if (getProgressFor(cat.key); as p) {
-          <div class="missioni-badges" [class]="'missioni-' + cat.cssClass + '__badges'">
+          <div class="missioni-badges" [class]="'missioni-' + cat.cssClass + '-badges'">
             <div class="badge"></div>
             <div class="badge-details-container">
               <div class="badge-name">{{ p.currentBadge.name }}</div>
@@ -216,7 +216,7 @@
 
           <div class="divider2"></div>
           @if (p.nextBadge) {
-            <div class="missioni-badges locked" [class]="'missioni-' + cat.cssClass + '__badges'">
+            <div class="missioni-badges locked" [class]="'missioni-' + cat.cssClass + '-badges'">
               <div class="badge"></div>
               <div class="badge-details-container">
                 <div class="badge-name">{{ p.nextBadge.name }}</div>

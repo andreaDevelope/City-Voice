@@ -6,10 +6,10 @@
   (mousedown)="onMouseDown($event)"
   (touchstart)="onTouchStart($event)"
 >
-  <div class="social-clock__list">
+  <div class="social-clock-list">
     @for (item of items(); track item.icon) {
       <button
-        class="social-clock__button"
+        class="social-clock-button"
         type="button"
         [attr.aria-label]="item.label"
         (click)="select(item)"
@@ -107,7 +107,7 @@
     }
   </div>
 
-  <button class="social-clock__trigger" type="button" aria-label="Menu" (click)="toggleMenu()">
+  <button class="social-clock-trigger" type="button" aria-label="Menu" (click)="toggleMenu()">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"

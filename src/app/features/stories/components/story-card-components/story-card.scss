@@ -19,7 +19,7 @@ h2 {
 h3 {
   margin-right: 0.6em;
 }
-.story-card__category {
+.story-card-category {
   font-size: 0.8em;
   display: inline-block;
   padding-block: 0.2em;
@@ -30,7 +30,7 @@ h3 {
   background-color: color-mix(in srgb, var(--rosso-denuncia) 10%, transparent);
 }
 
-.story-card__meta {
+.story-card-meta {
   display: flex;
   align-items: center;
   gap: 1em;
@@ -39,8 +39,8 @@ h3 {
   }
 }
 
-.story-card__location,
-.story-card__date {
+.story-card-location,
+.story-card-date {
   display: flex;
   align-items: center;
   gap: 0.5em;
@@ -97,8 +97,8 @@ h3 {
     }
   }
 
-  .story-card__location,
-  .story-card__date {
+  .story-card-location,
+  .story-card-date {
     display: flex;
     align-items: center;
     gap: 0.5em;
@@ -121,7 +121,7 @@ h3 {
   border-bottom: 1px solid var(--testo-discreto);
 }
 
-.story-card__engagement {
+.story-card-engagement {
   margin-block: 1em;
   display: flex;
   align-items: center;

@@ -23,7 +23,7 @@ h2 {
   margin-top: 1rem;
 }
 
-.errorMessage {
+.error-message {
   color: var(--rosso-denuncia);
   font-weight: 800;
   text-align: center;
@@ -99,7 +99,7 @@ input {
   opacity: 0.4;
 }
 
-.fieldError {
+.field-error {
   color: var(--rosso-denuncia);
   font-size: 0.8rem;
   margin-top: 0.25rem;

@@ -26,7 +26,7 @@
       text-align: center;
     }
 
-    .story-card__category {
+    .story-card-category {
       font-size: 0.8em;
       display: inline-block;
       padding-block: 0.2em;
@@ -89,7 +89,7 @@
         border: 2px solid #0b1220;
       }
     }
-    .story-card__meta {
+    .story-card-meta {
       display: flex;
       align-items: center;
       justify-content: end;
@@ -100,8 +100,8 @@
       }
     }
 
-    .story-card__location,
-    .story-card__date {
+    .story-card-location,
+    .story-card-date {
       display: flex;
       align-items: center;
       gap: 0.5em;
@@ -118,7 +118,7 @@
   }
 }
 
-.story-card__engagement {
+.story-card-engagement {
   margin-block: 1em;
   display: flex;
   align-items: center;

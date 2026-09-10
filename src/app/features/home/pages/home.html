@@ -1,17 +1,17 @@
 <section class="home">
   <!-- HERO DESKTOP -->
-  <section class="home__hero">
-    <div class="home__hero-content__left">
+  <section class="home-hero">
+    <div class="home-hero-content-left">
       @for (s of slogans; track $index; let i = $index) {
         @if (i === currentIndex()) {
-          <h1 class="home__hero__title">{{ s.slogan }}</h1>
-          <div class="hero__pagination">
+          <h1 class="home-hero-title">{{ s.slogan }}</h1>
+          <div class="hero-pagination">
             @for (_ of slogans; track $index; let i = $index) {
               <span [class.active]="i === currentIndex()"></span>
             }
           </div>
           <p [innerHTML]="s.description"></p>
-          <div class="home__cta">
+          <div class="home-cta">
             <app-desktop-button-drawer
               [label]="addStory"
               [microTop]="microTop"
@@ -26,8 +26,8 @@
         }
       }
     </div>
-    <div class="home__hero-content__right">
-      <div class="home__hero-content__right-metrics">
+    <div class="home-hero-content-right">
+      <div class="home-hero-content-right-metrics">
         <table>
           <thead>
             <tr>
@@ -127,22 +127,22 @@
   </section>
 
   <!-- ESPERIENZA APP-LIKE (MOBILE-FIRST) -->
-  <section class="home__app">
+  <section class="home-app">
     <!-- HEADER MOBILE/CAROUSEL -->
-    <div class="header__hero header__hero--carousel home-mobile-hero">
+    <div class="header-hero header-hero-carousel home-mobile-hero">
       <!-- indicatori -->
-      <div class="header__pagination">
+      <div class="header-pagination">
         @for (_ of heroSlides; track $index; let i = $index) {
           <span [class.active]="i === currentIndex()"></span>
         }
       </div>
       <!-- contenuto -->
-      <div class="header__carousel is-animating">
+      <div class="header-carousel is-animating">
         @for (s of heroSlides; track $index; let i = $index) {
           @if (i === currentIndex()) {
-            <div class="header__item">
+            <div class="header-item">
               <img [src]="s.image" alt="" />
-              <div class="header__content">
+              <div class="header-content">
                 <h1>{{ s.title }}</h1>
                 <p>{{ s.subtitle }}</p>
               </div>
@@ -152,8 +152,8 @@
       </div>
     </div>
 
-    <section class="home__top">
-      <div class="home__intro">
+    <section class="home-top">
+      <div class="home-intro">
         <h2>Qui nessuno è solo</h2>
         <p>
           Uno spazio dove i cittadini romani raccontano storie reali di
@@ -162,13 +162,13 @@
         </p>
       </div>
 
-      <section class="home__action">
-        <p class="home__lead">
+      <section class="home-action">
+        <p class="home-lead">
           Se ti è successo qualcosa che non doveva succedere,
           <em>non è solo un problema tuo</em>.
         </p>
 
-        <div class="home__metrics">
+        <div class="home-metrics">
           <div class="metric-card">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -215,7 +215,7 @@
             <span>STORIE</span>
           </div>
         </div>
-        <div class="home__cta">
+        <div class="home-cta">
           <button class="button-primary button" routerLink="/racconta">
             RACCONTA LA TUA STORIA
           </button>
@@ -226,12 +226,12 @@
   </section>
 
   <!-- CONTENUTO EDITORIALE (DESKTOP) -->
-  <section class="home__editorial">
-    <section class="home__separator">
-      <div class="home__separator-line"></div>
+  <section class="home-editorial">
+    <section class="home-separator">
+      <div class="home-separator-line"></div>
     </section>
 
-    <section class="home__latest">
+    <section class="home-latest">
       <div class="latest-intro">
         <h2>Non è un caso</h2>
         <p>
@@ -245,7 +245,7 @@
         <span>{{ signature.location }} · {{ signature.year }}</span>
       </div>
 
-      <section class="latest-list home__app">
+      <section class="latest-list home-app">
         <h2>ULTIME STORIE</h2>
 
         <div class="latest-item">
