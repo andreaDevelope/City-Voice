@@ -148,17 +148,6 @@ export class NavMobile {
     this.maxOffsetX = window.innerWidth - minVisibleX - restLeft;
     this.minOffsetY = minVisibleY - rect.height - restTop;
     this.maxOffsetY = window.innerHeight - minVisibleY - restTop;
-    console.log({
-      rect: { left: rect.left, top: rect.top, w: rect.width, h: rect.height },
-      rest: { restLeft, restTop },
-      bounds: {
-        minX: this.minOffsetX,
-        maxX: this.maxOffsetX,
-        minY: this.minOffsetY,
-        maxY: this.maxOffsetY,
-      },
-      viewport: { w: window.innerWidth, h: window.innerHeight },
-    });
   }
 
   private updateDragPosition(x: number, y: number) {

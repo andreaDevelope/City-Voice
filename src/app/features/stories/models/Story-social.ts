@@ -2,7 +2,7 @@ import { Story } from './story';
 
 export interface StorySocial extends Story {
   likes: number;
-  badjes: string[];
+  badges: string[];
   avatar: string;
   commentsCount: number;
   comments: string[];

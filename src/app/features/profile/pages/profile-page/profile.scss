@@ -81,7 +81,7 @@ main {
     gap: 0.5em;
     margin-top: 1em;
   }
-  .badje {
+  .badge {
     width: 30px;
     height: 30px;
     border-radius: 8px;
@@ -252,7 +252,7 @@ main {
     margin-right: 0.2em;
   }
 
-  .missioni-badjes-header__container {
+  .missioni-badges-header__container {
     display: flex;
     align-items: center;
     margin-block: 0.5em;
@@ -293,10 +293,10 @@ main {
     margin-inline: auto;
   }
 
-  .missioni-attivita__badjes,
-  .missioni-quartiere__badjes,
-  .missioni-continuita__badjes,
-  .missioni-impatto__badjes {
+  .missioni-attivita__badges,
+  .missioni-quartiere__badges,
+  .missioni-continuita__badges,
+  .missioni-impatto__badges {
     display: flex;
     gap: 0.5em;
     align-items: center;
@@ -304,24 +304,24 @@ main {
     padding-inline: 0.8em;
     padding-block: 0.5em;
     width: 100%;
-    .badje {
+    .badge {
       background-color: var(--rosso-denuncia);
     }
   }
 
-  .badje-details-container {
+  .badge-details-container {
     display: flex;
     flex-direction: column;
     width: 100%;
   }
 
-  .badje-name {
+  .badge-name {
     font-size: 0.8em;
     font-weight: 600;
     color: var(--testo-principale);
   }
 
-  .badje-description {
+  .badge-description {
     font-size: 0.7em;
     color: var(--testo-secondario);
   }
@@ -367,7 +367,7 @@ main {
     }
   }
 
-  .missioni-badjes.locked {
+  .missioni-badges.locked {
     opacity: 0.8;
   }
 
