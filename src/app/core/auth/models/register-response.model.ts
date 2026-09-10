@@ -1,4 +1,4 @@
-export interface iRegisterResponse {
+export interface RegisterResponse {
   message: string;
   recoveryKey: string;
 }

@@ -1,9 +1,8 @@
 import { ChangeDetectorRef, Component, EventEmitter, inject, Output } from '@angular/core';
 import { AuthService } from '../../../../core/auth/auth.service';
-import { iLoginRequest } from '../../../../core/auth/models/iLoginRequest';
+import { LoginRequest } from '../../../../core/auth/models/login-request.model';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-// import { iAccessData } from '../../../core/auth/models/iAccessData';
 
 @Component({
   selector: 'app-login-dialog',
@@ -71,7 +70,7 @@ export class LoginDialogComponent {
     this.loading = true;
     this.errorMessage = '';
 
-    const loginData: iLoginRequest = {
+    const loginData: LoginRequest = {
       username: this.form.value.username,
       password: this.form.value.password,
     };

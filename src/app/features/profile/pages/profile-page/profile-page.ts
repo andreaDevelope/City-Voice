@@ -11,8 +11,8 @@ import { CategoryProgress } from '../../models/category-progress.model';
   standalone: true,
   selector: 'app-profile',
   imports: [],
-  templateUrl: './profile.html',
-  styleUrl: './profile.scss',
+  templateUrl: './profile-page.html',
+  styleUrl: './profile-page.scss',
 })
 export class Profile implements OnInit {
   private profileService = inject(ProfileService);

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Story } from '../../models/story';
-import { SettingStoryCard } from '../../components/setting-story-card-components/setting-story-card';
+import { SettingStoryCard } from '../../components/setting-story-card/setting-story-card';
 import { StoryStatus } from '../../models/story-status';
 import { DesktopButtonFancy } from '../../../../shared/ui/desktop-buttons/desktop-button-fancy';
 import { User } from '../../models/user';
@@ -9,8 +9,8 @@ import { User } from '../../models/user';
   standalone: true,
   selector: 'app-setting',
   imports: [SettingStoryCard, DesktopButtonFancy],
-  templateUrl: './setting.html',
-  styleUrl: './setting.scss',
+  templateUrl: './setting-page.html',
+  styleUrl: './setting-page.scss',
 })
 export class Setting {
   label = 'RACCONTA LA TUA STORIA';

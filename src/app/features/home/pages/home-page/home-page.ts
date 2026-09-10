@@ -2,12 +2,12 @@
 import { afterNextRender, Component, Inject, PLATFORM_ID, signal, OnDestroy } from '@angular/core';
 
 import { isPlatformBrowser } from '@angular/common';
-import { HomeStats } from '../models/home-stats.model';
-import { StoryPreview } from '../models/story-preview.model';
-import { AppSignature } from '../models/app-signature.model';
-import { HomeSlogan } from '../models/home-slogan.model';
-import { DesktopButtonDrawer } from '../../../shared/ui/desktop-buttons/desktop-button-drawer';
-import { DesktopButtonFancy } from '../../../shared/ui/desktop-buttons/desktop-button-fancy';
+import { HomeStats } from '../../models/home-stats.model';
+import { StoryPreview } from '../../models/story-preview.model';
+import { AppSignature } from '../../models/app-signature.model';
+import { HomeSlogan } from '../../models/home-slogan.model';
+import { DesktopButtonDrawer } from '../../../../shared/ui/desktop-buttons/desktop-button-drawer';
+import { DesktopButtonFancy } from '../../../../shared/ui/desktop-buttons/desktop-button-fancy';
 import { RouterLink } from '@angular/router';
 
 interface HomeHeroSlide {
@@ -20,8 +20,8 @@ interface HomeHeroSlide {
   standalone: true,
   selector: 'app-home',
   imports: [DesktopButtonDrawer, DesktopButtonFancy, RouterLink],
-  templateUrl: './home.html',
-  styleUrl: './home.scss',
+  templateUrl: './home-page.html',
+  styleUrl: './home-page.scss',
 })
 export class Home implements OnDestroy {
   readonly stats: HomeStats = {

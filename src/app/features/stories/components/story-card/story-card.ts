@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { StorySocial } from '../../models/Story-social';
+import { StorySocial } from '../../models/story-social';
 
 @Component({
   standalone: true,

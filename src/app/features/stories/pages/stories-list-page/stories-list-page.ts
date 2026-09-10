@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
-import { StoryCard } from '../../components/story-card-components/story-card';
+import { StoryCard } from '../../components/story-card/story-card';
 import { RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { DesktopButtonDrawer } from '../../../../shared/ui/desktop-buttons/desktop-button-drawer';
-import { StoryCardEditorial } from '../../components/story-card-editorial-components/story-card-editorial';
-import { StorySocial } from '../../models/Story-social';
+import { StoryCardEditorial } from '../../components/story-card-editorial/story-card-editorial';
+import { StorySocial } from '../../models/story-social';
 import { StoryStatus } from '../../models/story-status';
 
 @Component({
   standalone: true,
   selector: 'app-home',
   imports: [StoryCard, RouterLink, NgClass, DesktopButtonDrawer, StoryCardEditorial],
-  templateUrl: './stories-list.html',
-  styleUrl: './stories-list.scss',
+  templateUrl: './stories-list-page.html',
+  styleUrl: './stories-list-page.scss',
 })
 export class StoriesList {
   addStory = 'RACCONTA LA TUA STORIA';

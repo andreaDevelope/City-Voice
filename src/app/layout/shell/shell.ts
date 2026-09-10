@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
-import { HeaderApp } from '../header-app/header.app';
-import { LoginDialogComponent } from '../../features/auth/dialogs/login/login-dialog';
-import { SignupDialogComponent } from '../../features/auth/dialogs/signup/signup-dialog';
-import { RecoveryKeyDialogComponent } from '../../features/auth/dialogs/recovery-key/recovery-key-dialog';
+import { HeaderApp } from '../header-app/header-app';
+import { LoginDialogComponent } from '../../features/auth/dialogs/login-dialog/login-dialog';
+import { SignupDialogComponent } from '../../features/auth/dialogs/signup-dialog/signup-dialog';
+import { RecoveryKeyDialogComponent } from '../../features/auth/dialogs/recovery-key-dialog/recovery-key-dialog';
 import { NavMobile } from '../nav-mobile/nav-mobile';
 import { AuthPromptService } from '../../core/auth/auth-prompt.service';
 import { AuthService } from '../../core/auth/auth.service';

@@ -8,19 +8,20 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        loadComponent: () => import('./features/home/pages/home').then((m) => m.Home),
+        loadComponent: () =>
+          import('./features/home/pages/home-page/home-page').then((m) => m.Home),
       },
       {
         path: 'storie',
         loadComponent: () =>
-          import('./features/stories/pages/stories-list-page/stories-list').then(
+          import('./features/stories/pages/stories-list-page/stories-list-page').then(
             (m) => m.StoriesList,
           ),
       },
       {
         path: 'racconta',
         loadComponent: () =>
-          import('./features/stories/pages/story-create-page/story-create').then(
+          import('./features/stories/pages/story-create-page/story-create-page').then(
             (m) => m.StoryCreate,
           ),
       },
@@ -28,13 +29,13 @@ export const routes: Routes = [
         path: 'setting',
         canActivate: [authGuard],
         loadComponent: () =>
-          import('./features/stories/pages/setting-page/setting').then((m) => m.Setting),
+          import('./features/stories/pages/setting-page/setting-page').then((m) => m.Setting),
       },
       {
         path: 'profilo',
         canActivate: [authGuard],
         loadComponent: () =>
-          import('./features/profile/pages/profile-page/profile').then((m) => m.Profile),
+          import('./features/profile/pages/profile-page/profile-page').then((m) => m.Profile),
       },
     ],
   },

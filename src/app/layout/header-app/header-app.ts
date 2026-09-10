@@ -5,8 +5,8 @@ import { AuthService } from '../../core/auth/auth.service';
 @Component({
   standalone: true,
   selector: 'app-header-app',
-  templateUrl: './header.app.html',
-  styleUrls: ['./header.app.scss'],
+  templateUrl: './header-app.html',
+  styleUrls: ['./header-app.scss'],
   imports: [RouterLink],
 })
 export class HeaderApp {
