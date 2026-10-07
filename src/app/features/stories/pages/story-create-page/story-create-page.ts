@@ -1,4 +1,16 @@
-import { Component, effect, inject, signal, untracked } from '@angular/core';
+import {
+  afterNextRender,
+  Component,
+  effect,
+  ElementRef,
+  inject,
+  Injector,
+  signal,
+  untracked,
+  viewChild,
+} from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { NgTemplateOutlet } from '@angular/common';
 import { AuthService } from '../../../../core/auth/auth.service';
 import { AuthPromptService } from '../../../../core/auth/auth-prompt.service';
 import { ProfileService } from '../../../profile/services/profile.service';
@@ -14,12 +26,21 @@ import { SuccessPanel } from '../../components/success-panel/success-panel';
 import { CategoryProgress } from '../../../profile/models/category-progress.model';
 import { BadgeUnlockedDialog } from '../../../../shared/ui/badge-unlocked-dialog/badge-unlocked-dialog';
 import { UnlockedBadge } from '../../../../shared/ui/badge-unlocked-dialog/models/unlocked-badge.model';
+import { httpErrorMessage } from '../../../../shared/utils/http-error-message';
 
 type Step = 'choice' | StoryType | 'success';
 
 @Component({
   selector: 'app-story-create-page',
-  imports: [ChoiceCards, AuthorChip, StoryForm, ReportForm, SuccessPanel, BadgeUnlockedDialog],
+  imports: [
+    ChoiceCards,
+    AuthorChip,
+    StoryForm,
+    ReportForm,
+    SuccessPanel,
+    BadgeUnlockedDialog,
+    NgTemplateOutlet,
+  ],
   templateUrl: './story-create-page.html',
   styleUrl: './story-create-page.scss',
 })
@@ -28,9 +49,13 @@ export class StoryCreatePage {
   private authPrompt = inject(AuthPromptService);
   private profileService = inject(ProfileService);
   private storyService = inject(StoryService);
+  private injector = inject(Injector);
+  private readonly errorBox = viewChild<ElementRef<HTMLElement>>('errorBox');
   protected readonly step = signal<Step>('choice');
   protected readonly sending = signal(false);
-  protected readonly submitError = signal(false);
+  protected readonly submitError = signal<string | null>(null);
+  protected readonly networkError = signal(false);
+  private lastRequest: CreateStoryRequest | null = null;
   protected readonly profile = signal<UserProfileDto | null>(null);
   protected readonly result = signal<StoryResponse | null>(null);
   protected readonly previousProgress = signal<CategoryProgress[] | null>(null);
@@ -48,7 +73,8 @@ export class StoryCreatePage {
   }
 
   protected choose(type: StoryType): void {
-    this.submitError.set(false);
+    this.submitError.set(null);
+    this.networkError.set(false);
     this.step.set(type);
   }
 
@@ -57,7 +83,8 @@ export class StoryCreatePage {
     if (published) {
       this.previousProgress.set(published.badgeProgress);
     }
-    this.submitError.set(false);
+    this.submitError.set(null);
+    this.networkError.set(false);
     this.result.set(null);
     this.step.set('choice');
   }
@@ -75,8 +102,10 @@ export class StoryCreatePage {
       this.authPrompt.openSignup();
       return;
     }
+    this.lastRequest = request;
     this.sending.set(true);
-    this.submitError.set(false);
+    this.submitError.set(null);
+    this.networkError.set(false);
     this.storyService.create(request).subscribe({
       next: (response) => {
         this.result.set(response);
@@ -84,11 +113,29 @@ export class StoryCreatePage {
         this.sending.set(false);
         this.step.set('success');
       },
-      error: () => {
+      error: (err: HttpErrorResponse) => {
         this.sending.set(false);
-        this.submitError.set(true);
+        if (err.status === 0) {
+          this.networkError.set(true);
+        } else {
+          this.submitError.set(httpErrorMessage(err, 'Non siamo riusciti a pubblicare. Riprova tra poco.'));
+        }
+        this.scrollToError();
       },
     });
+  }
+
+  private scrollToError(): void {
+    afterNextRender(
+      () => this.errorBox()?.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'center' }),
+      { injector: this.injector },
+    );
+  }
+
+  protected retry(): void {
+    if (this.lastRequest) {
+      this.send(this.lastRequest);
+    }
   }
 
   private loadUserData(): void {

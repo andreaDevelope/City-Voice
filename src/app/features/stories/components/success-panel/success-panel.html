@@ -19,7 +19,7 @@
   <div class="feedback">
     <span class="feedback-chip activity">+1 Attività</span>
     @if (newMunicipio()) {
-      <span class="feedback-chip neighborhood">+1 Vicinato · nuovo municipio</span>
+      <span class="feedback-chip neighborhood">+1 Quartiere · nuovo municipio</span>
     }
   </div>
 
@@ -36,7 +36,7 @@
     }
     @if (neighborhood(); as n) {
       <div>
-        <p class="progress-label">Vicinato</p>
+        <p class="progress-label">Quartiere</p>
         <app-progress-dots
           [counter]="n.counter"
           [threshold]="n.currentBadge.missionThreshold"

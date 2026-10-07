@@ -36,11 +36,7 @@
       @if (profile(); as p) {
         <app-author-chip [username]="p.username" [symbol]="p.symbol" [color]="p.color" />
       }
-      @if (submitError()) {
-        <p class="error-banner" role="alert">
-          Non siamo riusciti a pubblicare. Controlla la connessione e riprova.
-        </p>
-      }
+      <ng-container [ngTemplateOutlet]="errorBanner" />
       <app-story-form [sending]="sending()" (publish)="publishStory($event)" />
     }
 
@@ -60,11 +56,7 @@
       @if (profile(); as p) {
         <app-author-chip [username]="p.username" [symbol]="p.symbol" [color]="p.color" />
       }
-      @if (submitError()) {
-        <p class="error-banner" role="alert">
-          Non siamo riusciti a pubblicare. Controlla la connessione e riprova.
-        </p>
-      }
+      <ng-container [ngTemplateOutlet]="errorBanner" />
       <app-report-form [sending]="sending()" (publish)="publishReport($event)" />
     }
 
@@ -90,3 +82,15 @@
     <app-badge-unlocked-dialog [badges]="unlocked()" (closed)="closeBadgeDialog()" />
   }
 </main>
+
+<ng-template #errorBanner>
+  @if (networkError()) {
+    <div #errorBox class="error-banner" role="alert">
+      <p class="error-title">La tua voce non si è persa.</p>
+      <p>Non siamo riusciti a completare l'invio. La bozza è ancora qui: controlla la connessione e riprova.</p>
+      <button type="button" class="retry-button" [disabled]="sending()" (click)="retry()">Riprova l'invio →</button>
+    </div>
+  } @else if (submitError(); as message) {
+    <p #errorBox class="error-banner" role="alert">{{ message }}</p>
+  }
+</ng-template>

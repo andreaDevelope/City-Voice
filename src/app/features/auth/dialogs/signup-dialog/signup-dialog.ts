@@ -2,6 +2,8 @@ import { ChangeDetectorRef, Component, EventEmitter, inject, Output } from '@ang
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../../core/auth/auth.service';
 import { User } from '../../../../core/auth/models/user.model';
+import { HttpErrorResponse } from '@angular/common/http';
+import { httpErrorMessage } from '../../../../shared/utils/http-error-message';
 
 @Component({
   selector: 'app-signup-dialog',
@@ -43,23 +45,8 @@ export class SignupDialogComponent {
         this.loading = false;
         this.registered.emit(response.recoveryKey);
       },
-      error: (err: { error: Record<string, string> }) => {
-        let errorMessage: string;
-
-        if (err.error?.['message']) {
-          // Caso normale: BE ha risposto {"message": "..."} (conflitto, credenziali, ecc.)
-          errorMessage = err.error['message'];
-        } else if (err.error && Object.keys(err.error).length > 0) {
-          // Caso validazione: BE ha risposto {"username": "..."} o {"password": "..."}
-          // Non ho un campo "message", ma ho un oggetto con almeno un errore dentro.
-          // Prendo il primo valore, qualunque sia il nome del campo.
-          const primoErrore = Object.values(err.error)[0];
-          errorMessage = primoErrore;
-        } else {
-          errorMessage = 'Errore nella registrazione';
-        }
-
-        this.errorMessage = errorMessage;
+      error: (err: HttpErrorResponse) => {
+        this.errorMessage = httpErrorMessage(err, 'Errore nella registrazione');
         this.loading = false;
         this.cdr.markForCheck();
       },

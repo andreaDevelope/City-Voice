@@ -44,22 +44,12 @@
     <div class="missioni-container">
       <h2>Missioni</h2>
       <div class="categories-container">
-        <div class="category-container">
-          <div class="attivita-dot"></div>
-          <p>attività</p>
-        </div>
-        <div class="category-container">
-          <div class="quartiere-dot"></div>
-          <p>quartiere</p>
-        </div>
-        <div class="category-container">
-          <div class="continuita-dot"></div>
-          <p>continuità</p>
-        </div>
-        <div class="category-container">
-          <div class="impatto-dot"></div>
-          <p>impatto</p>
-        </div>
+        @for (cat of missionCategories; track cat.key) {
+          <div class="category-container">
+            <div [class]="cat.cssClass + '-dot'"></div>
+            <p>{{ cat.label }}</p>
+          </div>
+        }
       </div>
     </div>
     @for (cat of missionCategories; track cat.key) {

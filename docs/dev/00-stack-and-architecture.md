@@ -27,7 +27,8 @@ Separate repository: Spring Boot 4.1, Java 21, PostgreSQL.
     │   └── stories/
     ├── layout/        # shell, header, mobile nav
     └── shared/
-        └── ui/        # components reused across features: avatar, progress-dots, badge-unlocked-dialog
+        ├── ui/        # components reused across features: avatar, progress-dots, badge-unlocked-dialog
+        └── utils/     # pure helper functions (e.g. toRoman)
 
 Feature-based structure: pages, components and models belonging to a feature live inside that feature's folder. `shared/` contains only cross-feature code.
 
@@ -38,6 +39,7 @@ Each feature follows:
     ├── components/    # feature-local components
     ├── models/        # interfaces and types
     ├── services/      # HTTP calls
+    ├── constants/     # domain constants (e.g. mission category labels and icons)
     └── styles/        # SCSS partials shared by the feature's components
 
 ## Configuration

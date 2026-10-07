@@ -8,6 +8,7 @@ import { PROFILE_COLOR_LABELS } from '../../enums/profile-color-labels';
 import { CategoryProgress } from '../../models/category-progress.model';
 import { ProgressDots } from '../../../../shared/ui/progress-dots/progress-dots';
 import { Avatar } from '../../../../shared/ui/avatar/avatar';
+import { MISSION_CATEGORY_META } from '../../constants/mission-category-meta';
 
 @Component({
   standalone: true,
@@ -23,10 +24,10 @@ export class Profile implements OnInit {
   progress = signal<CategoryProgress[]>([]);
 
   missionCategories = [
-    { key: 'activity', cssClass: 'attivita', label: 'Attivita' },
-    { key: 'neighborhood', cssClass: 'quartiere', label: 'Quartiere' },
-    { key: 'continuity', cssClass: 'continuita', label: 'Continuità' },
-    { key: 'impact', cssClass: 'impatto', label: 'Impatto' },
+    { key: 'activity', cssClass: 'attivita', label: MISSION_CATEGORY_META.activity.label },
+    { key: 'neighborhood', cssClass: 'quartiere', label: MISSION_CATEGORY_META.neighborhood.label },
+    { key: 'continuity', cssClass: 'continuita', label: MISSION_CATEGORY_META.continuity.label },
+    { key: 'impact', cssClass: 'impatto', label: MISSION_CATEGORY_META.impact.label },
   ];
 
   ngOnInit(): void {

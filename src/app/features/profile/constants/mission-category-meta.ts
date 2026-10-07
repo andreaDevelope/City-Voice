@@ -14,7 +14,7 @@ export const MISSION_CATEGORY_META: Record<MissionCategory, MissionCategoryMeta>
     ],
   },
   neighborhood: {
-    label: 'Vicinato',
+    label: 'Quartiere',
     iconPaths: ['M8 29 32 10l24 19M16 26v27h32V26M26 53V36h12v17', 'M42 12h8v12'],
   },
   continuity: {

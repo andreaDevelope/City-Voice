@@ -21,7 +21,7 @@ Simbolo e colore insieme sono la tua identità visiva sulla piattaforma. Puoi ca
 Partecipando si sbloccano dei badge, divisi in quattro percorsi:
 
 - **Attività**: ogni storia, segnalazione o commento che pubblichi.
-- **Vicinato**: in quanti municipi diversi hai lasciato il segno. Contano solo i contenuti legati a un quartiere: le segnalazioni e i commenti sotto di esse.
+- **Quartiere**: in quanti municipi diversi hai lasciato il segno. Contano solo i contenuti legati a un quartiere: le segnalazioni e i commenti sotto di esse.
 - **Continuità**: con che costanza torni sulla piattaforma.
 - **Impatto**: come la community risponde a quello che scrivi.
 
