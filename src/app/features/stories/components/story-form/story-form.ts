@@ -25,9 +25,26 @@ export class StoryForm {
   protected readonly attempted = signal(false);
 
   protected readonly form = this.fb.group({
-    title: ['', [Validators.required, Validators.pattern(NOT_BLANK), Validators.maxLength(this.limits.title)]],
-    description: ['', [Validators.required, Validators.pattern(NOT_BLANK), Validators.maxLength(this.limits.description)]],
-    storyContent: ['', [Validators.required, Validators.pattern(NOT_BLANK), Validators.maxLength(this.limits.storyContent)]],
+    title: [
+      '',
+      [Validators.required, Validators.pattern(NOT_BLANK), Validators.maxLength(this.limits.title)],
+    ],
+    description: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(NOT_BLANK),
+        Validators.maxLength(this.limits.description),
+      ],
+    ],
+    storyContent: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(NOT_BLANK),
+        Validators.maxLength(this.limits.storyContent),
+      ],
+    ],
   });
 
   protected hasError(field: keyof StoryFormValue): boolean {

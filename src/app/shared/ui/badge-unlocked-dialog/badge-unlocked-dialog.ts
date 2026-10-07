@@ -1,4 +1,13 @@
-import { afterNextRender, Component, computed, ElementRef, input, output, signal, viewChild } from '@angular/core';
+import {
+  afterNextRender,
+  Component,
+  computed,
+  ElementRef,
+  input,
+  output,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MISSION_CATEGORY_META } from '../../../features/profile/constants/mission-category-meta';
 import { toRoman } from '../../utils/to-roman';

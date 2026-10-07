@@ -1,12 +1,5 @@
 /* eslint-disable @angular-eslint/prefer-inject */
-import {
-  afterNextRender,
-  Component,
-  Inject,
-  PLATFORM_ID,
-  signal,
-  OnDestroy,
-} from '@angular/core';
+import { afterNextRender, Component, Inject, PLATFORM_ID, signal, OnDestroy } from '@angular/core';
 
 import { isPlatformBrowser } from '@angular/common';
 import { HomeStats } from '../../models/home-stats.model';

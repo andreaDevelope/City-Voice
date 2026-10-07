@@ -42,14 +42,14 @@ The API must allow the origin the frontend is served from: `http://localhost:420
 
 ## Scripts
 
-| Command | Description |
-|---|---|
-| `npm start` | Development server |
-| `npm run build` | Production build |
-| `npm run build:ssr` | SSR production build |
-| `npm run serve:ssr` | Start the SSR server |
-| `npm run dev:ssr` | Build and serve SSR |
-| `npm run watch` | Build in watch mode |
-| `npm test` | Run tests (Vitest) |
-| `npm run lint` | ESLint |
-| `npx prettier --write .` | Format |
+| Command                  | Description          |
+| ------------------------ | -------------------- |
+| `npm start`              | Development server   |
+| `npm run build`          | Production build     |
+| `npm run build:ssr`      | SSR production build |
+| `npm run serve:ssr`      | Start the SSR server |
+| `npm run dev:ssr`        | Build and serve SSR  |
+| `npm run watch`          | Build in watch mode  |
+| `npm test`               | Run tests (Vitest)   |
+| `npm run lint`           | ESLint               |
+| `npx prettier --write .` | Format               |

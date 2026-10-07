@@ -1,5 +1,10 @@
 import { Component, inject, input, output, signal } from '@angular/core';
-import { NonNullableFormBuilder, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
+import {
+  NonNullableFormBuilder,
+  ReactiveFormsModule,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { DistrictSelect } from '../../../districts/components/district-select/district-select';
 
 export interface ReportFormValue {

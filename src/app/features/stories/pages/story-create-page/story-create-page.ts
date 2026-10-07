@@ -118,7 +118,9 @@ export class StoryCreatePage {
         if (err.status === 0) {
           this.networkError.set(true);
         } else {
-          this.submitError.set(httpErrorMessage(err, 'Non siamo riusciti a pubblicare. Riprova tra poco.'));
+          this.submitError.set(
+            httpErrorMessage(err, 'Non siamo riusciti a pubblicare. Riprova tra poco.'),
+          );
         }
         this.scrollToError();
       },

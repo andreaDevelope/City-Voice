@@ -22,9 +22,8 @@ export class IdentityDialog implements OnInit {
 
   symbols = Object.values(ProfileSymbol);
   colors = Object.values(ProfileColor);
-    symbolLabels = PROFILE_SYMBOL_LABELS;
+  symbolLabels = PROFILE_SYMBOL_LABELS;
   colorLabels = PROFILE_COLOR_LABELS;
-
 
   selectedSymbol = signal<ProfileSymbol>(ProfileSymbol.GENERIC);
   selectedColor = signal<ProfileColor>(ProfileColor.NEUTRAL);

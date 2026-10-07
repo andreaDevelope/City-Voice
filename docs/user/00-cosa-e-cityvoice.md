@@ -3,6 +3,7 @@
 City Voice è uno spazio pubblico e anonimo dove i cittadini di Roma si scambiano quello che sanno: come funzionano davvero le cose, cosa evitare, dove intervenire. Dietro ogni username c'è una persona con un lavoro, una vita, un'esperienza che può servire a qualcun altro.
 
 ## Cosa ci trovi
+
 - **Degrado e sicurezza.** Immondizia, zone da evitare, avvisi utili tra una fermata e l'altra, caselli.
 - **Scorciatoie burocratiche da chi le conosce.** Hai fatto quell'iter, o ci lavori dentro? Dì agli altri a quale sportello andare davvero, quale numero funziona, quale ufficio è sempre vuoto e perché.
 - **Mobilità.** Buche, semafori guasti, caselli rotti, tutto ciò che rende difficile muoversi.

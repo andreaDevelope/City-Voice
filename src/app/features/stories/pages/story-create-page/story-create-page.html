@@ -78,7 +78,7 @@
       }
     }
   }
-    @if (unlocked().length > 0) {
+  @if (unlocked().length > 0) {
     <app-badge-unlocked-dialog [badges]="unlocked()" (closed)="closeBadgeDialog()" />
   }
 </main>
@@ -87,8 +87,13 @@
   @if (networkError()) {
     <div #errorBox class="error-banner" role="alert">
       <p class="error-title">La tua voce non si è persa.</p>
-      <p>Non siamo riusciti a completare l'invio. La bozza è ancora qui: controlla la connessione e riprova.</p>
-      <button type="button" class="retry-button" [disabled]="sending()" (click)="retry()">Riprova l'invio →</button>
+      <p>
+        Non siamo riusciti a completare l'invio. La bozza è ancora qui: controlla la connessione e
+        riprova.
+      </p>
+      <button type="button" class="retry-button" [disabled]="sending()" (click)="retry()">
+        Riprova l'invio →
+      </button>
     </div>
   } @else if (submitError(); as message) {
     <p #errorBox class="error-banner" role="alert">{{ message }}</p>
