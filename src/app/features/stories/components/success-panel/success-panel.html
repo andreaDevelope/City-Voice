@@ -1,0 +1,81 @@
+<div class="success-panel">
+  <span class="success-symbol">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+  </span>
+  <p class="success-label">Pubblicazione riuscita</p>
+  <h2>{{ heading() }}</h2>
+  <p class="success-title">{{ story().title }}</p>
+
+  <div class="feedback">
+    <span class="feedback-chip activity">+1 Attività</span>
+    @if (newMunicipio()) {
+      <span class="feedback-chip neighborhood">+1 Vicinato · nuovo municipio</span>
+    }
+  </div>
+
+  <div class="success-progress">
+    @if (activity(); as a) {
+      <div>
+        <p class="progress-label">Attività</p>
+        <app-progress-dots
+          [counter]="a.counter"
+          [threshold]="a.currentBadge.missionThreshold"
+          [style.--dot-color]="'var(--colore-attivita)'"
+        />
+      </div>
+    }
+    @if (neighborhood(); as n) {
+      <div>
+        <p class="progress-label">Vicinato</p>
+        <app-progress-dots
+          [counter]="n.counter"
+          [threshold]="n.currentBadge.missionThreshold"
+          [style.--dot-color]="'var(--colore-quartiere)'"
+        />
+      </div>
+    }
+  </div>
+
+  <div class="success-actions">
+    <button
+      type="button"
+      class="action-primary"
+      [attr.aria-expanded]="showStory()"
+      (click)="showStory.set(!showStory())"
+    >
+      {{ showStory() ? 'Nascondi' : 'Vedi la storia' }}
+    </button>
+    <button type="button" class="action-secondary" (click)="again.emit()">Racconta un'altra</button>
+  </div>
+
+  @if (showStory()) {
+    <article class="published-story">
+      @if (story().district || story().category) {
+        <p class="story-meta">
+          {{ story().district }}
+          @if (story().district && story().category) {
+            ·
+          }
+          {{ story().category }}
+        </p>
+      }
+      <h3>{{ story().title }}</h3>
+      @if (story().description) {
+        <p>{{ story().description }}</p>
+      }
+      @if (story().storyContent) {
+        <p class="story-body">{{ story().storyContent }}</p>
+      }
+    </article>
+  }
+</div>

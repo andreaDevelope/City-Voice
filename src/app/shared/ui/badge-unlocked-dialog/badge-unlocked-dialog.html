@@ -1,0 +1,79 @@
+<dialog
+  #dialog
+  class="badge-dialog"
+  [attr.data-category]="current().category"
+  aria-labelledby="badge-dialog-title"
+  aria-describedby="badge-dialog-description"
+  (close)="onClose()"
+>
+  <div class="badge-panel">
+    <button class="close-button" type="button" aria-label="Chiudi" (click)="close()">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="m6 6 12 12M18 6 6 18" />
+      </svg>
+    </button>
+
+    @for (item of [current()]; track item.badge.id) {
+      <section class="badge-state">
+        <p class="unlock-label">
+          <span class="label-line"></span>Nuovo badge sbloccato<span class="label-line"></span>
+        </p>
+        <p class="unlock-count">
+          @if (total() > 1) {
+            {{ index() + 1 }} di {{ total() }} <span>· Un passo avanti.</span>
+          } @else {
+            La città ti ascolta.
+          }
+        </p>
+
+        <div class="badge-stage" aria-hidden="true">
+          <div class="badge-aura"></div>
+          <svg class="badge-rays" viewBox="0 0 280 250" focusable="false">
+            <path
+              d="M140 12v19M140 219v19M26 125h20M234 125h20M59 44l14 14M207 192l14 14M221 44l-14 14M73 192l-14 14"
+            />
+            <path
+              d="m85 13 7 17M188 220l7 17M28 76l18 7M234 167l18 7M195 13l-7 17M92 220l-7 17M28 174l18-7M234 83l18-7"
+            />
+          </svg>
+          <span class="particle particle-top"></span>
+          <span class="particle particle-left"></span>
+          <span class="particle particle-right"></span>
+          <div class="badge-medallion">
+            <span class="medallion-orbit"></span>
+            <span class="medallion-notch notch-top"></span>
+            <span class="medallion-notch notch-bottom"></span>
+            <svg class="badge-icon" viewBox="0 0 64 64" focusable="false">
+              @for (d of meta().iconPaths; track d) {
+                <path [attr.d]="d" />
+              }
+            </svg>
+            <span class="badge-level">{{ level() }}</span>
+          </div>
+        </div>
+
+        <div class="badge-copy">
+          <h2 id="badge-dialog-title">{{ item.badge.name }}</h2>
+          <p id="badge-dialog-description" class="badge-description">
+            {{ item.badge.description }}
+          </p>
+          <span class="category-chip"><span class="category-dot"></span>{{ meta().label }}</span>
+        </div>
+
+        <div class="badge-actions">
+          <a class="primary-action" routerLink="/profilo">
+            Mettilo in evidenza
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M4 12h15m-6-6 6 6-6 6" />
+            </svg>
+          </a>
+          <button class="secondary-action" type="button" (click)="next()">
+            {{ isLast() ? 'Continua' : 'Avanti' }}
+          </button>
+        </div>
+
+        <p class="dialog-footnote">Un simbolo del tuo contributo. Non della tua identità.</p>
+      </section>
+    }
+  </div>
+</dialog>

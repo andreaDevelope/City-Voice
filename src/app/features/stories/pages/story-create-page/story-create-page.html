@@ -5,8 +5,8 @@
         <p class="eyebrow">Roma, prendi parola</p>
         <h1>Il silenzio non cambia <span class="accent">Roma.</span></h1>
         <p class="intro">
-          Un'esperienza vissuta. Un problema che vedi ogni giorno. Parti da quello che conosci: la città cambia quando qualcuno
-          rompe il silenzio.
+          Un'esperienza vissuta. Un problema che vedi ogni giorno. Parti da quello che conosci: la
+          città cambia quando qualcuno rompe il silenzio.
         </p>
       </header>
 
@@ -21,35 +21,49 @@
     }
 
     @case ('STORY') {
-      <button type="button" class="back-button" (click)="backToChoice()">← Torna alla scelta</button>
+      <button type="button" class="back-button" (click)="backToChoice()">
+        ← Torna alla scelta
+      </button>
       <header class="page-heading">
         <p class="eyebrow">Roma, prendi parola</p>
         <h1>Racconta la tua storia.</h1>
-        <p class="intro">Quello che hai vissuto merita spazio. Raccontalo con la tua voce, senza esporre la tua identità.</p>
+        <p class="intro">
+          Quello che hai vissuto merita spazio. Raccontalo con la tua voce, senza esporre la tua
+          identità.
+        </p>
       </header>
 
       @if (profile(); as p) {
         <app-author-chip [username]="p.username" [symbol]="p.symbol" [color]="p.color" />
       }
       @if (submitError()) {
-        <p class="error-banner" role="alert">Non siamo riusciti a pubblicare. Controlla la connessione e riprova.</p>
+        <p class="error-banner" role="alert">
+          Non siamo riusciti a pubblicare. Controlla la connessione e riprova.
+        </p>
       }
       <app-story-form [sending]="sending()" (publish)="publishStory($event)" />
     }
 
     @case ('REPORT') {
-      <button type="button" class="back-button" (click)="backToChoice()">← Torna alla scelta</button>
+      <button type="button" class="back-button" (click)="backToChoice()">
+        ← Torna alla scelta
+      </button>
       <header class="page-heading">
         <p class="eyebrow">Roma, prendi parola</p>
         <h1>Segnala un problema.</h1>
-        <p class="intro">Rendi visibile un disservizio. Fatti concreti, parole chiare. La tua identità resta privata.</p>
+        <p class="intro">
+          Rendi visibile un disservizio. Fatti concreti, parole chiare. La tua identità resta
+          privata.
+        </p>
       </header>
 
       @if (profile(); as p) {
         <app-author-chip [username]="p.username" [symbol]="p.symbol" [color]="p.color" />
       }
       @if (submitError()) {
-        <p class="error-banner" role="alert">Non siamo riusciti a pubblicare. Controlla la connessione e riprova.</p>
+        <p class="error-banner" role="alert">
+          Non siamo riusciti a pubblicare. Controlla la connessione e riprova.
+        </p>
       }
       <app-report-form [sending]="sending()" (publish)="publishReport($event)" />
     }
@@ -57,10 +71,22 @@
     @case ('success') {
       <header class="page-heading">
         <p class="eyebrow">Roma, prendi parola</p>
-        <h1>Hai rotto il silenzio.</h1>
-        <p class="intro">{{ result()?.title }}</p>
+        <h1>La tua voce è qui.</h1>
+        <p class="intro">
+          Hai aggiunto un pezzo di realtà al racconto della città. Grazie per aver preso parola.
+        </p>
       </header>
-      <button type="button" class="back-button" (click)="backToChoice()">Racconta un'altra</button>
+
+      @if (result(); as story) {
+        <app-success-panel
+          [story]="story"
+          [previous]="previousProgress()"
+          (again)="backToChoice()"
+        />
+      }
     }
+  }
+    @if (unlocked().length > 0) {
+    <app-badge-unlocked-dialog [badges]="unlocked()" (closed)="closeBadgeDialog()" />
   }
 </main>
