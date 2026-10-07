@@ -29,12 +29,12 @@ Set in `src/environments/environment.ts`:
 
     export const environment = {
       production: false,
-      apiUrl: 'http://localhost:8080/api',
+      apiUrl: 'http://localhost:8080/api/cityvoice',
     };
 
 Change `apiUrl` if the API runs on a different host or port.
 
-The production build replaces this file with `environment.prod.ts`, which uses the relative path `/api` and assumes frontend and API are served from the same origin.
+The production build replaces this file with `environment.prod.ts`, which uses the relative path `/api/cityvoice` and assumes frontend and API are served from the same origin.
 
 ## CORS
 

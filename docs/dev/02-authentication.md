@@ -4,7 +4,7 @@
 
 The API issues a JWT stored in an httpOnly cookie. The frontend never reads the token: it calls `/auth/me` and relies on the cookie being sent automatically.
 
-Auth state lives in `AuthService` as a `BehaviorSubject<iAuthUser | null>`, exposed to templates as the `isLoggedIn` signal via `toSignal`.
+Auth state lives in `AuthService` as a `BehaviorSubject<AuthUser | null>`, exposed to templates as the `isLoggedIn` signal via `toSignal`.
 
 ## Startup
 
@@ -59,9 +59,9 @@ The redirect target's query string does not survive: `@angular/ssr` builds the `
 
 ## Auth prompt
 
-`AuthPromptService` is a root-level signal holder. `Shell` binds `signupDialogOpen` to its `isOpen` signal and renders the signup dialog conditionally.
+`AuthPromptService` is a root-level signal holder controlling the login, signup and recovery-key dialogs (`openLogin()`, `openSignup()`, `openRecoveryKey()`, `close()`). `Shell` renders them from its signals.
 
-Any component can call `open()` without knowing about `Shell`. It is currently called only from `Shell` itself, wired to the header buttons.
+Any component can open them without knowing about `Shell`. Today they are opened from the header and from `/racconta`, which opens signup when an anonymous user tries to publish.
 
 The guard does not call it: the service instance created during SSR is destroyed when the redirect is issued, so state set there never reaches the browser.
 

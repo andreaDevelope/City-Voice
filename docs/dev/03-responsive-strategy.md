@@ -33,3 +33,7 @@ picked empirically to keep the trigger reachable. Measuring the trigger instead
 would require decoupling the measured element from the transformed one. That
 work is deferred: the drag interaction itself is not confirmed, and reworking
 the geometry for a feature that may be removed is not worth the cost.
+
+## Pages without a dedicated desktop version
+
+`/racconta` currently has a single layout that widens. The side column with missions is missing.

@@ -18,11 +18,16 @@ Simbolo e colore insieme sono la tua identità visiva sulla piattaforma. Puoi ca
 
 ## I badge
 
-Partecipando si sbloccano dei badge: riconoscimenti legati alla tua attività sulla piattaforma — le storie che pubblichi, la costanza nel tempo, le reazioni che ricevi.
+Partecipando si sbloccano dei badge, divisi in quattro percorsi:
+
+- **Attività**: ogni storia, segnalazione o commento che pubblichi.
+- **Vicinato**: in quanti municipi diversi hai lasciato il segno. Contano solo i contenuti legati a un quartiere: le segnalazioni e i commenti sotto di esse.
+- **Continuità**: con che costanza torni sulla piattaforma.
+- **Impatto**: come la community risponde a quello che scrivi.
+
+Quando ne sblocchi uno, te lo diciamo subito.
 
 Puoi sceglierne fino a tre da mostrare sotto il tuo profilo. Gli altri restano nella tua collezione.
-
-I criteri di sblocco sono in fase di definizione e verranno documentati qui.
 
 ## Perché la gamification
 
