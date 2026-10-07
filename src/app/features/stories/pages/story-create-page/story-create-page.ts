@@ -12,7 +12,8 @@ import { StoryForm, StoryFormValue } from '../../components/story-form/story-for
 import { ReportForm, ReportFormValue } from '../../components/report-form/report-form';
 import { SuccessPanel } from '../../components/success-panel/success-panel';
 import { CategoryProgress } from '../../../profile/models/category-progress.model';
-import { BadgeUnlockedDialog, UnlockedBadge } from '../../../../shared/ui/badge-unlocked-dialog/badge-unlocked-dialog';
+import { BadgeUnlockedDialog } from '../../../../shared/ui/badge-unlocked-dialog/badge-unlocked-dialog';
+import { UnlockedBadge } from '../../../../shared/ui/badge-unlocked-dialog/models/unlocked-badge.model';
 
 type Step = 'choice' | StoryType | 'success';
 
