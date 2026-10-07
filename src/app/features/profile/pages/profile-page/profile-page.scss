@@ -346,6 +346,22 @@ main {
     opacity: 0.8;
   }
 
+  .in-progress-status {
+    display: grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    border: 0;
+    background: transparent;
+    color: var(--status-color);
+    filter: drop-shadow(0 0 4px color-mix(in srgb, var(--status-color) 45%, transparent));
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
   .locked-status {
     background-color: var(--border-subtle);
     border: 1px solid var(--border-subtle);
