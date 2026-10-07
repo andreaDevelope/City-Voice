@@ -1,0 +1,44 @@
+<div class="choice-heading">
+  <h2>Da dove vuoi cominciare?</h2>
+  <p class="choice-hint">Scegli la tua voce</p>
+</div>
+
+<div class="choice-cards">
+  @for (card of cards; track card.type) {
+    <button type="button" class="choice-card" (click)="choose.emit(card.type)">
+      <span class="choice-top">
+        <span class="choice-symbol">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path [attr.d]="card.iconPath" />
+          </svg>
+        </span>
+        <span class="choice-number">{{ card.number }}</span>
+      </span>
+      <span class="choice-title">{{ card.title }}</span>
+      <span class="choice-subtitle">{{ card.subtitle }}</span>
+      <span class="choice-copy">{{ card.copy }}</span>
+      <span class="choice-action">
+        {{ card.action }}
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M4 12h15m-6-6 6 6-6 6" />
+        </svg>
+      </span>
+    </button>
+  }
+</div>

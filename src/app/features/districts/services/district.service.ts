@@ -7,7 +7,7 @@ import { MunicipioGroup } from '../models/district.model';
   providedIn: 'root',
 })
 export class DistrictService {
-  private readonly districtsUrl = `${environment.apiUrl}/cityvoice/public/districts`;
+  private readonly districtsUrl = `${environment.apiUrl}/public/districts`;
 
   private http = inject(HttpClient);
 

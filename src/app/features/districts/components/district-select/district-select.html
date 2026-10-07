@@ -1,0 +1,83 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<div class="field">
+  <label [for]="baseId">Quartiere <span class="required">*</span></label>
+
+  <div class="district-control">
+    <input
+      #input
+      [id]="baseId"
+      type="text"
+      role="combobox"
+      autocomplete="off"
+      placeholder="Cerca il tuo quartiere"
+      aria-autocomplete="list"
+      [attr.aria-expanded]="open()"
+      [attr.aria-controls]="listId"
+      [attr.aria-activedescendant]="activeOptionId()"
+      [attr.aria-invalid]="invalid()"
+      [value]="displayValue()"
+      [disabled]="disabled()"
+      (input)="onInput($event)"
+      (keydown)="onKeydown($event)"
+      (blur)="onBlur()"
+    />
+    <button
+      type="button"
+      class="district-toggle"
+      tabindex="-1"
+      aria-label="Apri elenco quartieri"
+      [attr.aria-expanded]="open()"
+      [attr.aria-controls]="listId"
+      [disabled]="disabled()"
+      (mousedown)="$event.preventDefault()"
+      (click)="toggle(input)"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="m6 9 6 6 6-6" />
+      </svg>
+    </button>
+  </div>
+
+  @if (open()) {
+    <div [id]="listId" class="district-options" role="listbox" aria-label="Quartieri per municipio">
+      @for (group of filteredGroups(); track group.municipio) {
+        <div class="district-group" role="group" [attr.aria-label]="'Municipio ' + group.municipio">
+          <p class="district-heading">Municipio {{ group.municipio }} · {{ group.label }}</p>
+          @for (district of group.districts; track district.id) {
+            <div
+              [id]="optionId(district)"
+              class="district-option"
+              role="option"
+              [class.active]="activeOptionId() === optionId(district)"
+              [attr.aria-selected]="isSelected(district)"
+              (mousedown)="$event.preventDefault()"
+              (click)="choose(district)"
+            >
+              <span class="district-name">{{ district.name }}</span>
+              @if (district.type === 'RIONE') {
+                <span class="district-tag">Rione</span>
+              }
+            </div>
+          }
+        </div>
+      } @empty {
+        <p class="district-empty" role="status">Nessun quartiere trovato. Prova un altro nome.</p>
+      }
+    </div>
+  }
+
+  @if (loadError()) {
+    <p class="field-error">Impossibile caricare i quartieri. Ricarica la pagina.</p>
+  } @else {
+    <p class="field-hint">Nessun indirizzo richiesto.</p>
+  }
+</div>

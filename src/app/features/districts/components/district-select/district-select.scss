@@ -1,0 +1,106 @@
+@use '../../../stories/styles/form-fields';
+
+.field {
+  position: relative;
+}
+
+.district-control {
+  position: relative;
+
+  input {
+    padding-right: var(--space-10);
+  }
+}
+
+.district-toggle {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--space-10);
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--testo-secondario);
+
+  &:active {
+    scale: 1;
+  }
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+.district-options {
+  position: absolute;
+  top: 5rem;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  max-height: 18rem;
+  padding: var(--space-2);
+  overflow-y: auto;
+  background: var(--sfondo-secondario);
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: var(--radius-field);
+  box-shadow: 0 1rem 3rem rgb(0 0 0 / 35%);
+}
+
+.district-heading {
+  position: sticky;
+  top: calc(-1 * var(--space-2));
+  padding: var(--space-3) var(--space-2);
+  background: var(--sfondo-secondario);
+  color: var(--testo-secondario);
+  font-size: var(--font-size-micro);
+  font-weight: var(--font-weight-bold);
+}
+
+.district-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-2);
+  border-radius: var(--radius-button);
+  color: var(--testo-principale);
+  font-size: var(--font-size-small);
+  cursor: pointer;
+
+  &:hover,
+  &.active {
+    background: rgb(255 255 255 / 5%);
+    outline: 1px solid rgb(255 255 255 / 20%);
+  }
+
+  &[aria-selected='true'] {
+    color: var(--rosso-azione);
+  }
+}
+
+.district-name {
+  color: inherit;
+}
+
+.district-tag {
+  padding: 0 var(--space-1);
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: var(--radius-button);
+  color: var(--testo-secondario);
+  font-size: var(--font-size-micro);
+}
+
+.district-empty {
+  padding: var(--space-4);
+  color: var(--testo-secondario);
+  font-size: var(--font-size-small);
+}
+
+.field-hint {
+  display: block;
+  margin-top: var(--space-2);
+}

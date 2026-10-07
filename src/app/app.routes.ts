@@ -22,7 +22,7 @@ export const routes: Routes = [
         path: 'racconta',
         loadComponent: () =>
           import('./features/stories/pages/story-create-page/story-create-page').then(
-            (m) => m.StoryCreate,
+            (m) => m.StoryCreatePage,
           ),
       },
       {

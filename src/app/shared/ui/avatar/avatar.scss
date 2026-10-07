@@ -1,0 +1,40 @@
+:host {
+  --avatar-size: 65px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: 50%;
+  overflow: hidden;
+  color: var(--testo-principale);
+
+  svg {
+    width: 52%;
+    height: 52%;
+  }
+}
+
+.avatar-neutral {
+  background-color: var(--profile-color-neutral);
+}
+
+.avatar-complaint {
+  background-color: var(--profile-color-complaint);
+}
+
+.avatar-warning {
+  background-color: var(--profile-color-warning);
+}
+
+.avatar-impact {
+  background-color: var(--profile-color-impact);
+}
+
+.avatar-discretion {
+  background-color: var(--profile-color-discretion);
+}

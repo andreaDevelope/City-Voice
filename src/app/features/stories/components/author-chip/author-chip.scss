@@ -1,0 +1,47 @@
+.author-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-field);
+  background: var(--sfondo-secondario);
+}
+
+.chip-avatar {
+  --avatar-size: var(--space-10);
+}
+
+.author-identity {
+  min-width: 0;
+}
+
+.author-label {
+  color: var(--testo-secondario);
+  font-size: var(--font-size-micro);
+  line-height: 1.4;
+}
+
+.author-name {
+  margin-top: var(--space-1);
+  color: var(--testo-principale);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.author-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-left: auto;
+  color: var(--testo-secondario);
+  font-size: var(--font-size-micro);
+  white-space: nowrap;
+
+  svg {
+    width: 0.8125rem;
+    height: 0.8125rem;
+  }
+}

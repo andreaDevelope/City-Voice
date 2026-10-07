@@ -1,0 +1,11 @@
+@use 'styles/breakpoints' as *;
+@use '../../styles/form-fields';
+
+.field-row {
+  display: grid;
+  gap: var(--space-5);
+
+  @include da-wide {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

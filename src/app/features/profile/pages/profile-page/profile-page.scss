@@ -24,35 +24,10 @@ main {
     margin-top: 1em;
     background-color: var(--sfondo-secondario);
   }
-  .avatar-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 65px;
-    height: 65px;
+  .hero-avatar {
+    width: fit-content;
     margin-inline: auto;
     margin-top: 1.5em;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: var(--border-subtle);
-    &.avatar-neutral {
-      background-color: var(--profile-color-neutral);
-    }
-    &.avatar-complaint {
-      background-color: var(--profile-color-complaint);
-    }
-    &.avatar-warning {
-      background-color: var(--profile-color-warning);
-    }
-    &.avatar-impact {
-      background-color: var(--profile-color-impact);
-    }
-    &.avatar-discretion {
-      background-color: var(--profile-color-discretion);
-    }
-    svg {
-      color: var(--testo-principale);
-    }
   }
 
   .user-name {

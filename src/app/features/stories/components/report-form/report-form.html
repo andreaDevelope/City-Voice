@@ -1,0 +1,120 @@
+<form [formGroup]="form" (ngSubmit)="submit()" novalidate aria-label="Segnala un problema">
+  <fieldset [disabled]="sending()">
+    <legend class="visually-hidden">Dettagli della segnalazione</legend>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="report-category">Categoria <span class="required">*</span></label>
+        <select
+          id="report-category"
+          formControlName="category"
+          [attr.aria-invalid]="hasError('category')"
+          aria-describedby="report-category-error"
+        >
+          <option value="">Scegli una categoria</option>
+          @for (category of categories; track category.value) {
+            <option [value]="category.value">{{ category.label }}</option>
+          }
+        </select>
+        @if (hasError('category')) {
+          <p id="report-category-error" class="field-error">Scegli una categoria.</p>
+        }
+      </div>
+
+      <div>
+        <app-district-select formControlName="districtId" [invalid]="hasError('districtId')" />
+        @if (hasError('districtId')) {
+          <p class="field-error">Scegli un quartiere dall'elenco.</p>
+        }
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="label-row">
+        <label for="report-title">Il problema, in un titolo <span class="required">*</span></label>
+        <span class="field-hint">Suggeriti 40–80 caratteri</span>
+      </div>
+      <input
+        id="report-title"
+        type="text"
+        formControlName="title"
+        [attr.maxlength]="limits.title"
+        placeholder="Cosa non funziona nel tuo quartiere?"
+        [attr.aria-invalid]="hasError('title')"
+        aria-describedby="report-title-count report-title-error"
+      />
+      <span id="report-title-count" class="character-count">
+        {{ form.controls.title.value.length }} / {{ limits.title }} caratteri
+      </span>
+      @if (hasError('title')) {
+        <p id="report-title-error" class="field-error">Scrivi un titolo.</p>
+      }
+    </div>
+
+    <p class="field-hint">Compila almeno uno tra descrizione breve e testo.</p>
+
+    <div class="field">
+      <div class="label-row">
+        <label for="report-description">Descrizione breve</label>
+        <span class="field-hint">Suggeriti 60–140 caratteri</span>
+      </div>
+      <textarea
+        id="report-description"
+        rows="2"
+        formControlName="description"
+        [attr.maxlength]="limits.description"
+        placeholder="Riassumi il disservizio e chi ne subisce le conseguenze."
+        [attr.aria-invalid]="hasContentError()"
+        aria-describedby="report-description-count report-content-error"
+      ></textarea>
+      <span id="report-description-count" class="character-count">
+        {{ form.controls.description.value.length }} / {{ limits.description }} caratteri
+      </span>
+    </div>
+
+    <div class="field">
+      <label for="report-content"
+        >Descrivi il problema <span class="field-hint">(facoltativo)</span></label
+      >
+      <textarea
+        id="report-content"
+        rows="5"
+        formControlName="storyContent"
+        [attr.maxlength]="limits.storyContent"
+        placeholder="Cosa succede, da quanto tempo e quali conseguenze ha? Resta sui fatti, senza dati personali."
+        [attr.aria-invalid]="hasContentError()"
+        aria-describedby="report-content-hint report-content-count report-content-error"
+      ></textarea>
+      <div class="label-row">
+        <span id="report-content-hint" class="field-hint"
+          >Suggerite 50–200 parole. Vai al punto.</span
+        >
+        <span id="report-content-count" class="character-count">
+          {{ form.controls.storyContent.value.length }} / {{ limits.storyContent }} caratteri
+        </span>
+      </div>
+      @if (hasContentError()) {
+        <p id="report-content-error" class="field-error">
+          Scrivi almeno una descrizione breve o il testo.
+        </p>
+      }
+    </div>
+  </fieldset>
+
+  <div class="form-actions">
+    <button type="submit" class="submit-button" [disabled]="sending()">
+      {{ sending() ? 'Pubblicazione…' : 'Pubblica la segnalazione' }}
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M4 12h15m-6-6 6 6-6 6" />
+      </svg>
+    </button>
+  </div>
+</form>
