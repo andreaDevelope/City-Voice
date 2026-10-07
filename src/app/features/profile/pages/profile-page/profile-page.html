@@ -190,27 +190,46 @@
               <div class="badge-description">{{ p.currentBadge.description }}</div>
             </div>
             <div class="state-container">
-              <div class="status">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-check"
-                >
-                  <path d="M20 6 9 17l-5-5" />
-                </svg>
-              </div>
-              <div class="progress">
-                @for (i of [0, 1, 2]; track i) {
-                  <div class="dot" [class.filled]="i < 2"></div>
-                }
-              </div>
+              @if (p.counter >= p.currentBadge.missionThreshold) {
+                <div class="status">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-check"
+                  >
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </div>
+              } @else {
+                <div class="status locked-status">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                </div>
+              }
+              <app-progress-dots
+                [counter]="p.counter"
+                [threshold]="p.currentBadge.missionThreshold"
+                [style.--dot-color]="'var(--colore-' + cat.cssClass + ')'"
+              />
             </div>
           </div>
 
@@ -239,11 +258,11 @@
                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                   </svg>
                 </div>
-                <div class="progress">
-                  <div class="dot"></div>
-                  <div class="dot"></div>
-                  <div class="dot"></div>
-                </div>
+                <app-progress-dots
+                  [counter]="p.counter"
+                  [threshold]="p.nextBadge.missionThreshold"
+                  [style.--dot-color]="'var(--colore-' + cat.cssClass + ')'"
+                />
               </div>
             </div>
           }

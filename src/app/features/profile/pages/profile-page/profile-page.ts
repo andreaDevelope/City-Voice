@@ -6,11 +6,12 @@ import { ProfileColor } from '../../enums/profile-color';
 import { PROFILE_SYMBOL_LABELS } from '../../enums/profile-symbol-labels';
 import { PROFILE_COLOR_LABELS } from '../../enums/profile-color-labels';
 import { CategoryProgress } from '../../models/category-progress.model';
+import { ProgressDots } from '../../../../shared/ui/progress-dots/progress-dots';
 
 @Component({
   standalone: true,
   selector: 'app-profile',
-  imports: [],
+  imports: [ProgressDots],
   templateUrl: './profile-page.html',
   styleUrl: './profile-page.scss',
 })

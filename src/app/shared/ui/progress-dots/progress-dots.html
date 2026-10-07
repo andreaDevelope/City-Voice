@@ -1,0 +1,5 @@
+<div class="progress" role="img" [attr.aria-label]="lit() + ' di ' + total()">
+  @for (i of indexes(); track i) {
+    <span class="dot" [class.filled]="i < lit()"></span>
+  }
+</div>

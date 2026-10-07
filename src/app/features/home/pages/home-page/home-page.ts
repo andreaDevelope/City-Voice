@@ -1,5 +1,12 @@
 /* eslint-disable @angular-eslint/prefer-inject */
-import { afterNextRender, Component, Inject, PLATFORM_ID, signal, OnDestroy } from '@angular/core';
+import {
+  afterNextRender,
+  Component,
+  Inject,
+  PLATFORM_ID,
+  signal,
+  OnDestroy,
+} from '@angular/core';
 
 import { isPlatformBrowser } from '@angular/common';
 import { HomeStats } from '../../models/home-stats.model';
@@ -9,6 +16,7 @@ import { HomeSlogan } from '../../models/home-slogan.model';
 import { DesktopButtonDrawer } from '../../../../shared/ui/desktop-buttons/desktop-button-drawer';
 import { DesktopButtonFancy } from '../../../../shared/ui/desktop-buttons/desktop-button-fancy';
 import { RouterLink } from '@angular/router';
+import { ProfileService } from '../../../profile/services/profile.service';
 
 interface HomeHeroSlide {
   title: string;
@@ -103,7 +111,10 @@ export class Home implements OnDestroy {
   currentIndex = signal(0);
   private timer: ReturnType<typeof setInterval> | null = null;
 
-  constructor(@Inject(PLATFORM_ID) platformId: object) {
+  constructor(
+    @Inject(PLATFORM_ID) platformId: object,
+    private profileSrv: ProfileService,
+  ) {
     if (!isPlatformBrowser(platformId)) return;
 
     afterNextRender(() => {

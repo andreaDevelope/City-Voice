@@ -1,0 +1,25 @@
+:host {
+  --dot-color: var(--colore-impatto);
+}
+
+.progress {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.dot {
+  width: var(--space-2);
+  height: var(--space-2);
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 5%);
+  border: 1px solid rgb(255 255 255 / 20%);
+  transition:
+    background var(--transition-time),
+    border-color var(--transition-time);
+
+  &.filled {
+    background: var(--dot-color);
+    border-color: var(--dot-color);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--dot-color) 10%, transparent);
+  }
+}
