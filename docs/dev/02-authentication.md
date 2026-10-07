@@ -11,6 +11,7 @@ Auth state lives in `AuthService` as a `BehaviorSubject<AuthUser | null>`, expos
 `provideAppInitializer` in `app.config.ts` calls `checkAuth()` before the router evaluates any route. On success it populates `authSubject` and starts the refresh timer; on failure it sets `authSubject` to null.
 
 This runs on both server and browser, so `isLoggedIn()` is reliable from the first render.
+At build time (route extraction) there is no incoming request: the initializer skips `/auth/me`, which would otherwise hang and fail the build.
 
 ## Interceptors
 

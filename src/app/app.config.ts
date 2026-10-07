@@ -3,6 +3,8 @@ import {
   provideAppInitializer,
   inject,
   provideBrowserGlobalErrorListeners,
+  PLATFORM_ID,
+  REQUEST,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -19,6 +21,7 @@ import {
   withInterceptors,
 } from '@angular/common/http';
 import { ssrCookieInterceptor } from './core/http/ssr-cookie.interceptor';
+import { isPlatformServer } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -37,6 +40,13 @@ export const appConfig: ApplicationConfig = {
     },
     provideAppInitializer(() => {
       const authService = inject(AuthService);
+      const platformId = inject(PLATFORM_ID);
+      const request = inject(REQUEST, { optional: true });
+
+      if (isPlatformServer(platformId) && !request) {
+        return;
+      }
+
       return firstValueFrom(
         authService.checkAuth().pipe(
           tap((authUser) => {
