@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { HeaderApp } from '../header-app/header-app';
 import { LoginDialogComponent } from '../../features/auth/dialogs/login-dialog/login-dialog';
 import { SignupDialogComponent } from '../../features/auth/dialogs/signup-dialog/signup-dialog';
@@ -28,6 +28,7 @@ export class Shell {
   private meta: Meta = inject(Meta);
   private authPrompt: AuthPromptService = inject(AuthPromptService);
   private authService = inject(AuthService);
+  private router = inject(Router);
 
   isLoggedIn = this.authService.isLoggedIn;
 
@@ -47,7 +48,7 @@ export class Shell {
   }
 
   openLoginDialog() {
-    this.authPrompt.openLogin();
+    this.authPrompt.openLogin({ stayOnPage: false });
   }
 
   closeLoginDialog() {
@@ -55,7 +56,7 @@ export class Shell {
   }
 
   openSignupDialog() {
-    this.authPrompt.openSignup();
+    this.authPrompt.openSignup({ stayOnPage: false });
   }
 
   closeSignupDialog() {
@@ -67,10 +68,18 @@ export class Shell {
   }
 
   onRecoveryKeyConfirmed() {
+    const stay = this.authPrompt.stayOnPage();
     this.authPrompt.close();
+    if (!stay && this.authService.isLoggedIn()) {
+      this.router.navigate(['/storie']);
+    }
   }
 
   switchToSignup() {
     this.authPrompt.openSignup();
+  }
+
+  switchToLogin() {
+    this.authPrompt.openLogin();
   }
 }

@@ -37,7 +37,11 @@
         <app-author-chip [username]="p.username" [symbol]="p.symbol" [color]="p.color" />
       }
       <ng-container [ngTemplateOutlet]="errorBanner" />
-      <app-story-form [sending]="sending()" (publish)="publishStory($event)" />
+      <app-story-form
+        [sending]="sending()"
+        [highlightSubmit]="highlightSubmit()"
+        (publish)="publishStory($event)"
+      />
     }
 
     @case ('REPORT') {
@@ -57,7 +61,11 @@
         <app-author-chip [username]="p.username" [symbol]="p.symbol" [color]="p.color" />
       }
       <ng-container [ngTemplateOutlet]="errorBanner" />
-      <app-report-form [sending]="sending()" (publish)="publishReport($event)" />
+      <app-report-form
+        [sending]="sending()"
+        [highlightSubmit]="highlightSubmit()"
+        (publish)="publishReport($event)"
+      />
     }
 
     @case ('success') {

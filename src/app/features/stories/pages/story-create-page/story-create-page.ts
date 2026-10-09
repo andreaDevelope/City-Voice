@@ -60,6 +60,8 @@ export class StoryCreatePage {
   protected readonly result = signal<StoryResponse | null>(null);
   protected readonly previousProgress = signal<CategoryProgress[] | null>(null);
   protected readonly unlocked = signal<UnlockedBadge[]>([]);
+  private readonly pendingPublish = signal(false);
+  protected readonly highlightSubmit = signal(false);
 
   constructor() {
     effect(() => {
@@ -70,11 +72,22 @@ export class StoryCreatePage {
         this.previousProgress.set(null);
       }
     });
+
+    effect(() => {
+      if (this.pendingPublish() && this.auth.isLoggedIn() && this.authPrompt.active() === null) {
+        untracked(() => {
+          this.pendingPublish.set(false);
+          this.highlightSubmit.set(true);
+        });
+      }
+    });
   }
 
   protected choose(type: StoryType): void {
     this.submitError.set(null);
     this.networkError.set(false);
+    this.pendingPublish.set(false);
+    this.highlightSubmit.set(false);
     this.step.set(type);
   }
 
@@ -85,6 +98,8 @@ export class StoryCreatePage {
     }
     this.submitError.set(null);
     this.networkError.set(false);
+    this.pendingPublish.set(false);
+    this.highlightSubmit.set(false);
     this.result.set(null);
     this.step.set('choice');
   }
@@ -99,9 +114,11 @@ export class StoryCreatePage {
 
   private send(request: CreateStoryRequest): void {
     if (!this.auth.isLoggedIn()) {
-      this.authPrompt.openSignup();
+      this.pendingPublish.set(true);
+      this.authPrompt.openSignup({ stayOnPage: true });
       return;
     }
+    this.highlightSubmit.set(false);
     this.lastRequest = request;
     this.sending.set(true);
     this.submitError.set(null);

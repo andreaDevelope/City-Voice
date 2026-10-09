@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, Observable, map, switchMap, tap } from 'rxjs';
 import { User } from './models/user.model';
 import { LoginRequest } from './models/login-request.model';
 import { AuthUser } from './models/auth-user.model';
@@ -34,6 +34,16 @@ export class AuthService {
 
   login(authData: LoginRequest) {
     return this.http.post(this.loginUrl, authData);
+  }
+
+  signIn(credentials: LoginRequest): Observable<AuthUser> {
+    return this.login(credentials).pipe(
+      switchMap(() => this.checkAuth()),
+      tap((user) => {
+        this.authSubject.next(user);
+        this.startRefreshTimer();
+      }),
+    );
   }
 
   checkAuth() {

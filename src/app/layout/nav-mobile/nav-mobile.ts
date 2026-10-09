@@ -81,7 +81,7 @@ export class NavMobile {
     this.open.set(false);
 
     if (item.action === 'login') {
-      this.authPrompt.openLogin();
+      this.authPrompt.openLogin({ stayOnPage: false });
       return;
     }
 

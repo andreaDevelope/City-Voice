@@ -1,8 +1,11 @@
 import { ChangeDetectorRef, Component, EventEmitter, inject, Output } from '@angular/core';
 import { AuthService } from '../../../../core/auth/auth.service';
+import { AuthPromptService } from '../../../../core/auth/auth-prompt.service';
 import { LoginRequest } from '../../../../core/auth/models/login-request.model';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { httpErrorMessage } from '../../../../shared/utils/http-error-message';
 
 @Component({
   selector: 'app-login-dialog',
@@ -25,6 +28,7 @@ export class LoginDialogComponent {
   private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
   private authService: AuthService = inject(AuthService);
   private router = inject(Router);
+  private authPrompt = inject(AuthPromptService);
   constructor() {
     this.form = this.fb.group({
       username: ['', Validators.required],
@@ -75,31 +79,18 @@ export class LoginDialogComponent {
       password: this.form.value.password,
     };
 
-    this.authService.login(loginData).subscribe({
+    this.authService.signIn(loginData).subscribe({
       next: () => {
-        // Login riuscito, token è nel cookie
-        this.authService.checkAuth().subscribe({
-          next: (user) => {
-            // Salva l'utente in memoria
-            this.authService.authSubject.next(user);
-
-            // Avvia il timer per il refresh proattivo
-            this.authService.startRefreshTimer();
-
-            // Chiudi dialog e naviga
-            this.loading = false;
-            this.close();
-            this.router.navigate(['/setting']);
-          },
-          error: () => {
-            this.errorMessage = 'Errore nel recuperare i dati utente';
-            this.loading = false;
-            this.cdr.markForCheck();
-          },
-        });
+        // Chiudi dialog e naviga
+        const stay = this.authPrompt.stayOnPage();
+        this.loading = false;
+        this.close();
+        if (!stay) {
+          this.router.navigate(['/storie']);
+        }
       },
-      error: (err: { error: { message?: string } }) => {
-        this.errorMessage = err.error?.message || 'Errore nel login';
+      error: (err: HttpErrorResponse) => {
+        this.errorMessage = httpErrorMessage(err, 'Errore nel login');
         this.loading = false;
         this.cdr.markForCheck();
       },

@@ -102,7 +102,13 @@
   </fieldset>
 
   <div class="form-actions">
-    <button type="submit" class="submit-button" [disabled]="sending()">
+    <button
+      #submitButton
+      type="submit"
+      class="submit-button"
+      [class.attention]="highlightSubmit()"
+      [disabled]="sending()"
+    >
       {{ sending() ? 'Pubblicazione…' : 'Pubblica la segnalazione' }}
       <svg
         viewBox="0 0 24 24"

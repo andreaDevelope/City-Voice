@@ -1,6 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="submit()" novalidate aria-label="Racconta una storia">
   <fieldset [disabled]="sending()">
-    <legend class="sr-only">Dettagli della storia</legend>
+    <legend class="visually-hidden">Dettagli della storia</legend>
 
     <div class="field">
       <div class="label-row">
@@ -72,8 +72,25 @@
   </fieldset>
 
   <div class="form-actions">
-    <button type="submit" class="button button-primary" [disabled]="sending()">
+    <button
+      #submitButton
+      type="submit"
+      class="submit-button"
+      [class.attention]="highlightSubmit()"
+      [disabled]="sending()"
+    >
       {{ sending() ? 'Pubblicazione…' : 'Pubblica la storia' }}
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M4 12h15m-6-6 6 6-6 6" />
+      </svg>
     </button>
   </div>
 </form>

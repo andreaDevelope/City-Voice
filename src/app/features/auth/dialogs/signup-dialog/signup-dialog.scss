@@ -99,6 +99,24 @@ input {
   opacity: 0.4;
 }
 
+.switch-hint {
+  color: var(--testo-secondario);
+  font-size: 0.85rem;
+  text-align: center;
+  margin-block: 0.75rem 1rem;
+}
+
+.switch-link {
+  background: none;
+  border: none;
+  color: var(--rosso-azione);
+  font-size: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
 .field-error {
   color: var(--rosso-denuncia);
   font-size: 0.8rem;

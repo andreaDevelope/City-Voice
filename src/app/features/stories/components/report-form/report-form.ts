@@ -1,4 +1,15 @@
-import { Component, inject, input, output, signal } from '@angular/core';
+import {
+  afterNextRender,
+  Component,
+  effect,
+  ElementRef,
+  inject,
+  Injector,
+  input,
+  output,
+  signal,
+  viewChild,
+} from '@angular/core';
 import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
@@ -35,7 +46,10 @@ export class ReportForm {
   private fb = inject(NonNullableFormBuilder);
 
   readonly sending = input(false);
+  readonly highlightSubmit = input(false);
   readonly publish = output<ReportFormValue>();
+  private injector = inject(Injector);
+  private readonly submitButton = viewChild<ElementRef<HTMLButtonElement>>('submitButton');
 
   protected readonly limits = { title: 120, description: 240, storyContent: 3000 };
   protected readonly attempted = signal(false);
@@ -64,6 +78,21 @@ export class ReportForm {
     },
     { validators: contentRequired },
   );
+
+  constructor() {
+    effect(() => {
+      if (this.highlightSubmit()) {
+        afterNextRender(
+          () =>
+            this.submitButton()?.nativeElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center',
+            }),
+          { injector: this.injector },
+        );
+      }
+    });
+  }
 
   protected hasError(field: keyof ReportFormValue): boolean {
     return this.attempted() && this.form.controls[field].invalid;

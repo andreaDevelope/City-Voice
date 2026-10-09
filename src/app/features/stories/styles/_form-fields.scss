@@ -141,3 +141,27 @@ fieldset {
     opacity: 0.6;
   }
 }
+
+.submit-button.attention {
+  animation: submit-attention 1.2s ease-in-out 3;
+}
+
+@keyframes submit-attention {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--rosso-azione) 0%, transparent);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 0 8px color-mix(in srgb, var(--rosso-azione) 25%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .submit-button.attention {
+    animation: none;
+    outline: 2px solid var(--rosso-azione);
+    outline-offset: 4px;
+  }
+}
