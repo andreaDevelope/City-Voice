@@ -11,7 +11,7 @@ const PAGE_SIZE = 10;
 
 @Component({
   standalone: true,
-  selector: 'app-home',
+  selector: 'app-stories-list',
   imports: [StoryCard, RouterLink, DesktopButtonDrawer],
   templateUrl: './stories-list-page.html',
   styleUrl: './stories-list-page.scss',
