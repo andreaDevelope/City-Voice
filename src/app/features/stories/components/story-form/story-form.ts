@@ -11,14 +11,13 @@ import {
   viewChild,
 } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NOT_BLANK, contentRequired } from '../../validators/content-required.validator';
 
 export interface StoryFormValue {
   title: string;
   description: string;
   storyContent: string;
 }
-
-const NOT_BLANK = /\S/;
 
 @Component({
   selector: 'app-story-form',
@@ -38,28 +37,21 @@ export class StoryForm {
   protected readonly limits = { title: 120, description: 240, storyContent: 15000 };
   protected readonly attempted = signal(false);
 
-  protected readonly form = this.fb.group({
-    title: [
-      '',
-      [Validators.required, Validators.pattern(NOT_BLANK), Validators.maxLength(this.limits.title)],
-    ],
-    description: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern(NOT_BLANK),
-        Validators.maxLength(this.limits.description),
+  protected readonly form = this.fb.group(
+    {
+      title: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(NOT_BLANK),
+          Validators.maxLength(this.limits.title),
+        ],
       ],
-    ],
-    storyContent: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern(NOT_BLANK),
-        Validators.maxLength(this.limits.storyContent),
-      ],
-    ],
-  });
+      description: ['', Validators.maxLength(this.limits.description)],
+      storyContent: ['', Validators.maxLength(this.limits.storyContent)],
+    },
+    { validators: contentRequired },
+  );
 
   constructor() {
     effect(() => {
@@ -78,6 +70,10 @@ export class StoryForm {
 
   protected hasError(field: keyof StoryFormValue): boolean {
     return this.attempted() && this.form.controls[field].invalid;
+  }
+
+  protected hasContentError(): boolean {
+    return this.attempted() && this.form.hasError('contentRequired');
   }
 
   protected submit(): void {

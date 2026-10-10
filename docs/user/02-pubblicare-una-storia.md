@@ -12,7 +12,7 @@ Criticare un professionista o un servizio è legittimo: racconta cosa è success
 
 Quando entri in Racconta scegli da dove partire.
 
-**Una storia** è qualcosa che hai vissuto: un'esperienza, un'ingiustizia, un gesto che ti ha fatto credere ancora nella città. Scrivi un titolo, una descrizione breve e il racconto, con il tuo tempo.
+**Una storia** è qualcosa che hai vissuto: un'esperienza, un'ingiustizia, un gesto che ti ha fatto credere ancora nella città. Scrivi un titolo e almeno una descrizione breve o il racconto: se vuoi prenderti il tuo tempo, scrivili entrambi.
 
 **Una segnalazione** è un problema concreto che vedi ogni giorno. Scegli la categoria e il quartiere, dai un titolo e scrivi almeno una descrizione breve. Il testo lungo è facoltativo: se il punto sta in due righe, bastano quelle.
 

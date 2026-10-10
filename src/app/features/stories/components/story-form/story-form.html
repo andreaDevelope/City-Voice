@@ -24,9 +24,11 @@
       }
     </div>
 
+    <p class="field-hint">Compila almeno uno tra descrizione breve e testo.</p>
+
     <div class="field">
       <div class="label-row">
-        <label for="story-description">Descrizione breve <span class="required">*</span></label>
+        <label for="story-description">Descrizione breve</label>
         <span class="field-hint">Suggeriti 100–180 caratteri</span>
       </div>
       <textarea
@@ -35,26 +37,25 @@
         formControlName="description"
         [attr.maxlength]="limits.description"
         placeholder="In poche righe, dai un'idea di quello che hai vissuto."
-        [attr.aria-invalid]="hasError('description')"
-        aria-describedby="story-description-count story-description-error"
+        [attr.aria-invalid]="hasContentError()"
+        aria-describedby="story-description-count story-content-error"
       ></textarea>
       <span id="story-description-count" class="character-count">
         {{ form.controls.description.value.length }} / {{ limits.description }} caratteri
       </span>
-      @if (hasError('description')) {
-        <p id="story-description-error" class="field-error">Scrivi una descrizione breve.</p>
-      }
     </div>
 
     <div class="field">
-      <label for="story-content">La tua storia <span class="required">*</span></label>
+      <label for="story-content"
+        >La tua storia <span class="field-hint">(facoltativo)</span></label
+      >
       <textarea
         id="story-content"
         rows="8"
         formControlName="storyContent"
         [attr.maxlength]="limits.storyContent"
         placeholder="Parti da quello che è successo. Come ti sei sentito? Cosa vorresti cambiasse?"
-        [attr.aria-invalid]="hasError('storyContent')"
+        [attr.aria-invalid]="hasContentError()"
         aria-describedby="story-content-hint story-content-count story-content-error"
       ></textarea>
       <div class="label-row">
@@ -65,8 +66,10 @@
           {{ form.controls.storyContent.value.length }} / {{ limits.storyContent }} caratteri
         </span>
       </div>
-      @if (hasError('storyContent')) {
-        <p id="story-content-error" class="field-error">Racconta la tua storia.</p>
+      @if (hasContentError()) {
+        <p id="story-content-error" class="field-error">
+          Scrivi almeno una descrizione breve o il testo.
+        </p>
       }
     </div>
   </fieldset>

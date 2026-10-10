@@ -10,13 +10,9 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import {
-  NonNullableFormBuilder,
-  ReactiveFormsModule,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms';
+import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DistrictSelect } from '../../../districts/components/district-select/district-select';
+import { NOT_BLANK, contentRequired } from '../../validators/content-required.validator';
 
 export interface ReportFormValue {
   category: string;
@@ -25,16 +21,6 @@ export interface ReportFormValue {
   description: string;
   storyContent: string;
 }
-
-const NOT_BLANK = /\S/;
-
-const contentRequired: ValidatorFn = (group) => {
-  const description = group.get('description')?.value ?? '';
-  const storyContent = group.get('storyContent')?.value ?? '';
-  return NOT_BLANK.test(description) || NOT_BLANK.test(storyContent)
-    ? null
-    : { contentRequired: true };
-};
 
 @Component({
   selector: 'app-report-form',
