@@ -1,60 +1,24 @@
 <div class="container">
-  <div>
-    <!-- ---------INIZIO SIDEBAR DESKTOP------------ -->
-    <section class="menu-sidebar">
-      <div class="stories-desktop-sidebar">
-        <span class="dot"></span>
-        <p>ARCHIVIO DI ROMA</p>
+  <div class="stories-layout" [class.is-manifesto-open]="manifestoIsShowMore">
+    <!-- ----------------INTRO MOBILE------------------- -->
+    <section class="stories-header">
+      <div class="stories-title">
+        <h1>Storie</h1>
       </div>
-      <h2>Storie Documentate</h2>
-      <p class="sidebar-description">
-        Catalogo civico di disservizi, ritardi e ingiustizie vissute dai Romani
-      </p>
-      <div class="sidebar-hero">
-        <div class="sidebar-hero-header">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-chart-column-stacked-icon lucide-chart-column-stacked"
-          >
-            <path d="M11 13H7" />
-            <path d="M19 9h-4" />
-            <path d="M3 3v16a2 2 0 0 0 2 2h16" />
-            <rect x="15" y="5" width="4" height="12" rx="1" />
-            <rect x="7" y="8" width="4" height="9" rx="1" />
-          </svg>
-          <h4>CATEGORIE</h4>
-        </div>
-        <div class="sidebar-hero-main">
-          <ul class="categories">
-            <li [ngClass]="{ 'is-active': isSelectedAllCategory }" class="categories-item">
-              <button (click)="getCategorySelected('tutte')" (click)="filterCategory('tutte')">
-                tutte
-              </button>
-              <span class="stories-count">{{ stories.length }}</span>
-            </li>
-            @for (c of categories; track $index) {
-              <li [ngClass]="{ 'is-active': categorySelected === c }" class="categories-item">
-                <button (click)="getCategorySelected(c)" (click)="filterCategory(c)">
-                  {{ c }}
-                </button>
-                <span class="stories-count">{{ getStoriesForCategoryNumber(c) }}</span>
-              </li>
-            }
-          </ul>
-        </div>
+
+      <div class="stories-manifesto">
+        <p>
+          <strong>Siamo stanchi</strong> di promesse non mantenute. <strong>Uniti</strong>,
+          documentiamo quello che non funziona a Roma.
+        </p>
+        <button (click)="manifestoShowMoreToggle()">
+          {{ manifestoIsShowMore ? 'Chiudi' : 'Approfondisci' }}>
+        </button>
       </div>
     </section>
-    <!-- ----------------INIZIO stories-heder DESKTOP------------------- -->
-    <div class="stories-rigth-desktop">
-      <section class="stories-header-desktop">
+
+    <!-- ----------------INTRO DESKTOP------------------- -->
+    <section class="stories-header-desktop">
         <div class="stories-header-desktop-content">
           <div class="desktop-content-feedbar">
             <svg
@@ -160,118 +124,132 @@
               </div>
             </div>
           }
-
-          <div class="stories-search">
-            <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-search-icon lucide-search"
-              >
-                <path d="m21 21-4.34-4.34" />
-                <circle cx="11" cy="11" r="8" />
-              </svg>
-            </div>
-            <input (input)="onSearch($event)" type="text" placeholder="Cerca categoria..." />
-          </div>
         </div>
-      </section>
-      <!-- ---------------FINE stories-heder DESKTOP---------------- -->
-      <section class="stories" [class.is-manifesto-open]="manifestoIsShowMore">
-        <section class="stories-header">
-          <div>
-            <div class="stories-title">
-              <h1>Storie</h1>
-              <span class="stories-count">{{ stories.length }}</span>
-            </div>
+    </section>
 
-            <div class="stories-manifesto">
-              <p>
-                <strong>Siamo stanchi</strong> di promesse non mantenute. <strong>Uniti</strong>,
-                documentiamo quello che non funziona a Roma.
-              </p>
-              <button (click)="manifestoShowMoreToggle()">
-                {{ manifestoIsShowMore ? 'Chiudi' : 'Approfondisci' }}>
-              </button>
-            </div>
-          </div>
+    <!-- ----------------RICERCA (UNICA)------------------- -->
+    <div class="stories-search">
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-search-icon lucide-search"
+        >
+          <path d="m21 21-4.34-4.34" />
+          <circle cx="11" cy="11" r="8" />
+        </svg>
+      </div>
+      <input
+        (input)="onSearch($event)"
+        type="search"
+        placeholder="Cerca per titolo, autore, quartiere o municipio..."
+        aria-label="Cerca per titolo, autore, quartiere o municipio"
+      />
+    </div>
 
-          <div>
-            <div class="stories-search">
-              <div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-search-icon lucide-search"
-                >
-                  <path d="m21 21-4.34-4.34" />
-                  <circle cx="11" cy="11" r="8" />
-                </svg>
-              </div>
-              <input (input)="onSearch($event)" type="text" placeholder="Cerca categoria..." />
-            </div>
-
-            <div class="stories-filters">
+    <!-- ----------------CATEGORIE (CHIP MOBILE / SIDEBAR DESKTOP)------------------- -->
+    <aside class="menu-sidebar" aria-label="Categorie delle segnalazioni">
+      <div class="sidebar-intro">
+        <div class="stories-desktop-sidebar">
+          <span class="dot"></span>
+          <p>ARCHIVIO DI ROMA</p>
+        </div>
+        <h2>Storie Documentate</h2>
+        <p class="sidebar-description">
+          Catalogo civico di disservizi, ritardi e ingiustizie vissute dai Romani
+        </p>
+      </div>
+      <div class="sidebar-hero">
+        <div class="sidebar-hero-header">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-chart-column-stacked-icon lucide-chart-column-stacked"
+          >
+            <path d="M11 13H7" />
+            <path d="M19 9h-4" />
+            <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+            <rect x="15" y="5" width="4" height="12" rx="1" />
+            <rect x="7" y="8" width="4" height="9" rx="1" />
+          </svg>
+          <h4>CATEGORIE</h4>
+        </div>
+        <div class="sidebar-hero-main">
+          <ul class="categories">
+            <li class="categories-item" [class.is-active]="selectedCategory() === null">
               <button
-                (click)="filterCategory('tutte')"
-                class="stories-filter"
-                [class.is-active]="categorySelected === 'tutte'"
+                type="button"
+                [attr.aria-pressed]="selectedCategory() === null"
+                (click)="selectCategory(null)"
               >
                 Tutte
               </button>
-              @for (s of stories; track $index) {
+            </li>
+            @for (c of categories(); track c.category) {
+              <li class="categories-item" [class.is-active]="selectedCategory() === c.category">
                 <button
-                  (click)="filterCategory(s.category)"
-                  class="stories-filter"
-                  [class.is-active]="categorySelected === s.category"
+                  type="button"
+                  [attr.aria-pressed]="selectedCategory() === c.category"
+                  (click)="selectCategory(c.category)"
                 >
-                  {{ s.category }}
+                  {{ c.category }}
                 </button>
-              }
-            </div>
-          </div>
-        </section>
-
-        <section class="stories-main">
-          <div class="stories-feedbar">
-            <span class="stories-feedbar-left">Feed aggiornato</span>
-            <span class="stories-feedbar-right">Roma</span>
-          </div>
-          <div class="stories-list">
-            @for (s of filtredStories; track $index) {
-              <app-story-card [story]="s"></app-story-card>
+                <span class="stories-count">{{ c.count }}</span>
+              </li>
             }
-          </div>
-          <div class="story-cards-editorial">
-            @for (s of filtredStories; track $index) {
-              <app-story-card-editorial [story]="s"></app-story-card-editorial>
-            }
-          </div>
-        </section>
+          </ul>
+        </div>
+      </div>
+    </aside>
 
-        <button
-          type="button"
-          class="stories-cta-fixed button button-primary"
-          routerLink="/racconta"
-        >
-          + Racconta La Tua Storia
+    <!-- ----------------LISTA------------------- -->
+    <section class="stories-main">
+      <div class="stories-feedbar">
+        <span class="stories-feedbar-left">Feed aggiornato</span>
+        <span class="stories-feedbar-right">Roma</span>
+      </div>
+
+      <div class="stories-list">
+        @for (s of items(); track s.id) {
+          <app-story-card [story]="s" />
+        }
+      </div>
+
+      @if (loading()) {
+        <p class="stories-state" role="status">Caricamento…</p>
+      } @else if (loadError()) {
+        <div class="stories-state" role="alert">
+          <p>Non siamo riusciti a caricare le storie.</p>
+          <button type="button" class="stories-retry" (click)="retry()">Riprova</button>
+        </div>
+      } @else if (items().length === 0) {
+        <p class="stories-state">Nessuna storia trovata.</p>
+      }
+
+      @if (hasNext() && !loadError()) {
+        <button type="button" class="stories-load-more" [disabled]="loading()" (click)="loadMore()">
+          Carica altre
         </button>
-      </section>
-    </div>
+      }
+    </section>
+
+    <button type="button" class="stories-cta-fixed button button-primary" routerLink="/racconta">
+      + Racconta La Tua Storia
+    </button>
   </div>
 
   <div [class.manifesto-show-more-open]="manifestoIsShowMore" class="manifesto-show-more-close">

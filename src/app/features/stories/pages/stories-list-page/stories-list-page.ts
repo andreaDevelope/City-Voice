@@ -1,145 +1,120 @@
-import { Component } from '@angular/core';
-import { StoryCard } from '../../components/story-card/story-card';
+import { Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
-import { NgClass } from '@angular/common';
+import { Subject, Subscription, debounceTime, distinctUntilChanged } from 'rxjs';
+import { StoryCard } from '../../components/story-card/story-card';
 import { DesktopButtonDrawer } from '../../../../shared/ui/desktop-buttons/desktop-button-drawer';
-import { StoryCardEditorial } from '../../components/story-card-editorial/story-card-editorial';
-import { StorySocial } from '../../models/story-social';
-import { StoryStatus } from '../../models/story-status';
+import { StoryService } from '../../services/story.service';
+import { CategoryCount, StoryCardItem } from '../../models/story-feed';
+
+const PAGE_SIZE = 10;
 
 @Component({
   standalone: true,
   selector: 'app-home',
-  imports: [StoryCard, RouterLink, NgClass, DesktopButtonDrawer, StoryCardEditorial],
+  imports: [StoryCard, RouterLink, DesktopButtonDrawer],
   templateUrl: './stories-list-page.html',
   styleUrl: './stories-list-page.scss',
 })
-export class StoriesList {
+export class StoriesList implements OnInit {
+  private storyService = inject(StoryService);
+  private destroyRef = inject(DestroyRef);
+
   addStory = 'RACCONTA LA TUA STORIA';
   microTop = 'ANONIMO GARANTITO';
   microBotton = 'NO INFO PERSONALI';
   manifestoIsShowMore = false;
   manifestoIsShowMoreDsk = false;
-  categorySelected!: string;
-  isSelectedAllCategory = true;
-  stories: StorySocial[] = [
-    {
-      state: StoryStatus.PUBLISHED,
-      category: 'categoria1',
-      district: 'indirizzo1',
-      date: '25-02-2026',
-      title: 'TITOLO1',
-      description:
-        'Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenet  Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo,',
-      storyContent:
-        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores.',
-      username: 'user1',
-      likes: 10,
-      badges: [],
-      avatar: '',
-      commentsCount: 3,
-      comments: [],
-    },
-    {
-      state: StoryStatus.PUBLISHED,
-      category: 'categoria2',
-      district: 'indirizzo2',
-      date: '25-02-2026',
-      title: 'TITOLO2',
-      description:
-        'Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenet  Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo,',
-      storyContent:
-        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores.',
-      username: 'user2',
-      likes: 10,
-      badges: [],
-      avatar: '',
-      commentsCount: 3,
-      comments: [],
-    },
-    {
-      state: StoryStatus.PUBLISHED,
-      category: 'categoria3',
-      district: 'indirizzo3',
-      date: '25-02-2026',
-      title: 'TITOLO3',
-      description:
-        'Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenet  Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo,',
-      storyContent:
-        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenetur commodi a iusto impedit maiores.',
-      username: 'user3',
-      likes: 10,
-      badges: [],
-      avatar: '',
-      commentsCount: 3,
-      comments: [],
-    },
-    {
-      state: StoryStatus.PUBLISHED,
-      category: 'categoria4',
-      district: 'indirizzo',
-      date: '25-02-2026',
-      title: 'TITOLO4',
-      description:
-        'Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenet  Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo,',
-      storyContent:
-        ' Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenet  Repudiandae cumque veritatis cupiditate eligendi explicabo sed ad natus nemo, deleniti quia, exercitationem sint nobis nisi tenet',
-      username: 'user4',
-      likes: 10,
-      badges: [],
-      avatar: '',
-      commentsCount: 3,
-      comments: [],
-    },
-  ];
 
-  filtredStories: StorySocial[] = this.stories;
+  protected readonly items = signal<StoryCardItem[]>([]);
+  protected readonly categories = signal<CategoryCount[]>([]);
+  protected readonly query = signal('');
+  protected readonly selectedCategory = signal<string | null>(null);
+  protected readonly hasNext = signal(false);
+  protected readonly loading = signal(false);
+  protected readonly loadError = signal(false);
 
-  categories: string[] = [...new Set(this.stories.map((s) => s.category))];
+  private readonly search$ = new Subject<string>();
+  private feedRequest: Subscription | null = null;
+  private currentPage = 0;
+  private requestedPage = 0;
 
-  getStoriesForCategoryNumber(param: string): number {
-    let storiesForCategoryCount = 0;
-    this.stories.filter((s) => {
-      if (s.category === param) {
-        storiesForCategoryCount++;
-      }
-    });
-    return storiesForCategoryCount;
+  constructor() {
+    this.search$
+      .pipe(debounceTime(300), distinctUntilChanged(), takeUntilDestroyed())
+      .subscribe((value) => {
+        this.query.set(value);
+        this.reload();
+      });
   }
 
-  getCategorySelected(param: string): void {
-    // eslint-disable-next-line @typescript-eslint/prefer-for-of
-    for (let i = 0; i < this.categories.length; i++) {
-      if (param === this.categories[i]) {
-        this.categorySelected = this.categories[i];
-        this.isSelectedAllCategory = false;
-        return;
-      } else {
-        this.categorySelected = 'tutte';
-        this.isSelectedAllCategory = true;
-      }
-    }
+  ngOnInit(): void {
+    this.storyService
+      .getCategoryCounts()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (counts) => this.categories.set(counts),
+      });
+    this.reload();
   }
 
-  onSearch(event: Event) {
-    const value = (event.target as HTMLInputElement).value.toLocaleLowerCase();
+  protected onSearch(event: Event): void {
+    this.search$.next((event.target as HTMLInputElement).value.trim());
+  }
 
-    if (value === 'tutte' || value === '') {
-      this.filtredStories = this.stories;
+  protected selectCategory(category: string | null): void {
+    if (this.selectedCategory() === category) {
       return;
     }
-
-    this.filtredStories = this.stories.filter((s) => s.category.includes(value));
+    this.selectedCategory.set(category);
+    this.reload();
   }
 
-  filterCategory(category: string) {
-    if (category === 'tutte' || category === '') {
-      this.filtredStories = this.stories;
-      this.categorySelected = category;
+  protected reload(): void {
+    this.items.set([]);
+    this.hasNext.set(false);
+    this.currentPage = 0;
+    this.load(0);
+  }
+
+  protected loadMore(): void {
+    if (this.loading() || !this.hasNext()) {
       return;
     }
-    this.filtredStories = this.stories.filter((s) => s.category === category.toLocaleLowerCase());
-    this.categorySelected = category;
+    this.load(this.currentPage + 1);
+  }
+
+  protected retry(): void {
+    this.load(this.requestedPage);
+  }
+
+  private load(page: number): void {
+    this.feedRequest?.unsubscribe();
+    this.requestedPage = page;
+    this.loading.set(true);
+    this.loadError.set(false);
+    this.feedRequest = this.storyService
+      .getFeed({
+        q: this.query(),
+        category: this.selectedCategory() ?? undefined,
+        page,
+        size: PAGE_SIZE,
+      })
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (response) => {
+          this.items.update((current) =>
+            page === 0 ? response.items : [...current, ...response.items],
+          );
+          this.hasNext.set(response.hasNext);
+          this.currentPage = response.page;
+          this.loading.set(false);
+        },
+        error: () => {
+          this.loadError.set(true);
+          this.loading.set(false);
+        },
+      });
   }
 
   manifestoShowMoreToggle() {

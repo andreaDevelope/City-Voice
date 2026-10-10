@@ -1,148 +1,120 @@
-<div class="story-card">
-  <div class="story-card-content">
-    <div class="story-card-title">
-      <h2>{{ story.title }}</h2>
-    </div>
-    <div class="story-card-description">
-      <p>{{ story.description }}</p>
-    </div>
-    <div class="story-card-category">
-      <p>{{ story.category }}</p>
-    </div>
+<article
+  class="story-card"
+  [class.is-report]="isReport()"
+  [attr.aria-labelledby]="'story-title-' + story().id"
+>
+  <div class="card-decoration" aria-hidden="true">
+    @if (isReport()) {
+      <svg class="report-decoration" viewBox="0 0 90 130" aria-hidden="true" focusable="false">
+        <path class="hazard-outline" d="m55 7 23 40H32Z" />
+        <path class="hazard-detail" d="M55 20v13m0 7v1" />
+        <path class="hazard-outline" d="m60 74 10 34H50Zm-16 34h32v9H44Z" />
+        <path class="hazard-detail" d="M56 87h9m-12 12h14" />
+        <path class="hazard-outline" d="M7 54h28v16H7zm4 16v23m20-23v23" />
+        <path class="hazard-detail" d="m8 67 11-12m0 14 13-14" />
+      </svg>
+    } @else {
+      <svg class="story-decoration" viewBox="0 0 110 160" aria-hidden="true" focusable="false">
+        <g class="voice-bubbles">
+          <path
+            d="M35 8h51a8 8 0 0 1 8 8v17a8 8 0 0 1-8 8H61L49 51l2-10H35a8 8 0 0 1-8-8V16a8 8 0 0 1 8-8Z"
+          />
+          <path d="M5 49h25a6 6 0 0 1 6 6v10a6 6 0 0 1-6 6h-9l-9 7 1-7H5a6 6 0 0 1-6-6V55a6 6 0 0 1 6-6Z" />
+        </g>
+        <g class="voice-people">
+          <circle cx="70" cy="68" r="10" />
+          <path d="M55 113V93c0-9 6-14 15-14s15 5 15 14v20h-6v34H61v-34Z" />
+          <circle cx="99" cy="98" r="8" />
+          <path d="M88 138v-18c0-8 4-12 11-12s12 4 12 12v18h-5v19H94v-19Z" />
+        </g>
+        <path class="voice-gesture" d="m57 91-9-10m36 11 8-6" />
+      </svg>
+      <svg class="story-edge" viewBox="0 0 30 180" aria-hidden="true" focusable="false">
+        <path class="voice-bubbles" d="M5 8h17v18H11l-5 5v-5H5zM7 55h16v14H13l-5 5v-5H7z" />
+        <g class="voice-people">
+          <circle cx="13" cy="111" r="6" />
+          <path d="M4 146v-18c0-6 3-10 9-10s9 4 9 10v18h-4v28H8v-28Z" />
+        </g>
+      </svg>
+    }
   </div>
-  <div class="card-footer">
-    <div class="card-footer-main">
-      <div class=""></div>
-      <div class="avatar">
-        <div class="avatar-ring">🏙️{{ story.avatar }}</div>
-      </div>
-      <h3>{{ story.username }}</h3>
-      <div class="badges">
-        <p>🏙️</p>
-        <p>🏙️</p>
-      </div>
-    </div>
 
-    <div class="story-card-meta">
-      <div class="story-card-location">
-        <span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="12"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-map-pin-icon lucide-map-pin"
-          >
-            <path
-              d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
-            />
-            <circle cx="12" cy="10" r="3" />
-          </svg>
+  <div class="card-content">
+    <p class="story-type">{{ isReport() ? 'SEGNALAZIONE' : 'STORIA' }}</p>
+    <h3 class="story-title" [id]="'story-title-' + story().id">{{ story().title }}</h3>
+    @if (story().preview) {
+      <p class="story-preview">{{ story().preview }}</p>
+    }
+
+    <div class="story-author">
+      <app-avatar
+        class="author-avatar"
+        [symbol]="story().author.symbol"
+        [color]="story().author.color"
+      />
+      <span class="author-username">{{ story().author.username }}</span>
+      @if (badges().length > 0) {
+        <span
+          class="author-badges"
+          role="group"
+          [attr.aria-label]="'Badge in evidenza di ' + story().author.username"
+        >
+          @for (badge of badges(); track $index) {
+            <span
+              [class]="'author-badge ' + badge.cssClass"
+              role="img"
+              [attr.aria-label]="badge.label + ', livello ' + badge.level"
+            >
+              <span class="badge-level" aria-hidden="true">{{ badge.level }}</span>
+            </span>
+          }
         </span>
-        <p>{{ story.district }}</p>
-      </div>
-      <div class="story-card-date">
-        <span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="12"
-            height="12"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-calendar-days-icon lucide-calendar-days"
-          >
-            <path d="M8 2v4" />
-            <path d="M16 2v4" />
-            <rect width="18" height="18" x="3" y="4" rx="2" />
-            <path d="M3 10h18" />
-            <path d="M8 14h.01" />
-            <path d="M12 14h.01" />
-            <path d="M16 14h.01" />
-            <path d="M8 18h.01" />
-            <path d="M12 18h.01" />
-            <path d="M16 18h.01" />
-          </svg>
-        </span>
-        <p>{{ story.date }}</p>
-      </div>
+      }
     </div>
-    <div></div>
-    <span></span>
+
+    <div class="story-metadata">
+      @if (story().category) {
+        <span class="story-category">{{ story().category }}</span>
+      }
+      @if (story().district) {
+        <span class="story-district">{{ story().district }}</span>
+      }
+      <time class="story-date" [attr.datetime]="story().createdAt">{{
+        story().createdAt | date: 'd MMM y'
+      }}</time>
+    </div>
+    @if (story().municipio) {
+      <p class="story-municipio">
+        <span class="municipio-label">Municipio</span> {{ story().municipio }} ·
+        {{ story().municipioLabel }}
+      </p>
+    }
+
+    <div class="story-interactions" role="group" aria-label="Interazioni">
+      <span class="interaction-count" role="img" [attr.aria-label]="story().likes + ' mi piace'">
+        <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M7 10h-4v11h4m0-11 5-7c2 0 3 1 2 4l-1 3h6c2 0 2 2 1 4l-2 7H7z" />
+        </svg>
+        <span class="counter-value" aria-hidden="true">{{ story().likes }}</span>
+      </span>
+      <span
+        class="interaction-count"
+        role="img"
+        [attr.aria-label]="story().dislikes + ' non mi piace'"
+      >
+        <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M7 14H3V3h4m0 11 5 7c2 0 3-1 2-4l-1-3h6c2 0 2-2 1-4l-2-7H7z" />
+        </svg>
+        <span class="counter-value" aria-hidden="true">{{ story().dislikes }}</span>
+      </span>
+      <span class="interaction-count" role="img" [attr.aria-label]="story().comments + ' commenti'">
+        <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path
+            d="M21 11c0 5-4 8-9 8-2 0-3 0-4-1l-5 3 1-6c-1-1-1-2-1-4 0-5 4-8 9-8s9 3 9 8Z"
+          />
+        </svg>
+        <span class="counter-value" aria-hidden="true">{{ story().comments }}</span>
+      </span>
+    </div>
   </div>
-
-  <div class="divider"></div>
-  <!-- ////////////////////////////////////////////////////////////////// -->
-  <div class="story-card-engagement">
-    <button type="button" class="engagement-item is-like">
-      <span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-chevron-up"
-        >
-          <path d="m18 15-6-6-6 6" />
-        </svg>
-      </span>
-      <p>{{ story.likes }}</p>
-    </button>
-
-    <button type="button" class="engagement-item">
-      <span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-message-square"
-        >
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-        </svg>
-      </span>
-      <p>{{ story.commentsCount }}</p>
-    </button>
-
-    <button type="button" class="engagement-item">
-      <span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-share-2"
-        >
-          <circle cx="18" cy="5" r="3" />
-          <circle cx="6" cy="12" r="3" />
-          <circle cx="18" cy="19" r="3" />
-          <line x1="8.59" x2="15.42" y1="13.51" y2="17.49" />
-          <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />
-        </svg>
-      </span>
-    </button>
-  </div>
-</div>
+</article>

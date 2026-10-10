@@ -5,6 +5,7 @@ import {
   provideBrowserGlobalErrorListeners,
   PLATFORM_ID,
   REQUEST,
+  LOCALE_ID,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -21,10 +22,14 @@ import {
   withInterceptors,
 } from '@angular/common/http';
 import { ssrCookieInterceptor } from './core/http/ssr-cookie.interceptor';
-import { isPlatformServer } from '@angular/common';
+import { isPlatformServer, registerLocaleData } from '@angular/common';
+import localeIt from '@angular/common/locales/it';
+
+registerLocaleData(localeIt);
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    { provide: LOCALE_ID, useValue: 'it' },
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
