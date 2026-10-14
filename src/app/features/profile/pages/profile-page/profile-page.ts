@@ -33,9 +33,11 @@ export class Profile implements OnInit {
   ngOnInit(): void {
     this.profileService.getMyBadgeProgress().subscribe({
       next: (data) => this.progress.set(data),
+      error: () => this.progress.set([]),
     });
     this.profileService.getMyProfile().subscribe({
       next: (data) => this.profile.set(data),
+      error: () => this.profile.set(null),
     });
   }
 
