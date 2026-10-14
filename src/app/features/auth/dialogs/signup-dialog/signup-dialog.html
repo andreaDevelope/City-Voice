@@ -21,32 +21,33 @@
         id="username"
         name="username"
       />
-      @if (form.get('username')?.touched && form.get('username')?.invalid) {
-        <p class="field-error">
-          @if (form.get('username')?.hasError('required')) {
-            Scegli un nome
-          } @else {
-            Almeno 3 caratteri
-          }
-        </p>
+      @if (usernameError(); as msg) {
+        <p class="field-error">{{ msg }}</p>
       }
 
       <label for="password">Password</label>
       <input
         formControlName="password"
-        placeholder="Almeno 6 caratteri"
+        placeholder="6–14 caratteri"
         type="password"
         id="password"
         name="password"
       />
-      @if (form.get('password')?.touched && form.get('password')?.invalid) {
-        <p class="field-error">
-          @if (form.get('password')?.hasError('required')) {
-            Inserisci una password
-          } @else {
-            Almeno 6 caratteri
-          }
-        </p>
+      @if (passwordError(); as msg) {
+        <p class="field-error">{{ msg }}</p>
+      }
+
+      <label for="confirmPassword">Conferma password</label>
+      <input
+        formControlName="confirmPassword"
+        placeholder="Ripeti la password"
+        type="password"
+        autocomplete="new-password"
+        id="confirmPassword"
+        name="confirmPassword"
+      />
+      @if (confirmPasswordError(); as msg) {
+        <p class="field-error">{{ msg }}</p>
       }
 
       @if (errorMessage) {

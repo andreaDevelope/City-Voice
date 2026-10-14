@@ -5,6 +5,7 @@ import { User } from '../../../../core/auth/models/user.model';
 import { LoginRequest } from '../../../../core/auth/models/login-request.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { httpErrorMessage } from '../../../../shared/utils/http-error-message';
+import { PASSWORD_MAX, PASSWORD_MIN, passwordMatch } from '../../validators/password-match.validator';
 
 @Component({
   selector: 'app-signup-dialog',
@@ -26,10 +27,69 @@ export class SignupDialogComponent {
   private cdr = inject(ChangeDetectorRef);
   private authService = inject(AuthService);
   constructor() {
-    this.form = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(14)]],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(14)]],
-    });
+    this.form = this.fb.group(
+      {
+        username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(14)]],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(PASSWORD_MIN),
+            Validators.maxLength(PASSWORD_MAX),
+          ],
+        ],
+        confirmPassword: ['', Validators.required],
+      },
+      { validators: passwordMatch },
+    );
+  }
+
+  usernameError(): string | null {
+    const control = this.form.get('username');
+    if (!control?.touched) {
+      return null;
+    }
+    if (control.hasError('required')) {
+      return 'Scegli un nome';
+    }
+    if (control.hasError('minlength')) {
+      return 'Almeno 3 caratteri';
+    }
+    if (control.hasError('maxlength')) {
+      return 'Massimo 14 caratteri';
+    }
+    return null;
+  }
+
+  passwordError(): string | null {
+    const control = this.form.get('password');
+    if (!control?.touched) {
+      return null;
+    }
+    if (control.hasError('required')) {
+      return 'Inserisci una password';
+    }
+    if (control.hasError('minlength')) {
+      return `Almeno ${PASSWORD_MIN} caratteri`;
+    }
+    if (control.hasError('maxlength')) {
+      return `Massimo ${PASSWORD_MAX} caratteri`;
+    }
+    return null;
+  }
+
+  confirmPasswordError(): string | null {
+    const control = this.form.get('confirmPassword');
+    if (!control?.touched) {
+      return null;
+    }
+    if (control.hasError('required')) {
+      return 'Conferma la password';
+    }
+    if (this.form.hasError('passwordMismatch')) {
+      return 'Le password non coincidono';
+    }
+    return null;
   }
 
   signup() {
