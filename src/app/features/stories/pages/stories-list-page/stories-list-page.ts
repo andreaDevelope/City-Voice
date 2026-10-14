@@ -54,6 +54,7 @@ export class StoriesList implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (counts) => this.categories.set(counts),
+        error: () => this.categories.set([]),
       });
     this.reload();
   }
