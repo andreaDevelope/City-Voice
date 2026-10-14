@@ -160,9 +160,11 @@ export class StoryCreatePage {
   private loadUserData(): void {
     this.profileService.getMyProfile().subscribe({
       next: (data) => this.profile.set(data),
+      error: () => this.profile.set(null),
     });
     this.profileService.getMyBadgeProgress().subscribe({
       next: (data) => this.previousProgress.set(data),
+      error: () => this.previousProgress.set(null),
     });
   }
 
