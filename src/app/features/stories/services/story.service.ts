@@ -23,7 +23,9 @@ export class StoryService {
     if (params.category) httpParams = httpParams.set('category', params.category);
     if (params.page !== undefined) httpParams = httpParams.set('page', params.page);
     if (params.size !== undefined) httpParams = httpParams.set('size', params.size);
-    return this.http.get<PageResponse<StoryCardItem>>(this.publicStoriesUrl, { params: httpParams });
+    return this.http.get<PageResponse<StoryCardItem>>(this.publicStoriesUrl, {
+      params: httpParams,
+    });
   }
 
   getCategoryCounts() {

@@ -1,4 +1,5 @@
 import { StoryType } from './story-type';
+import { ReportCategory } from '../enums/report-category';
 import { ProfileSymbol } from '../../profile/enums/profile-symbol';
 import { ProfileColor } from '../../profile/enums/profile-color';
 import { MissionCategory } from '../../profile/enums/mission-category';
@@ -22,7 +23,7 @@ export interface StoryCardItem {
   type: StoryType;
   title: string;
   preview: string | null;
-  category: string | null;
+  category: ReportCategory | null;
   district: string | null;
   municipio: string | null;
   municipioLabel: string | null;
@@ -41,6 +42,6 @@ export interface PageResponse<T> {
 }
 
 export interface CategoryCount {
-  category: string;
+  category: ReportCategory;
   count: number;
 }

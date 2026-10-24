@@ -11,7 +11,7 @@
           [attr.aria-invalid]="hasError('category')"
           aria-describedby="report-category-error"
         >
-          <option value="">Scegli una categoria</option>
+          <option [ngValue]="null">Scegli una categoria</option>
           @for (category of categories; track category.value) {
             <option [value]="category.value">{{ category.label }}</option>
           }

@@ -5,7 +5,11 @@ import { User } from '../../../../core/auth/models/user.model';
 import { LoginRequest } from '../../../../core/auth/models/login-request.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { httpErrorMessage } from '../../../../shared/utils/http-error-message';
-import { PASSWORD_MAX, PASSWORD_MIN, passwordMatch } from '../../validators/password-match.validator';
+import {
+  PASSWORD_MAX,
+  PASSWORD_MIN,
+  passwordMatch,
+} from '../../validators/password-match.validator';
 
 @Component({
   selector: 'app-signup-dialog',

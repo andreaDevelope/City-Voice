@@ -4,6 +4,7 @@ import { MISSION_CATEGORY_META } from '../../../profile/constants/mission-catego
 import { Avatar } from '../../../../shared/ui/avatar/avatar';
 import { toRoman } from '../../../../shared/utils/to-roman';
 import { StoryCardItem } from '../../models/story-feed';
+import { REPORT_CATEGORY_META } from '../../constants/report-category-meta';
 
 @Component({
   selector: 'app-story-card',
@@ -13,6 +14,7 @@ import { StoryCardItem } from '../../models/story-feed';
 })
 export class StoryCard {
   readonly story = input.required<StoryCardItem>();
+  protected readonly categoryMeta = REPORT_CATEGORY_META;
 
   protected readonly isReport = computed(() => this.story().type === 'REPORT');
 

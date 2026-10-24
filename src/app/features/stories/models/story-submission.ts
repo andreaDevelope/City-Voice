@@ -1,9 +1,10 @@
 import { StoryType } from './story-type';
+import { ReportCategory } from '../enums/report-category';
 import { CategoryProgress } from '../../profile/models/category-progress.model';
 
 export interface CreateStoryRequest {
   type: StoryType;
-  category: string | null;
+  category: ReportCategory | null;
   districtId: number | null;
   title: string;
   description: string;
@@ -13,7 +14,7 @@ export interface CreateStoryRequest {
 export interface StoryResponse {
   id: string;
   type: StoryType;
-  category: string | null;
+  category: ReportCategory | null;
   district: string | null;
   title: string;
   description: string;

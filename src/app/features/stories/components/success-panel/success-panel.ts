@@ -2,6 +2,7 @@ import { Component, computed, input, output, signal } from '@angular/core';
 import { ProgressDots } from '../../../../shared/ui/progress-dots/progress-dots';
 import { StoryResponse } from '../../models/story-submission';
 import { CategoryProgress } from '../../../profile/models/category-progress.model';
+import { REPORT_CATEGORY_META } from '../../constants/report-category-meta';
 
 @Component({
   selector: 'app-success-panel',
@@ -14,6 +15,7 @@ export class SuccessPanel {
   readonly previous = input<CategoryProgress[] | null>(null);
   readonly again = output<void>();
 
+  protected readonly categoryMeta = REPORT_CATEGORY_META;
   protected readonly showStory = signal(false);
 
   protected readonly heading = computed(() =>

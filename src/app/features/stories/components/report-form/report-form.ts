@@ -13,9 +13,11 @@ import {
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DistrictSelect } from '../../../districts/components/district-select/district-select';
 import { NOT_BLANK, contentRequired } from '../../validators/content-required.validator';
+import { ReportCategory } from '../../enums/report-category';
+import { REPORT_CATEGORY_META } from '../../constants/report-category-meta';
 
 export interface ReportFormValue {
-  category: string;
+  category: ReportCategory;
   districtId: number;
   title: string;
   description: string;
@@ -40,16 +42,14 @@ export class ReportForm {
   protected readonly limits = { title: 120, description: 240, storyContent: 3000 };
   protected readonly attempted = signal(false);
 
-  protected readonly categories = [
-    { value: 'decoro', label: 'Decoro' },
-    { value: 'sicurezza', label: 'Sicurezza' },
-    { value: 'trasporti', label: 'Trasporti' },
-    { value: 'servizi', label: 'Servizi' },
-  ];
+  protected readonly categories = Object.values(ReportCategory).map((value) => ({
+    value,
+    label: REPORT_CATEGORY_META[value].label,
+  }));
 
   protected readonly form = this.fb.group(
     {
-      category: ['', Validators.required],
+      category: this.fb.control<ReportCategory | null>(null, Validators.required),
       districtId: this.fb.control<number | null>(null, Validators.required),
       title: [
         '',
@@ -91,7 +91,7 @@ export class ReportForm {
   protected submit(): void {
     this.attempted.set(true);
     const { category, districtId, title, description, storyContent } = this.form.getRawValue();
-    if (this.form.invalid || districtId === null) {
+    if (this.form.invalid || category === null || districtId === null) {
       return;
     }
     this.publish.emit({ category, districtId, title, description, storyContent });

@@ -19,112 +19,111 @@
 
     <!-- ----------------INTRO DESKTOP------------------- -->
     <section class="stories-header-desktop">
-        <div class="stories-header-desktop-content">
-          <div class="desktop-content-feedbar">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-calendar-days-icon lucide-calendar-days"
-            >
-              <path d="M8 2v4" />
-              <path d="M16 2v4" />
-              <rect width="18" height="18" x="3" y="4" rx="2" />
-              <path d="M3 10h18" />
-              <path d="M8 14h.01" />
-              <path d="M12 14h.01" />
-              <path d="M16 14h.01" />
-              <path d="M8 18h.01" />
-              <path d="M12 18h.01" />
-              <path d="M16 18h.01" />
-            </svg>
+      <div class="stories-header-desktop-content">
+        <div class="desktop-content-feedbar">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-calendar-days-icon lucide-calendar-days"
+          >
+            <path d="M8 2v4" />
+            <path d="M16 2v4" />
+            <rect width="18" height="18" x="3" y="4" rx="2" />
+            <path d="M3 10h18" />
+            <path d="M8 14h.01" />
+            <path d="M12 14h.01" />
+            <path d="M16 14h.01" />
+            <path d="M8 18h.01" />
+            <path d="M12 18h.01" />
+            <path d="M16 18h.01" />
+          </svg>
 
-            <p>Febbraio 2026 <span class="dot"></span> Roma</p>
-          </div>
-          <!-- ------------------ADD STORY CTA DESKTOP----------------- -->
-          <app-desktop-button-drawer
-            [label]="addStory"
-            [microBottom]="microBotton"
-            [microTop]="microTop"
-            [routerLink]="'/racconta'"
-            class="add-story-btn"
-          ></app-desktop-button-drawer>
+          <p>Febbraio 2026 <span class="dot"></span> Roma</p>
         </div>
-        <div class="hero-desktop">
-          <h1>Archivio Delle Voci</h1>
+        <!-- ------------------ADD STORY CTA DESKTOP----------------- -->
+        <app-desktop-button-drawer
+          [label]="addStory"
+          [microBottom]="microBotton"
+          [microTop]="microTop"
+          [routerLink]="'/racconta'"
+          class="add-story-btn"
+        ></app-desktop-button-drawer>
+      </div>
+      <div class="hero-desktop">
+        <h1>Archivio Delle Voci</h1>
 
-          <p>
-            Questa piattaforma nasce dalla <span>stanchezza</span>. Dalla stanchezza di vedere le
-            stesse cose storie ripetersi, quartiere dopo quartiere,<br />anno dopo anno.
-            <span>Nessuno ci ascolta</span>, nessuno interviene
-          </p>
-          <p>
-            <span>City Voice</span> è un <span>archivio anonimo</span> di ciò che non funziona a
-            Roma. Ogni storia qui è una prova che non <br />siamo soli, che il provblema non siamo
-            noi.
-          </p>
-          <button class="manifesto-showmore-dsk" (click)="manifestoShowMoreToggleDsk()">
-            <b>{{ manifestoIsShowMoreDsk ? 'Chiudi' : 'Approfondisci!' }}</b>
-          </button>
-          @if (manifestoIsShowMoreDsk) {
-            <div class="all-manifesto-dsk">
-              <div class="all-manifesto-dsk-header">
-                <h4>il manifesto</h4>
-                <button (click)="manifestoShowMoreToggleDsk()">chiudi</button>
-              </div>
-              <div class="manifesto-text">
-                <p>
-                  <span>
-                    Questa piattaforma nasce dalla <span class="highlight-red">stanchezza</span>.
-                    Dalla stanchezza di vedere le stesse storie ripetersi, quartiere dopo quartiere,
-                    anno dopo anno. <span class="highlight-strong">Nessuno ci ascolta</span>,
-                    nessuno interviene, e intanto continuiamo a pagare per servizi che non arrivano.
-                  </span>
-                </p>
-
-                <p>
-                  <span>
-                    Roma è una città di <span class="highlight-red">promesse non mantenute</span>.
-                    Marciapiedi impraticabili, ambulatori che chiudono senza preavviso, pratiche
-                    burocratiche che si perdono nei cassetti. Non sono eccezioni:
-                    <span class="highlight-strong">è il sistema</span>.
-                  </span>
-                </p>
-
-                <p>
-                  <span>
-                    City Voice è un <span class="highlight-strong">archivio permanente</span>
-                    di quello che non funziona. Ogni storia documentata qui è una prova che non
-                    siamo soli, che il problema non siamo noi. È un modo per dire:
-                    <span class="highlight-red">"Basta. Vi stiamo guardando"</span>.
-                  </span>
-                </p>
-
-                <p>
-                  <span>
-                    Non siamo un movimento politico. Non promettiamo soluzioni immediate. Ma
-                    crediamo che la <span class="highlight-strong">trasparenza sia potere</span>, e
-                    che <span class="highlight-red">uniti</span> possiamo almeno pretendere di
-                    essere ascoltati.
-                  </span>
-                </p>
-
-                <p>
-                  <span class="manifesto-closing">
-                    Ogni voce conta. Ogni storia è una tessera del mosaico. Benvenuto in City Voice.
-                    Benvenuto a Roma.
-                  </span>
-                </p>
-              </div>
+        <p>
+          Questa piattaforma nasce dalla <span>stanchezza</span>. Dalla stanchezza di vedere le
+          stesse cose storie ripetersi, quartiere dopo quartiere,<br />anno dopo anno.
+          <span>Nessuno ci ascolta</span>, nessuno interviene
+        </p>
+        <p>
+          <span>City Voice</span> è un <span>archivio anonimo</span> di ciò che non funziona a Roma.
+          Ogni storia qui è una prova che non <br />siamo soli, che il provblema non siamo noi.
+        </p>
+        <button class="manifesto-showmore-dsk" (click)="manifestoShowMoreToggleDsk()">
+          <b>{{ manifestoIsShowMoreDsk ? 'Chiudi' : 'Approfondisci!' }}</b>
+        </button>
+        @if (manifestoIsShowMoreDsk) {
+          <div class="all-manifesto-dsk">
+            <div class="all-manifesto-dsk-header">
+              <h4>il manifesto</h4>
+              <button (click)="manifestoShowMoreToggleDsk()">chiudi</button>
             </div>
-          }
-        </div>
+            <div class="manifesto-text">
+              <p>
+                <span>
+                  Questa piattaforma nasce dalla <span class="highlight-red">stanchezza</span>.
+                  Dalla stanchezza di vedere le stesse storie ripetersi, quartiere dopo quartiere,
+                  anno dopo anno. <span class="highlight-strong">Nessuno ci ascolta</span>, nessuno
+                  interviene, e intanto continuiamo a pagare per servizi che non arrivano.
+                </span>
+              </p>
+
+              <p>
+                <span>
+                  Roma è una città di <span class="highlight-red">promesse non mantenute</span>.
+                  Marciapiedi impraticabili, ambulatori che chiudono senza preavviso, pratiche
+                  burocratiche che si perdono nei cassetti. Non sono eccezioni:
+                  <span class="highlight-strong">è il sistema</span>.
+                </span>
+              </p>
+
+              <p>
+                <span>
+                  City Voice è un <span class="highlight-strong">archivio permanente</span>
+                  di quello che non funziona. Ogni storia documentata qui è una prova che non siamo
+                  soli, che il problema non siamo noi. È un modo per dire:
+                  <span class="highlight-red">"Basta. Vi stiamo guardando"</span>.
+                </span>
+              </p>
+
+              <p>
+                <span>
+                  Non siamo un movimento politico. Non promettiamo soluzioni immediate. Ma crediamo
+                  che la <span class="highlight-strong">trasparenza sia potere</span>, e che
+                  <span class="highlight-red">uniti</span> possiamo almeno pretendere di essere
+                  ascoltati.
+                </span>
+              </p>
+
+              <p>
+                <span class="manifesto-closing">
+                  Ogni voce conta. Ogni storia è una tessera del mosaico. Benvenuto in City Voice.
+                  Benvenuto a Roma.
+                </span>
+              </p>
+            </div>
+          </div>
+        }
+      </div>
     </section>
 
     <!-- ----------------RICERCA (UNICA)------------------- -->
@@ -206,7 +205,7 @@
                   [attr.aria-pressed]="selectedCategory() === c.category"
                   (click)="selectCategory(c.category)"
                 >
-                  {{ c.category }}
+                  {{ categoryMeta[c.category].label }}
                 </button>
                 <span class="stories-count">{{ c.count }}</span>
               </li>

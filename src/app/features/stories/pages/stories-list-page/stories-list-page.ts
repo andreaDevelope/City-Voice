@@ -6,6 +6,8 @@ import { StoryCard } from '../../components/story-card/story-card';
 import { DesktopButtonDrawer } from '../../../../shared/ui/desktop-buttons/desktop-button-drawer';
 import { StoryService } from '../../services/story.service';
 import { CategoryCount, StoryCardItem } from '../../models/story-feed';
+import { ReportCategory } from '../../enums/report-category';
+import { REPORT_CATEGORY_META } from '../../constants/report-category-meta';
 
 const PAGE_SIZE = 10;
 
@@ -28,8 +30,9 @@ export class StoriesList implements OnInit {
 
   protected readonly items = signal<StoryCardItem[]>([]);
   protected readonly categories = signal<CategoryCount[]>([]);
+  protected readonly categoryMeta = REPORT_CATEGORY_META;
   protected readonly query = signal('');
-  protected readonly selectedCategory = signal<string | null>(null);
+  protected readonly selectedCategory = signal<ReportCategory | null>(null);
   protected readonly hasNext = signal(false);
   protected readonly loading = signal(false);
   protected readonly loadError = signal(false);
@@ -63,7 +66,7 @@ export class StoriesList implements OnInit {
     this.search$.next((event.target as HTMLInputElement).value.trim());
   }
 
-  protected selectCategory(category: string | null): void {
+  protected selectCategory(category: ReportCategory | null): void {
     if (this.selectedCategory() === category) {
       return;
     }
