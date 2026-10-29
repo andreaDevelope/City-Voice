@@ -1,15 +1,35 @@
-import { Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  ElementRef,
+  OnInit,
+  computed,
+  inject,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
-import { Subject, Subscription, debounceTime, distinctUntilChanged } from 'rxjs';
+import { Subject, Subscription, distinctUntilChanged, map, of, switchMap, timer } from 'rxjs';
 import { StoryCard } from '../../components/story-card/story-card';
 import { DesktopButtonDrawer } from '../../../../shared/ui/desktop-buttons/desktop-button-drawer';
 import { StoryService } from '../../services/story.service';
 import { CategoryCount, StoryCardItem } from '../../models/story-feed';
 import { ReportCategory } from '../../enums/report-category';
-import { ALL_CATEGORIES_ICON_PATHS, REPORT_CATEGORY_META } from '../../constants/report-category-meta';
+import {
+  ALL_CATEGORIES_ICON_PATHS,
+  REPORT_CATEGORY_META,
+} from '../../constants/report-category-meta';
 
 const PAGE_SIZE = 10;
+const SEARCH_MIN_LENGTH = 3;
+const SEARCH_DEBOUNCE_MS = 300;
+
+// Typing searches after the debounce and only from SEARCH_MIN_LENGTH; Enter searches immediately.
+interface SearchInput {
+  value: string;
+  immediate: boolean;
+}
 
 @Component({
   standalone: true,
@@ -34,18 +54,35 @@ export class StoriesList implements OnInit {
   protected readonly allCategoriesIcon = ALL_CATEGORIES_ICON_PATHS;
   protected readonly query = signal('');
   protected readonly selectedCategory = signal<ReportCategory | null>(null);
+  protected readonly searchPlaceholder = computed(() => {
+    const category = this.selectedCategory();
+    return category
+      ? `Cerca in ${this.categoryMeta[category].label}…`
+      : 'Cerca in tutto: titolo, autore, quartiere o municipio…';
+  });
   protected readonly hasNext = signal(false);
   protected readonly loading = signal(false);
   protected readonly loadError = signal(false);
 
-  private readonly search$ = new Subject<string>();
+  private readonly search$ = new Subject<SearchInput>();
+  private readonly searchInput = viewChild<ElementRef<HTMLInputElement>>('searchInput');
   private feedRequest: Subscription | null = null;
   private currentPage = 0;
   private requestedPage = 0;
 
   constructor() {
     this.search$
-      .pipe(debounceTime(300), distinctUntilChanged(), takeUntilDestroyed())
+      .pipe(
+        switchMap(({ value, immediate }) =>
+          immediate
+            ? of(value)
+            : timer(SEARCH_DEBOUNCE_MS).pipe(
+                map(() => (value.length < SEARCH_MIN_LENGTH ? '' : value)),
+              ),
+        ),
+        distinctUntilChanged(),
+        takeUntilDestroyed(),
+      )
       .subscribe((value) => {
         this.query.set(value);
         this.reload();
@@ -64,7 +101,24 @@ export class StoriesList implements OnInit {
   }
 
   protected onSearch(event: Event): void {
-    this.search$.next((event.target as HTMLInputElement).value.trim());
+    this.search$.next({ value: (event.target as HTMLInputElement).value.trim(), immediate: false });
+  }
+
+  protected onSearchSubmit(event: Event): void {
+    this.submitSearch((event.target as HTMLInputElement).value);
+  }
+
+  // Enter and the magnifier button search immediately, even under SEARCH_MIN_LENGTH.
+  protected submitSearch(value: string): void {
+    this.search$.next({ value: value.trim(), immediate: true });
+  }
+
+  protected clearSearch(): void {
+    const input = this.searchInput()?.nativeElement;
+    if (input) {
+      input.value = '';
+    }
+    this.search$.next({ value: '', immediate: true });
   }
 
   // porta il chip toccato al centro della riga orizzontale (mobile); su desktop non sposta nulla se è già visibile

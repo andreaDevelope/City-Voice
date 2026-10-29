@@ -127,30 +127,40 @@
     </section>
 
     <!-- ----------------RICERCA (UNICA)------------------- -->
-    <div class="stories-search">
-      <div>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-search-icon lucide-search"
+    <div class="stories-search" role="search">
+      <div class="search-control">
+        <button
+          type="button"
+          class="search-button"
+          aria-label="Cerca"
+          (click)="submitSearch(searchInput.value)"
         >
-          <path d="m21 21-4.34-4.34" />
-          <circle cx="11" cy="11" r="8" />
-        </svg>
+          <svg
+            class="search-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="m21 21-4.34-4.34" />
+            <circle cx="11" cy="11" r="8" />
+          </svg>
+        </button>
+        <input
+          #searchInput
+          class="search-input"
+          type="search"
+          (input)="onSearch($event)"
+          (keydown.enter)="onSearchSubmit($event)"
+          [placeholder]="searchPlaceholder()"
+          [attr.aria-label]="searchPlaceholder()"
+        />
       </div>
-      <input
-        (input)="onSearch($event)"
-        type="search"
-        placeholder="Cerca per titolo, autore, quartiere o municipio..."
-        aria-label="Cerca per titolo, autore, quartiere o municipio"
-      />
     </div>
 
     <!-- ----------------CATEGORIE (CHIP MOBILE / SIDEBAR DESKTOP)------------------- -->
@@ -214,7 +224,12 @@
                   [attr.aria-pressed]="selectedCategory() === c.category"
                   (click)="selectCategory(c.category); centerChip($event)"
                 >
-                  <svg class="category-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <svg
+                    class="category-icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
                     @for (d of categoryMeta[c.category].iconPaths; track d) {
                       <path [attr.d]="d" />
                     }
@@ -236,7 +251,9 @@
           <p class="results-label">
             Risultati in <span class="selected-category">{{ categoryMeta[category].label }}</span>
           </p>
-          <button type="button" class="results-reset" (click)="selectCategory(null)">Mostra tutte</button>
+          <button type="button" class="results-reset" (click)="selectCategory(null)">
+            Mostra tutte
+          </button>
         </div>
       }
 
@@ -254,18 +271,72 @@
       @if (loading()) {
         <p class="stories-state" role="status">Caricamento…</p>
       } @else if (loadError()) {
-        <div class="stories-state" role="alert">
-          <p>Non siamo riusciti a caricare le storie.</p>
-          <button type="button" class="stories-retry" (click)="retry()">Riprova</button>
+        <div class="results-message error-message" role="alert">
+          <span class="message-symbol">
+            <svg class="message-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="m12 3 10 18H2Z" />
+              <path d="M12 9v5m0 3v1" />
+            </svg>
+          </span>
+          <h3 class="message-title">Le storie non sono arrivate.</h3>
+          <p class="message-description">C'è stato un problema nel caricamento.</p>
+          <button type="button" class="retry-button" (click)="retry()">
+            Riprova
+            <svg class="message-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M20 7v5h-5M4 17v-5h5M6 7a7 7 0 0 1 12-1l2 3M4 15l2 3a7 7 0 0 0 12-1" />
+            </svg>
+          </button>
         </div>
       } @else if (items().length === 0) {
-        <p class="stories-state">Nessuna storia trovata.</p>
+        @if (query()) {
+          <div class="results-message">
+            <span class="message-symbol">
+              <svg class="message-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M10.5 4a6.5 6.5 0 1 0 0 13a6.5 6.5 0 1 0 0-13Z" />
+                <path d="m16 16 5 5" />
+              </svg>
+            </span>
+            <h3 class="message-title">Nessun risultato per «{{ query() }}»</h3>
+            <p class="message-description">Prova con altre parole.</p>
+            <button type="button" class="message-action" (click)="clearSearch()">
+              Cancella la ricerca
+              <svg class="message-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M4 12h15m-6-6 6 6-6 6" />
+              </svg>
+            </button>
+          </div>
+        } @else if (selectedCategory(); as category) {
+          <div class="results-message">
+            <span class="message-symbol">
+              <svg class="message-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                @for (d of categoryMeta[category].iconPaths; track d) {
+                  <path [attr.d]="d" />
+                }
+              </svg>
+            </span>
+            <h3 class="message-title">Nessun risultato in {{ categoryMeta[category].label }}.</h3>
+            <p class="message-description">Le altre voci sono ancora qui.</p>
+            <button type="button" class="message-action" (click)="selectCategory(null)">
+              Mostra tutte
+              <svg class="message-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M4 12h15m-6-6 6 6-6 6" />
+              </svg>
+            </button>
+          </div>
+        } @else {
+          <p class="stories-state">Nessuna storia trovata.</p>
+        }
       }
 
       @if (hasNext() && !loadError()) {
-        <button type="button" class="stories-load-more" [disabled]="loading()" (click)="loadMore()">
-          Carica altre
-        </button>
+        <div class="results-pagination">
+          <button type="button" class="load-more" [disabled]="loading()" (click)="loadMore()">
+            Carica altre
+            <svg class="message-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </button>
+        </div>
       }
     </section>
 
