@@ -185,38 +185,61 @@
             <rect x="15" y="5" width="4" height="12" rx="1" />
             <rect x="7" y="8" width="4" height="9" rx="1" />
           </svg>
-          <h4>CATEGORIE</h4>
+          <h2>Categorie</h2>
         </div>
-        <div class="sidebar-hero-main">
+        <nav class="sidebar-hero-main" aria-label="Filtra per categoria">
           <ul class="categories">
             <li class="categories-item" [class.is-active]="selectedCategory() === null">
               <button
                 type="button"
                 [attr.aria-pressed]="selectedCategory() === null"
-                (click)="selectCategory(null)"
+                (click)="selectCategory(null); centerChip($event)"
               >
-                Tutte
+                <svg class="category-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  @for (d of allCategoriesIcon; track d) {
+                    <path [attr.d]="d" />
+                  }
+                </svg>
+                <span class="category-label">Tutte</span>
               </button>
             </li>
             @for (c of categories(); track c.category) {
-              <li class="categories-item" [class.is-active]="selectedCategory() === c.category">
+              <li
+                class="categories-item"
+                [class.is-active]="selectedCategory() === c.category"
+                [class.is-empty]="c.count === 0"
+              >
                 <button
                   type="button"
                   [attr.aria-pressed]="selectedCategory() === c.category"
-                  (click)="selectCategory(c.category)"
+                  (click)="selectCategory(c.category); centerChip($event)"
                 >
-                  {{ categoryMeta[c.category].label }}
+                  <svg class="category-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    @for (d of categoryMeta[c.category].iconPaths; track d) {
+                      <path [attr.d]="d" />
+                    }
+                  </svg>
+                  <span class="category-label">{{ categoryMeta[c.category].label }}</span>
+                  <span class="stories-count">{{ c.count }}</span>
                 </button>
-                <span class="stories-count">{{ c.count }}</span>
               </li>
             }
           </ul>
-        </div>
+        </nav>
       </div>
     </aside>
 
     <!-- ----------------LISTA------------------- -->
     <section class="stories-main">
+      @if (selectedCategory(); as category) {
+        <div class="results-context">
+          <p class="results-label">
+            Risultati in <span class="selected-category">{{ categoryMeta[category].label }}</span>
+          </p>
+          <button type="button" class="results-reset" (click)="selectCategory(null)">Mostra tutte</button>
+        </div>
+      }
+
       <div class="stories-feedbar">
         <span class="stories-feedbar-left">Feed aggiornato</span>
         <span class="stories-feedbar-right">Roma</span>

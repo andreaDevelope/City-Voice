@@ -57,3 +57,6 @@ export const REPORT_CATEGORY_META: Record<ReportCategory, ReportCategoryMeta> = 
     ],
   },
 };
+
+// Grid icon for the "all categories" entry, which is not a ReportCategory (same viewBox 0 0 24 24).
+export const ALL_CATEGORIES_ICON_PATHS: string[] = ['M3 3h7v7H3ZM14 3h7v7h-7ZM3 14h7v7H3ZM14 14h7v7h-7Z'];

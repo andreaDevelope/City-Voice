@@ -7,7 +7,7 @@ import { DesktopButtonDrawer } from '../../../../shared/ui/desktop-buttons/deskt
 import { StoryService } from '../../services/story.service';
 import { CategoryCount, StoryCardItem } from '../../models/story-feed';
 import { ReportCategory } from '../../enums/report-category';
-import { REPORT_CATEGORY_META } from '../../constants/report-category-meta';
+import { ALL_CATEGORIES_ICON_PATHS, REPORT_CATEGORY_META } from '../../constants/report-category-meta';
 
 const PAGE_SIZE = 10;
 
@@ -31,6 +31,7 @@ export class StoriesList implements OnInit {
   protected readonly items = signal<StoryCardItem[]>([]);
   protected readonly categories = signal<CategoryCount[]>([]);
   protected readonly categoryMeta = REPORT_CATEGORY_META;
+  protected readonly allCategoriesIcon = ALL_CATEGORIES_ICON_PATHS;
   protected readonly query = signal('');
   protected readonly selectedCategory = signal<ReportCategory | null>(null);
   protected readonly hasNext = signal(false);
@@ -64,6 +65,15 @@ export class StoriesList implements OnInit {
 
   protected onSearch(event: Event): void {
     this.search$.next((event.target as HTMLInputElement).value.trim());
+  }
+
+  // porta il chip toccato al centro della riga orizzontale (mobile); su desktop non sposta nulla se è già visibile
+  protected centerChip(event: Event): void {
+    (event.currentTarget as HTMLElement).scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center',
+    });
   }
 
   protected selectCategory(category: ReportCategory | null): void {
