@@ -5,6 +5,7 @@
   border: 1px solid rgb(255 255 255 / 20%);
   border-radius: var(--radius-card);
   background: var(--sfondo-secondario);
+  overflow-wrap: anywhere;
 
   @include da-wide {
     padding: var(--space-8);
