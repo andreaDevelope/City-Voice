@@ -38,6 +38,7 @@ Each feature follows:
     ├── pages/         # routed components
     ├── components/    # feature-local components
     ├── models/        # interfaces and types
+    ├── enums/         # domain values shared with the backend (e.g. report categories)
     ├── services/      # HTTP calls
     ├── constants/     # domain constants (e.g. mission category labels and icons)
     └── styles/        # SCSS partials shared by the feature's components
@@ -68,6 +69,18 @@ CSS classes are kebab-case; states use SCSS nesting (`&.state`). Folder name equ
 After a submission, `/racconta` compares the progress loaded on login with the progress returned by the POST. A badge is unlocked when the counter was below the `currentBadge` threshold and now reaches it. `shared/ui/badge-unlocked-dialog` uses the native `<dialog>` and opens with `showModal()` inside `afterNextRender`, so only in the browser. Multiple unlocks are shown in sequence.
 
 Limit: the diff runs only on `/racconta`. Comments and reactions are not wired yet, so unlocks they cause are not announced.
+
+## Stories page
+
+**Report categories.** The `ReportCategory` enum mirrors the backend values, in the same order. Labels and icons live only in the frontend (`REPORT_CATEGORY_META`), because the backend knows just the value. Icons are drawn on a 24 viewBox, mission icons on 64. "All" is not a category: its icon is a separate constant.
+
+**Category filter.** It is component state (a signal), not a URL parameter, so a filtered view cannot be shared as a link. A deliberate simplification, to revisit if sharing a category becomes useful.
+
+**"All" count.** None is shown: "All" also includes stories, and the backend only returns counts for reports.
+
+**Search.** Typing searches from the 3rd character, since one or two letters would match almost everything. Enter or the search icon search immediately, even with one character, for short terms and touch users. A `switchMap` cancels the pending typing debounce when Enter arrives, otherwise the immediate search would be overwritten.
+
+**Empty states.** Three cases: an active search (action "Cancella la ricerca"), a category only ("Mostra tutte"), or no filter at all. The last one is plain text: production always has at least one item, but a freshly cloned install starts with an empty database.
 
 ## Featured badges UI — to do
 

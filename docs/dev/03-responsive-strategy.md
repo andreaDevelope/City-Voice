@@ -8,7 +8,7 @@ Full-immersive, app-like. Full-screen sections, content revealed progressively, 
 
 ## Desktop (≥ 1024px)
 
-Editorial, closer to modern popular press. A persistent header (`HeaderApp`) replaces `NavMobile`, which is hidden entirely above the breakpoint. Layouts widen into columns, and copy is not simply the mobile text at a larger size: several components carry separate desktop paragraphs written for a slower, more discursive reading style. See `home.html`/`home.scss` and `stories-list.html`/`stories-list.scss` for examples for two versions of the same section.
+Editorial, closer to modern popular press. A persistent header (`HeaderApp`) replaces `NavMobile`, which is hidden entirely above the breakpoint. Layouts widen into columns, and copy is not simply the mobile text at a larger size: several components carry separate desktop paragraphs written for a slower, more discursive reading style. See `home.html`/`home.scss` and `stories-list-page.html`/`stories-list-page.scss` for examples of two versions of the same section.
 
 ## What this means for new components
 

@@ -14,7 +14,7 @@ Quando entri in Racconta scegli da dove partire.
 
 **Una storia** è qualcosa che hai vissuto: un'esperienza, un'ingiustizia, un gesto che ti ha fatto credere ancora nella città. Scrivi un titolo e almeno una descrizione breve o il racconto: se vuoi prenderti il tuo tempo, scrivili entrambi.
 
-**Una segnalazione** è un problema concreto che vedi ogni giorno. Scegli la categoria e il quartiere, dai un titolo e scrivi almeno una descrizione breve. Il testo lungo è facoltativo: se il punto sta in due righe, bastano quelle.
+**Una segnalazione** riguarda un posto o un servizio concreto della città, in bene o in male: un problema che vedi ogni giorno, ma anche qualcosa che funziona e vale la pena far conoscere, come una strada consigliata o una fontanella nascosta. Scegli la categoria e il quartiere, dai un titolo e scrivi almeno una descrizione breve. Il testo lungo è facoltativo: se il punto sta in due righe, bastano quelle.
 
 Il quartiere serve solo alle segnalazioni e non chiede indirizzi: basta il nome con cui lo chiami.
 
