@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Story } from '../../models/story';
 import { SettingStoryCard } from '../../components/setting-story-card/setting-story-card';
-import { StoryStatus } from '../../models/story-status';
+import { StoryStatus } from '../../enums/story-status';
 import { DesktopButtonFancy } from '../../../../shared/ui/desktop-buttons/desktop-button-fancy';
 import { User } from '../../models/user';
 

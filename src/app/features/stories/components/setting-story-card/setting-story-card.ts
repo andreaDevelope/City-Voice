@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Story } from '../../models/story';
+import { STORY_STATUS_LABELS } from '../../enums/story-status-labels';
 
 @Component({
   standalone: true,
@@ -10,4 +11,5 @@ import { Story } from '../../models/story';
 })
 export class SettingStoryCard {
   @Input({ required: true }) story!: Story;
+  protected readonly statusLabels = STORY_STATUS_LABELS;
 }

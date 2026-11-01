@@ -1,4 +1,4 @@
-import { StoryStatus } from './story-status';
+import { StoryStatus } from '../enums/story-status';
 
 export interface Story {
   category: string;

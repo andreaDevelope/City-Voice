@@ -1,5 +1,6 @@
 import { StoryType } from './story-type';
 import { ReportCategory } from '../enums/report-category';
+import { StoryStatus } from '../enums/story-status';
 import { CategoryProgress } from '../../profile/models/category-progress.model';
 
 export interface CreateStoryRequest {
@@ -19,7 +20,7 @@ export interface StoryResponse {
   title: string;
   description: string;
   storyContent: string;
-  status: string;
+  status: StoryStatus;
   createdAt: string;
   badgeProgress: CategoryProgress[];
 }
