@@ -1,0 +1,16 @@
+// Mission category → colour token. The single place where this mapping lives.
+$mission-category-colors: (
+  activity: --colore-attivita,
+  neighborhood: --colore-quartiere,
+  continuity: --colore-continuita,
+  impact: --colore-impatto,
+);
+
+// Sets $property (default --category-color) from the element's own [data-category].
+@mixin category-color($property: --category-color) {
+  @each $category, $token in $mission-category-colors {
+    &[data-category='#{$category}'] {
+      #{$property}: var(#{$token});
+    }
+  }
+}

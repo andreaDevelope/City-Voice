@@ -1,4 +1,4 @@
-<div class="medallion" aria-hidden="true">
+<div class="medallion" aria-hidden="true" [attr.data-category]="category()">
   <svg class="medallion-icon" viewBox="0 0 64 64" focusable="false">
     @for (d of meta().iconPaths; track d) {
       <path [attr.d]="d" />

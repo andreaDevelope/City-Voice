@@ -7,7 +7,6 @@ import { toRoman } from '../../utils/to-roman';
   selector: 'app-badge-medallion',
   templateUrl: './badge-medallion.html',
   styleUrl: './badge-medallion.scss',
-  host: { '[attr.data-category]': 'category()' },
 })
 export class BadgeMedallion {
   readonly category = input.required<MissionCategory>();

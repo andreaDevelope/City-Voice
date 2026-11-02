@@ -1,23 +1,11 @@
+@use 'styles/mission-categories' as *;
+
 :host {
   --size: var(--medallion-size, 3.5rem);
-  --badge-color: var(--colore-attivita);
 
   display: block;
   width: var(--size);
   height: var(--size);
-}
-
-:host([data-category='activity']) {
-  --badge-color: var(--colore-attivita);
-}
-:host([data-category='neighborhood']) {
-  --badge-color: var(--colore-quartiere);
-}
-:host([data-category='continuity']) {
-  --badge-color: var(--colore-continuita);
-}
-:host([data-category='impact']) {
-  --badge-color: var(--colore-impatto);
 }
 
 .medallion {
@@ -38,6 +26,8 @@
     inset 0 0 0 calc(var(--size) * 0.04 + 1px)
       color-mix(in srgb, var(--badge-color) 18%, transparent);
   color: var(--badge-color);
+
+  @include category-color(--badge-color);
 }
 
 .medallion-icon {

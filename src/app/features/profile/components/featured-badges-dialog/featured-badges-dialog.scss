@@ -1,4 +1,5 @@
 @use 'styles/breakpoints' as *;
+@use 'styles/mission-categories' as *;
 
 // Mock values with no project token, derived from the tokens where possible
 :host {
@@ -252,6 +253,8 @@
     min-height: 12.25rem;
     padding-inline: var(--space-3);
   }
+
+  @include category-color;
 }
 
 .featured-slot-number {
@@ -308,7 +311,7 @@ app-badge-medallion {
 
 .featured-badge-meta {
   margin-top: var(--space-1);
-  color: var(--testo-secondario);
+  color: var(--category-color, var(--testo-secondario));
   font-size: var(--font-size-micro);
   line-height: 1.5;
 }
@@ -432,6 +435,8 @@ app-badge-medallion {
       margin-bottom: 0;
     }
   }
+
+  @include category-color;
 }
 
 // Mobile: narrow vertical separator before the group's first badge.
@@ -441,7 +446,7 @@ app-badge-medallion {
   align-self: stretch;
   padding: var(--space-2) var(--space-1) var(--space-2) var(--space-2);
   border-right: 1px solid var(--border);
-  color: var(--testo-discreto);
+  color: var(--category-color, var(--testo-discreto));
   font-size: var(--font-size-micro);
   font-weight: var(--font-weight-bold);
   letter-spacing: var(--tracking-label);
@@ -501,6 +506,8 @@ app-badge-medallion {
     flex: none;
     width: auto;
   }
+
+  @include category-color;
 }
 
 .collection-hint {

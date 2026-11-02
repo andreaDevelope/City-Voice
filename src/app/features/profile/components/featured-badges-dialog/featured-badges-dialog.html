@@ -40,7 +40,7 @@
         <ol class="featured-slots" aria-label="Ordine dei badge in evidenza">
           @for (badge of slots(); track $index) {
             @if (badge) {
-              <li class="featured-slot">
+              <li class="featured-slot" [attr.data-category]="badge.category">
                 <span class="featured-slot-number">{{ $index + 1 }}</span>
                 <button
                   class="badge-remove"
@@ -88,11 +88,16 @@
             tabindex="0"
           >
             @for (group of availableGroups(); track group.category) {
-              <li class="badge-group" role="group" [attr.aria-label]="group.label">
+              <li
+                class="badge-group"
+                role="group"
+                [attr.aria-label]="group.label"
+                [attr.data-category]="group.category"
+              >
                 <span class="badge-group-label" aria-hidden="true">{{ group.label }}</span>
                 <ul class="badge-group-list">
                   @for (badge of group.badges; track badge.badgeId) {
-                    <li class="badge-item">
+                    <li class="badge-item" [attr.data-category]="badge.category">
                       <app-badge-medallion
                         [category]="badge.category"
                         [level]="badge.sequenceOrder"
