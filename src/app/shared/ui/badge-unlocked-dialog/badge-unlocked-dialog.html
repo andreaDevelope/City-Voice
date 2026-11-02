@@ -61,7 +61,11 @@
         </div>
 
         <div class="badge-actions">
-          <a class="primary-action" routerLink="/profilo">
+          <a
+            class="primary-action"
+            routerLink="/profilo"
+            [queryParams]="{ evidenzia: current().badge.id }"
+          >
             Mettilo in evidenza
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M4 12h15m-6-6 6 6-6 6" />

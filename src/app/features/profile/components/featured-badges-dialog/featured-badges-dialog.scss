@@ -546,6 +546,25 @@ app-badge-medallion {
   text-align: center;
 }
 
+/* Highlight */
+
+// Badge just unlocked, opened from the badge-unlocked dialog. box-shadow only: the CDK owns transform.
+.is-highlighted {
+  animation: badge-pulse 700ms ease-in-out 3;
+}
+
+@keyframes badge-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+  50% {
+    box-shadow:
+      0 0 0 3px var(--category-color),
+      0 0 22px 6px var(--category-color);
+  }
+}
+
 /* Drag and drop */
 
 .featured-slot:not(.featured-slot-empty),
@@ -613,6 +632,11 @@ app-badge-medallion {
 
   .drag-trail {
     display: none;
+  }
+
+  .is-highlighted {
+    animation: none;
+    border-color: var(--category-color);
   }
 }
 

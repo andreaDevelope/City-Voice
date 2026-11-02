@@ -200,6 +200,8 @@ export class FeaturedBadgesDialog {
   private readonly destroyRef = inject(DestroyRef);
 
   readonly badges = input.required<UnlockedBadgeDto[]>();
+  // Badge to pulse and scroll into view on open (from the badge-unlocked dialog).
+  readonly highlightBadgeId = input<number | null>(null);
   readonly saved = output<UnlockedBadgeDto[]>();
   readonly closed = output<void>();
 
@@ -245,7 +247,15 @@ export class FeaturedBadgesDialog {
   protected readonly error = signal(false);
 
   constructor() {
-    afterNextRender(() => this.dialog().nativeElement.showModal());
+    afterNextRender(() => {
+      const dialog = this.dialog().nativeElement;
+      dialog.showModal();
+      if (this.highlightBadgeId() !== null) {
+        dialog
+          .querySelector('.is-highlighted')
+          ?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    });
     this.destroyRef.onDestroy(() => this.trail?.destroy());
   }
 
@@ -342,6 +352,10 @@ export class FeaturedBadgesDialog {
 
   protected onClose(): void {
     this.closed.emit();
+  }
+
+  protected isHighlighted(badge: UnlockedBadgeDto): boolean {
+    return badge.badgeId === this.highlightBadgeId();
   }
 
   // "Category · level", e.g. "Attività · II"

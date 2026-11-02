@@ -1,4 +1,6 @@
-import { Component, OnInit, computed, inject, signal } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, computed, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from '../../services/profile.service';
 import { UserProfileDto } from '../../models/user-profile.dto';
 import { ProfileSymbol } from '../../enums/profile-symbol';
@@ -15,6 +17,9 @@ import { UnlockedBadgeDto } from '../../models/unlocked-badge.dto';
 import { FEATURED_BADGES_MAX } from '../../constants/featured-badges';
 import { FeaturedBadgesDialog } from '../../components/featured-badges-dialog/featured-badges-dialog';
 
+// Query param set by the badge-unlocked dialog: opens the featured dialog highlighting that badge.
+const HIGHLIGHT_QUERY_PARAM = 'evidenzia';
+
 @Component({
   standalone: true,
   selector: 'app-profile',
@@ -24,11 +29,15 @@ import { FeaturedBadgesDialog } from '../../components/featured-badges-dialog/fe
 })
 export class Profile implements OnInit {
   private profileService = inject(ProfileService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private platformId = inject(PLATFORM_ID);
 
   profile = signal<UserProfileDto | null>(null);
   progress = signal<CategoryProgress[]>([]);
   unlockedBadges = signal<UnlockedBadgeDto[]>([]);
   featuredDialogOpen = signal(false);
+  highlightBadgeId = signal<number | null>(null);
 
   // un posto per ogni posizione 1..FEATURED_BADGES_MAX: il badge in quella posizione o null
   featuredSlots = computed(() =>
@@ -60,7 +69,12 @@ export class Profile implements OnInit {
       error: () => this.profile.set(null),
     });
     this.profileService.getUnlockedBadges().subscribe({
-      next: (data) => this.unlockedBadges.set(data),
+      next: (data) => {
+        this.unlockedBadges.set(data);
+        if (isPlatformBrowser(this.platformId)) {
+          this.openFromHighlightParam();
+        }
+      },
       error: () => this.unlockedBadges.set([]),
     });
   }
@@ -70,6 +84,7 @@ export class Profile implements OnInit {
   }
 
   openFeaturedDialog() {
+    this.highlightBadgeId.set(null);
     this.featuredDialogOpen.set(true);
   }
 
@@ -79,6 +94,22 @@ export class Profile implements OnInit {
 
   onFeaturedClosed() {
     this.featuredDialogOpen.set(false);
+    this.highlightBadgeId.set(null);
+  }
+
+  // Opens the featured dialog on the badge named in the query param, then drops the param
+  // so a reload or Back does not reopen it.
+  private openFromHighlightParam() {
+    const id = Number(this.route.snapshot.queryParamMap.get(HIGHLIGHT_QUERY_PARAM));
+    if (!Number.isInteger(id) || id <= 0) return;
+    this.highlightBadgeId.set(id);
+    this.featuredDialogOpen.set(true);
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { [HIGHLIGHT_QUERY_PARAM]: null },
+      queryParamsHandling: 'merge',
+      replaceUrl: true,
+    });
   }
 
   symbols = Object.values(ProfileSymbol);

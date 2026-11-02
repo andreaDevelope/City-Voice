@@ -50,6 +50,7 @@
               <li
                 class="featured-slot"
                 [attr.data-category]="badge.category"
+                [class.is-highlighted]="isHighlighted(badge)"
                 cdkDrag
                 [cdkDragData]="badge"
                 [cdkDragStartDelay]="dragStartDelay"
@@ -121,6 +122,7 @@
                     <li
                       class="badge-item"
                       [attr.data-category]="badge.category"
+                      [class.is-highlighted]="isHighlighted(badge)"
                       cdkDrag
                       [cdkDragData]="badge"
                       [cdkDragStartDelay]="dragStartDelay"
