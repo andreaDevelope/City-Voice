@@ -1,0 +1,77 @@
+:host {
+  --size: var(--medallion-size, 3.5rem);
+  --badge-color: var(--colore-attivita);
+
+  display: block;
+  width: var(--size);
+  height: var(--size);
+}
+
+:host([data-category='activity']) {
+  --badge-color: var(--colore-attivita);
+}
+:host([data-category='neighborhood']) {
+  --badge-color: var(--colore-quartiere);
+}
+:host([data-category='continuity']) {
+  --badge-color: var(--colore-continuita);
+}
+:host([data-category='impact']) {
+  --badge-color: var(--colore-impatto);
+}
+
+.medallion {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border: 1px solid color-mix(in srgb, var(--badge-color) 80%, transparent);
+  border-radius: var(--radius-pill);
+  background: radial-gradient(
+    circle at 50% 28%,
+    color-mix(in srgb, var(--badge-color) 13%, var(--sfondo-secondario)),
+    var(--sfondo-principale) 85%
+  );
+  box-shadow:
+    inset 0 0 0 calc(var(--size) * 0.04) var(--sfondo-principale),
+    inset 0 0 0 calc(var(--size) * 0.04 + 1px)
+      color-mix(in srgb, var(--badge-color) 18%, transparent);
+  color: var(--badge-color);
+}
+
+.medallion-icon {
+  width: calc(var(--size) * 0.45);
+  height: calc(var(--size) * 0.45);
+  margin-top: calc(var(--size) * -0.06);
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  // Constant stroke width at every size: scaled, the stroke would vanish below 3rem
+  path {
+    stroke-width: 1.5px;
+    vector-effect: non-scaling-stroke;
+  }
+}
+
+// The level label scales with the medallion, with a minimum to stay readable
+.medallion-level {
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--size) * -0.1);
+  transform: translateX(-50%);
+  display: grid;
+  place-items: center;
+  min-width: max(1rem, calc(var(--size) * 0.32));
+  height: max(0.75rem, calc(var(--size) * 0.22));
+  padding: 0 calc(var(--size) * 0.05);
+  border: 1px solid color-mix(in srgb, var(--badge-color) 60%, transparent);
+  border-radius: var(--radius-button);
+  background: var(--sfondo-principale);
+  font-size: max(0.5rem, calc(var(--size) * 0.16));
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  letter-spacing: 0.1em;
+}

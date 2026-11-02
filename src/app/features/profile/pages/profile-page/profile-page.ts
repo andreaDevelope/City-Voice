@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { ProfileService } from '../../services/profile.service';
 import { UserProfileDto } from '../../models/user-profile.dto';
 import { ProfileSymbol } from '../../enums/profile-symbol';
@@ -9,11 +9,15 @@ import { CategoryProgress } from '../../models/category-progress.model';
 import { ProgressDots } from '../../../../shared/ui/progress-dots/progress-dots';
 import { Avatar } from '../../../../shared/ui/avatar/avatar';
 import { MISSION_CATEGORY_META } from '../../constants/mission-category-meta';
+import { BadgeMedallion } from '../../../../shared/ui/badge-medallion/badge-medallion';
+import { toRoman } from '../../../../shared/utils/to-roman';
+import { UnlockedBadgeDto } from '../../models/unlocked-badge.dto';
+import { FEATURED_BADGES_MAX } from '../../constants/featured-badges';
 
 @Component({
   standalone: true,
   selector: 'app-profile',
-  imports: [ProgressDots, Avatar],
+  imports: [ProgressDots, Avatar, BadgeMedallion],
   templateUrl: './profile-page.html',
   styleUrl: './profile-page.scss',
 })
@@ -22,6 +26,20 @@ export class Profile implements OnInit {
 
   profile = signal<UserProfileDto | null>(null);
   progress = signal<CategoryProgress[]>([]);
+  unlockedBadges = signal<UnlockedBadgeDto[]>([]);
+
+  // un posto per ogni posizione 1..FEATURED_BADGES_MAX: il badge in quella posizione o null
+  featuredSlots = computed(() =>
+    Array.from({ length: FEATURED_BADGES_MAX }, (_, i) => {
+      const badge = this.unlockedBadges().find((b) => b.featuredPosition === i + 1);
+      if (!badge) return null;
+      const category = MISSION_CATEGORY_META[badge.category].label;
+      return {
+        badge,
+        ariaLabel: `${badge.name}, ${category}, livello ${toRoman(badge.sequenceOrder)}`,
+      };
+    }),
+  );
 
   missionCategories = [
     { key: 'activity', cssClass: 'attivita', label: MISSION_CATEGORY_META.activity.label },
@@ -38,6 +56,10 @@ export class Profile implements OnInit {
     this.profileService.getMyProfile().subscribe({
       next: (data) => this.profile.set(data),
       error: () => this.profile.set(null),
+    });
+    this.profileService.getUnlockedBadges().subscribe({
+      next: (data) => this.unlockedBadges.set(data),
+      error: () => this.unlockedBadges.set([]),
     });
   }
 

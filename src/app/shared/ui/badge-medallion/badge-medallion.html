@@ -1,0 +1,8 @@
+<div class="medallion" aria-hidden="true">
+  <svg class="medallion-icon" viewBox="0 0 64 64" focusable="false">
+    @for (d of meta().iconPaths; track d) {
+      <path [attr.d]="d" />
+    }
+  </svg>
+  <span class="medallion-level">{{ romanLevel() }}</span>
+</div>

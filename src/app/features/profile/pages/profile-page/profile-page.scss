@@ -50,6 +50,8 @@ main {
   }
 
   .featured-badges {
+    --medallion-size: 30px;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,6 +64,12 @@ main {
     border-radius: 8px;
     background-color: var(--sfondo-secondario);
     border: 1px solid var(--border-subtle);
+  }
+  // posto pieno: il medaglione ha già il suo cerchio, il riquadro del posto vuoto stonerebbe
+  .featured-badges .badge:not(.badge-empty) {
+    border: 0;
+    border-radius: var(--radius-pill);
+    background-color: transparent;
   }
 
   .avatars-container {

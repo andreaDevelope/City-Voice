@@ -11,10 +11,24 @@
       <app-avatar class="hero-avatar" [symbol]="profile()?.symbol" [color]="profile()?.color" />
       <h3 class="user-name">{{ profile()?.username }}</h3>
       <p class="quartiere">{{ profile()?.neighborhood || 'Quartiere non impostato' }}, Roma</p>
-      <div class="featured-badges">
-        <div class="badge"></div>
-        <div class="badge"></div>
-        <div class="badge"></div>
+      <div class="featured-badges" role="group" aria-label="Badge in evidenza">
+        @for (slot of featuredSlots(); track $index) {
+          @if (slot) {
+            <div
+              class="badge"
+              role="img"
+              [attr.aria-label]="slot.ariaLabel"
+              [attr.title]="slot.badge.name"
+            >
+              <app-badge-medallion
+                [category]="slot.badge.category"
+                [level]="slot.badge.sequenceOrder"
+              />
+            </div>
+          } @else {
+            <div class="badge badge-empty" aria-hidden="true"></div>
+          }
+        }
       </div>
       <button type="button" class="edit-identity-btn">Modifica</button>
     </div>
