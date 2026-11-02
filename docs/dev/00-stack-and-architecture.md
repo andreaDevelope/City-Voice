@@ -82,8 +82,16 @@ Limit: the diff runs only on `/racconta`. Comments and reactions are not wired y
 
 **Empty states.** Three cases: an active search (action "Cancella la ricerca"), a category only ("Mostra tutte"), or no filter at all. The last one is plain text: production always has at least one item, but a freshly cloned install starts with an empty database.
 
-## Featured badges UI — to do
+## Featured badges
 
-- Select up to 3 unlocked badges to feature in the profile hero.
-- The "Modifica" button is already in the hero, not wired yet.
-- Original idea: drag and drop on desktop, tap-then-select on mobile.
+**Where.** The dialog lives only in the profile feature. It opens from the "Modifica" button in the hero, or from "Mettilo in evidenza" in the badge-unlocked dialog, which navigates to `/profilo?evidenzia=<id>`. The parameter is removed right after the dialog opens, so a refresh or the back button does not reopen it.
+
+**Modal dialog.** It opens with `showModal()`: the page underneath is blocked, so on mobile page scrolling does not fight with dragging.
+
+**Drag and drop.** Built on Angular CDK. The mobile nav drag was not reusable: it moves a single free element, with no drop zones. The drag preview stays inside the dialog (`cdkDragPreviewContainer="parent"`), otherwise it would render below the top layer. On touch, dragging starts after 250 ms so a quick swipe still scrolls the carousel. The + and × buttons remain as the keyboard and screen reader alternative.
+
+**Carousel.** Badges are grouped by category: on mobile in a single scrolling row, on desktop in a wrapping grid per category, because horizontal scrolling is not intuitive with a mouse.
+
+**Known limit.** Slots behave like a list: removing a badge shifts the others. Fixed slots with swapping are in the backlog, because saving an empty slot in the middle requires changing `PUT /badge/featured`.
+
+**Shared pieces.** The medallion is `shared/ui/badge-medallion`, sized from outside through `--medallion-size`. The category → colour mapping lives in a single partial, `styles/_mission-categories.scss`.

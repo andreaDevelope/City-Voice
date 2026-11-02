@@ -27,7 +27,11 @@ Partecipando si sbloccano dei badge, divisi in quattro percorsi:
 
 Quando ne sblocchi uno, te lo diciamo subito.
 
-Puoi sceglierne fino a tre da mostrare sotto il tuo profilo. Gli altri restano nella tua collezione.
+Puoi sceglierne fino a tre da mettere in evidenza: compaiono nel tuo profilo e accanto al tuo nome in ogni storia che pubblichi. Per sceglierli premi Modifica nel profilo e trascina i badge nei tre posti, oppure usa + e ×. L’ordine dei posti è quello in cui li vedranno gli altri.
+
+Quando sblocchi un badge nuovo, puoi metterlo in evidenza subito con Mettilo in evidenza.
+
+Gli altri restano nella tua collezione.
 
 ## Perché la gamification
 
