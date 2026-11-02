@@ -30,7 +30,7 @@
           }
         }
       </div>
-      <button type="button" class="edit-identity-btn">Modifica</button>
+      <button type="button" class="edit-identity-btn" (click)="openFeaturedDialog()">Modifica</button>
     </div>
     <div class="avatars-container">
       <h2>Scegli il tuo Avatar</h2>
@@ -166,4 +166,11 @@
       </div>
     }
   </main>
+  @if (featuredDialogOpen()) {
+    <app-featured-badges-dialog
+      [badges]="unlockedBadges()"
+      (saved)="onFeaturedSaved($event)"
+      (closed)="onFeaturedClosed()"
+    />
+  }
 </div>

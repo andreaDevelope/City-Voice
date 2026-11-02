@@ -13,11 +13,12 @@ import { BadgeMedallion } from '../../../../shared/ui/badge-medallion/badge-meda
 import { toRoman } from '../../../../shared/utils/to-roman';
 import { UnlockedBadgeDto } from '../../models/unlocked-badge.dto';
 import { FEATURED_BADGES_MAX } from '../../constants/featured-badges';
+import { FeaturedBadgesDialog } from '../../components/featured-badges-dialog/featured-badges-dialog';
 
 @Component({
   standalone: true,
   selector: 'app-profile',
-  imports: [ProgressDots, Avatar, BadgeMedallion],
+  imports: [ProgressDots, Avatar, BadgeMedallion, FeaturedBadgesDialog],
   templateUrl: './profile-page.html',
   styleUrl: './profile-page.scss',
 })
@@ -27,6 +28,7 @@ export class Profile implements OnInit {
   profile = signal<UserProfileDto | null>(null);
   progress = signal<CategoryProgress[]>([]);
   unlockedBadges = signal<UnlockedBadgeDto[]>([]);
+  featuredDialogOpen = signal(false);
 
   // un posto per ogni posizione 1..FEATURED_BADGES_MAX: il badge in quella posizione o null
   featuredSlots = computed(() =>
@@ -65,6 +67,18 @@ export class Profile implements OnInit {
 
   getProgressFor(category: string): CategoryProgress | undefined {
     return this.progress().find((p) => p.category === category);
+  }
+
+  openFeaturedDialog() {
+    this.featuredDialogOpen.set(true);
+  }
+
+  onFeaturedSaved(list: UnlockedBadgeDto[]) {
+    this.unlockedBadges.set(list);
+  }
+
+  onFeaturedClosed() {
+    this.featuredDialogOpen.set(false);
   }
 
   symbols = Object.values(ProfileSymbol);

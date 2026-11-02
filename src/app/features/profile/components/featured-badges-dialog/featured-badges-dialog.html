@@ -1,0 +1,153 @@
+<dialog
+  #dialog
+  class="featured-dialog"
+  aria-labelledby="featured-title"
+  aria-describedby="featured-help"
+  (cancel)="onCancel($event)"
+  (close)="onClose()"
+>
+  <div class="featured-layout">
+    <div class="featured-scroll">
+      <div class="featured-handle" aria-hidden="true"></div>
+      <header class="featured-header">
+        <p class="featured-eyebrow">Il tuo profilo, a modo tuo</p>
+        <h2 id="featured-title" class="featured-title">Badge in evidenza</h2>
+        <p id="featured-help" class="featured-help">
+          Trascina fino a 3 badge nei posti qui sotto. L'ordine è quello in cui li vedranno gli
+          altri.
+        </p>
+        <button
+          class="featured-close"
+          type="button"
+          aria-label="Chiudi badge in evidenza"
+          (click)="close()"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="m7 7 10 10M17 7 7 17" />
+          </svg>
+        </button>
+      </header>
+
+      <section class="featured-selection" aria-labelledby="featured-selection-title">
+        <div class="featured-section-heading">
+          <h3 id="featured-selection-title" class="featured-section-title">Sul tuo profilo</h3>
+          <span
+            class="featured-counter"
+            [attr.aria-label]="selected().length + ' badge selezionati su ' + maxBadges"
+            ><strong>{{ selected().length }}</strong> / {{ maxBadges }}</span
+          >
+        </div>
+        <ol class="featured-slots" aria-label="Ordine dei badge in evidenza">
+          @for (badge of slots(); track $index) {
+            @if (badge) {
+              <li class="featured-slot">
+                <span class="featured-slot-number">{{ $index + 1 }}</span>
+                <button
+                  class="badge-remove"
+                  type="button"
+                  [attr.aria-label]="'Togli ' + badge.name + ' dai badge in evidenza'"
+                  [disabled]="saving()"
+                  (click)="remove(badge)"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="m7 7 10 10M17 7 7 17" />
+                  </svg>
+                </button>
+                <app-badge-medallion [category]="badge.category" [level]="badge.sequenceOrder" />
+                <h3 class="featured-badge-name">{{ badge.name }}</h3>
+                <p class="featured-badge-meta">{{ badgeMeta(badge) }}</p>
+              </li>
+            } @else {
+              <li class="featured-slot featured-slot-empty">
+                <span class="featured-slot-number">{{ $index + 1 }}</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+                <p>Trascina qui un badge</p>
+              </li>
+            }
+          }
+        </ol>
+      </section>
+
+      <section class="badge-collection" aria-labelledby="featured-collection-title">
+        <div class="featured-section-heading">
+          <h3 id="featured-collection-title" class="featured-section-title">
+            I tuoi badge sbloccati
+          </h3>
+          <span class="badge-total">{{ available().length }} badge</span>
+        </div>
+        @if (badges().length === 0) {
+          <p class="collection-empty">Non hai ancora sbloccato badge. Partecipa per guadagnarne.</p>
+        } @else if (available().length === 0) {
+          <p class="collection-complete">Tutti i tuoi badge sono in evidenza.</p>
+        } @else {
+          <ul
+            class="badge-carousel"
+            aria-label="Badge sbloccati, scorri orizzontalmente"
+            tabindex="0"
+          >
+            @for (group of availableGroups(); track group.category) {
+              <li class="badge-group" role="group" [attr.aria-label]="group.label">
+                <span class="badge-group-label" aria-hidden="true">{{ group.label }}</span>
+                <ul class="badge-group-list">
+                  @for (badge of group.badges; track badge.badgeId) {
+                    <li class="badge-item">
+                      <app-badge-medallion
+                        [category]="badge.category"
+                        [level]="badge.sequenceOrder"
+                      />
+                      <h3 class="featured-badge-name">{{ badge.name }}</h3>
+                      <p class="featured-badge-meta">{{ badgeMeta(badge) }}</p>
+                      <button
+                        class="badge-add"
+                        type="button"
+                        [attr.aria-label]="'Metti in evidenza ' + badge.name"
+                        [disabled]="isFull() || saving()"
+                        (click)="add(badge)"
+                      >
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                          <path d="M12 5v14M5 12h14" />
+                        </svg>
+                      </button>
+                    </li>
+                  }
+                </ul>
+              </li>
+            }
+          </ul>
+          <p class="collection-hint">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M4 12h16M8 8l-4 4 4 4M16 8l4 4-4 4" /></svg
+            >Scorri per scoprirli tutti · Usa + per aggiungerli
+          </p>
+        }
+      </section>
+
+      @if (error()) {
+        <p class="featured-error" role="alert">Non è stato possibile salvare. Riprova.</p>
+      }
+    </div>
+
+    <footer class="featured-footer">
+      <button class="featured-button" type="button" [disabled]="saving()" (click)="close()">
+        Annulla
+      </button>
+      <button
+        class="featured-button featured-button-primary"
+        type="button"
+        [disabled]="saving()"
+        [attr.aria-busy]="saving() || null"
+        (click)="save()"
+      >
+        @if (saving()) {
+          Salvataggio…
+        } @else {
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="m5 12 4 4L19 6" /></svg
+          >Salva
+        }
+      </button>
+    </footer>
+  </div>
+</dialog>
