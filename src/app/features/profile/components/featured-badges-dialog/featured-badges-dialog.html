@@ -7,7 +7,7 @@
   (close)="onClose()"
 >
   <div class="featured-layout">
-    <div class="featured-scroll">
+    <div class="featured-scroll" cdkDropListGroup>
       <div class="featured-handle" aria-hidden="true"></div>
       <header class="featured-header">
         <p class="featured-eyebrow">Il tuo profilo, a modo tuo</p>
@@ -37,10 +37,28 @@
             ><strong>{{ selected().length }}</strong> / {{ maxBadges }}</span
           >
         </div>
-        <ol class="featured-slots" aria-label="Ordine dei badge in evidenza">
+        <ol
+          class="featured-slots"
+          aria-label="Ordine dei badge in evidenza"
+          cdkDropList
+          cdkDropListOrientation="horizontal"
+          [cdkDropListEnterPredicate]="canEnterSlots"
+          (cdkDropListDropped)="onSlotsDropped($event)"
+        >
           @for (badge of slots(); track $index) {
             @if (badge) {
-              <li class="featured-slot" [attr.data-category]="badge.category">
+              <li
+                class="featured-slot"
+                [attr.data-category]="badge.category"
+                cdkDrag
+                [cdkDragData]="badge"
+                [cdkDragStartDelay]="dragStartDelay"
+                cdkDragPreviewContainer="parent"
+                [cdkDragDisabled]="saving()"
+                (cdkDragStarted)="onDragStarted($event)"
+                (cdkDragMoved)="onDragMoved($event)"
+                (cdkDragEnded)="onDragEnded()"
+              >
                 <span class="featured-slot-number">{{ $index + 1 }}</span>
                 <button
                   class="badge-remove"
@@ -86,6 +104,9 @@
             class="badge-carousel"
             aria-label="Badge sbloccati, scorri orizzontalmente"
             tabindex="0"
+            cdkDropList
+            cdkDropListSortingDisabled
+            (cdkDropListDropped)="onCarouselDropped($event)"
           >
             @for (group of availableGroups(); track group.category) {
               <li
@@ -97,7 +118,18 @@
                 <span class="badge-group-label" aria-hidden="true">{{ group.label }}</span>
                 <ul class="badge-group-list">
                   @for (badge of group.badges; track badge.badgeId) {
-                    <li class="badge-item" [attr.data-category]="badge.category">
+                    <li
+                      class="badge-item"
+                      [attr.data-category]="badge.category"
+                      cdkDrag
+                      [cdkDragData]="badge"
+                      [cdkDragStartDelay]="dragStartDelay"
+                      cdkDragPreviewContainer="parent"
+                      [cdkDragDisabled]="saving()"
+                      (cdkDragStarted)="onDragStarted($event)"
+                      (cdkDragMoved)="onDragMoved($event)"
+                      (cdkDragEnded)="onDragEnded()"
+                    >
                       <app-badge-medallion
                         [category]="badge.category"
                         [level]="badge.sequenceOrder"
@@ -124,7 +156,7 @@
           <p class="collection-hint">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M4 12h16M8 8l-4 4 4 4M16 8l4 4-4 4" /></svg
-            >Scorri per scoprirli tutti · Usa + per aggiungerli
+            >Scorri per scoprirli tutti · Trascina in su o usa +
           </p>
         }
       </section>
@@ -155,4 +187,6 @@
       </button>
     </footer>
   </div>
+
+  <canvas #trailCanvas class="drag-trail" aria-hidden="true"></canvas>
 </dialog>
