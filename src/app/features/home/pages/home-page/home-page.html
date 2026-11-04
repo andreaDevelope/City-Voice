@@ -246,15 +246,28 @@
       </div>
 
       <section class="latest-list home-app">
-        <h2>ULTIME STORIE</h2>
-
-        <div class="latest-item">
-          <div class="item-header">
-            <h3>{{ latestStory.district }}</h3>
-            <span>{{ latestStory.date }}</span>
-          </div>
-          <h3>{{ latestStory.description }}</h3>
-        </div>
+        @if (!latestError() && latestStories(); as stories) {
+          <h2>ULTIME STORIE</h2>
+          @if (stories.length === 0) {
+            <p class="latest-empty">
+              Ancora nessuna storia. <a routerLink="/racconta">Racconta la prima.</a>
+            </p>
+          } @else {
+            @for (item of stories; track item.id) {
+              <div class="latest-item">
+                <div class="item-header">
+                  <h3>{{ storyLabel(item) }}</h3>
+                  <span>{{ item.createdAt | date: 'd MMM y' }}</span>
+                </div>
+                <h3>{{ item.title }}</h3>
+                @if (item.district) {
+                  <p class="latest-district">{{ item.district }}</p>
+                }
+              </div>
+            }
+          }
+          <a class="latest-all" routerLink="/storie">Vedi tutte</a>
+        }
       </section>
     </section>
   </section>

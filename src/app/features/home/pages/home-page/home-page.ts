@@ -9,15 +9,19 @@ import {
   OnDestroy,
 } from '@angular/core';
 
-import { isPlatformBrowser } from '@angular/common';
+import { DatePipe, isPlatformBrowser } from '@angular/common';
 import { PublicStats } from '../../models/public-stats';
-import { StoryPreview } from '../../models/story-preview.model';
 import { AppSignature } from '../../models/app-signature.model';
 import { HomeSlogan } from '../../models/home-slogan.model';
 import { DesktopButtonDrawer } from '../../../../shared/ui/desktop-buttons/desktop-button-drawer';
 import { DesktopButtonFancy } from '../../../../shared/ui/desktop-buttons/desktop-button-fancy';
 import { RouterLink } from '@angular/router';
 import { StatsService } from '../../services/stats.service';
+import { StoryService } from '../../../stories/services/story.service';
+import { StoryCardItem } from '../../../stories/models/story-feed';
+import { REPORT_CATEGORY_META } from '../../../stories/constants/report-category-meta';
+
+const LATEST_STORIES_COUNT = 3;
 
 interface HomeHeroSlide {
   title: string;
@@ -28,7 +32,7 @@ interface HomeHeroSlide {
 @Component({
   standalone: true,
   selector: 'app-home',
-  imports: [DesktopButtonDrawer, DesktopButtonFancy, RouterLink],
+  imports: [DesktopButtonDrawer, DesktopButtonFancy, RouterLink, DatePipe],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
 })
@@ -40,11 +44,8 @@ export class Home implements OnDestroy {
     return stats ? stats.stories + stats.reports : null;
   });
 
-  readonly latestStory: StoryPreview = {
-    district: 'QUARTIERE',
-    date: '01-01-2026',
-    description: 'descrizione della storia...',
-  };
+  latestStories = signal<StoryCardItem[] | null>(null);
+  latestError = signal(false);
 
   readonly signature: AppSignature = {
     location: 'ROMA',
@@ -117,10 +118,16 @@ export class Home implements OnDestroy {
   constructor(
     @Inject(PLATFORM_ID) platformId: object,
     private statsService: StatsService,
+    private storyService: StoryService,
   ) {
     this.statsService.getPublicStats().subscribe({
       next: (stats) => this.stats.set(stats),
       error: () => this.stats.set(null),
+    });
+
+    this.storyService.getFeed({ page: 0, size: LATEST_STORIES_COUNT }).subscribe({
+      next: (page) => this.latestStories.set(page.items),
+      error: () => this.latestError.set(true),
     });
 
     if (!isPlatformBrowser(platformId)) return;
@@ -130,6 +137,12 @@ export class Home implements OnDestroy {
         this.currentIndex.set((this.currentIndex() + 1) % this.heroSlides.length);
       }, 4500);
     });
+  }
+
+  protected storyLabel(item: StoryCardItem): string {
+    return item.type === 'REPORT' && item.category
+      ? REPORT_CATEGORY_META[item.category].label
+      : 'Storia';
   }
 
   ngOnDestroy() {

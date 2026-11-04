@@ -236,6 +236,32 @@
     h3 {
       color: var(--testo-principale);
     }
+    & + .latest-item {
+      margin-top: 0.75rem;
+    }
+  }
+
+  .latest-district {
+    margin-top: 0.25rem;
+    font-size: var(--font-size-small);
+    color: var(--testo-secondario);
+  }
+
+  .latest-all {
+    display: block;
+    margin-top: 1rem;
+    text-align: end;
+    font-size: var(--font-size-small);
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--rosso-azione);
+  }
+
+  .latest-empty {
+    color: var(--testo-secondario);
+    a {
+      color: var(--rosso-azione);
+    }
   }
 }
 
