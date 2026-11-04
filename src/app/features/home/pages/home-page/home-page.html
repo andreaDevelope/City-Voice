@@ -187,8 +187,8 @@
               <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
               <circle cx="9" cy="7" r="4" />
             </svg>
-            <p>{{ stats.visits }}</p>
-            <span>CITTADINI</span>
+            <p>{{ membersCount() ?? '–' }}</p>
+            <span>MEMBRI</span>
           </div>
 
           <div class="metric-card">
@@ -211,7 +211,7 @@
               <path d="M7 15h6" />
               <path d="M7 7h8" />
             </svg>
-            <p>{{ stats.stories }}</p>
+            <p>{{ storiesCount() ?? '–' }}</p>
             <span>STORIE</span>
           </div>
         </div>

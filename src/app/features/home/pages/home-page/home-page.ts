@@ -1,15 +1,23 @@
 /* eslint-disable @angular-eslint/prefer-inject */
-import { afterNextRender, Component, Inject, PLATFORM_ID, signal, OnDestroy } from '@angular/core';
+import {
+  afterNextRender,
+  Component,
+  computed,
+  Inject,
+  PLATFORM_ID,
+  signal,
+  OnDestroy,
+} from '@angular/core';
 
 import { isPlatformBrowser } from '@angular/common';
-import { HomeStats } from '../../models/home-stats.model';
+import { PublicStats } from '../../models/public-stats';
 import { StoryPreview } from '../../models/story-preview.model';
 import { AppSignature } from '../../models/app-signature.model';
 import { HomeSlogan } from '../../models/home-slogan.model';
 import { DesktopButtonDrawer } from '../../../../shared/ui/desktop-buttons/desktop-button-drawer';
 import { DesktopButtonFancy } from '../../../../shared/ui/desktop-buttons/desktop-button-fancy';
 import { RouterLink } from '@angular/router';
-import { ProfileService } from '../../../profile/services/profile.service';
+import { StatsService } from '../../services/stats.service';
 
 interface HomeHeroSlide {
   title: string;
@@ -25,10 +33,12 @@ interface HomeHeroSlide {
   styleUrl: './home-page.scss',
 })
 export class Home implements OnDestroy {
-  readonly stats: HomeStats = {
-    visits: 10,
-    stories: 100,
-  };
+  stats = signal<PublicStats | null>(null);
+  membersCount = computed(() => this.stats()?.members ?? null);
+  storiesCount = computed(() => {
+    const stats = this.stats();
+    return stats ? stats.stories + stats.reports : null;
+  });
 
   readonly latestStory: StoryPreview = {
     district: 'QUARTIERE',
@@ -106,8 +116,13 @@ export class Home implements OnDestroy {
 
   constructor(
     @Inject(PLATFORM_ID) platformId: object,
-    private profileSrv: ProfileService,
+    private statsService: StatsService,
   ) {
+    this.statsService.getPublicStats().subscribe({
+      next: (stats) => this.stats.set(stats),
+      error: () => this.stats.set(null),
+    });
+
     if (!isPlatformBrowser(platformId)) return;
 
     afterNextRender(() => {
