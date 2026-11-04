@@ -1,5 +1,7 @@
 # City Voice
 
+> **I testi dell'interfaccia sono provvisori.** Verranno riscritti tutti a progetto concluso: non vanno considerati definitivi.
+
 Piattaforma civica anonima per i cittadini di Roma.
 
 Questo repository contiene il frontend. L'API vive in un repository separato.

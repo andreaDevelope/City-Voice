@@ -82,6 +82,10 @@ Limit: the diff runs only on `/racconta`. Comments and reactions are not wired y
 
 **Empty states.** Three cases: an active search (action "Cancella la ricerca"), a category only ("Mostra tutte"), or no filter at all. The last one is plain text: production always has at least one item, but a freshly cloned install starts with an empty database.
 
+## Home
+
+The counters and the latest stories come from real data: `GET /public/stats` through a service of the home feature, and the three most recent items from the public feed through `StoryService`. The home uses a service from another feature because it is a page that gathers content from several places; duplicating it would add nothing. Both calls start on the server, so the data arrives in the rendered HTML and the browser does not repeat them. On error the counters show "–" and the latest stories section is hidden.
+
 ## Featured badges
 
 **Where.** The dialog lives only in the profile feature. It opens from the "Modifica" button in the hero, or from "Mettilo in evidenza" in the badge-unlocked dialog, which navigates to `/profilo?evidenzia=<id>`. The parameter is removed right after the dialog opens, so a refresh or the back button does not reopen it.
